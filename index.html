@@ -992,17 +992,20 @@
 
         /* ========== LAYOUT VARIATIONS FOR TESTING ========== */
 
+        /* Wrapper for entire bottom section (badges + insights) */
+        .insights-wrapper {
+            cursor: pointer;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
         /* Base status container */
         .status-badge-container {
             padding: 12px 0 0 0;
             margin-top: 12px;
             border-top: 1px solid rgba(0, 255, 0, 0.3);
-            cursor: pointer;
             transition: background 0.2s;
-        }
-
-        .status-badge-container:hover {
-            background: transparent;
         }
 
         .ai-insights-label {
@@ -2717,9 +2720,11 @@
                         `}
                     </div>
                     ${hasData ? `
-                    ${generateBottomSection(item, layoutNum, badgeClass, badgeText, sentimentClass, sentimentText, '')}
-                    <div class="ai-insights-content" onclick="collapseInsights(event)">
-                        ${generateInsights(item)}
+                    <div class="insights-wrapper" onclick="toggleInsightsWrapper(event)">
+                        ${generateBottomSection(item, layoutNum, badgeClass, badgeText, sentimentClass, sentimentText, '')}
+                        <div class="ai-insights-content">
+                            ${generateInsights(item)}
+                        </div>
                     </div>
                     ` : `
                     <div class="status-badge-container" style="justify-content: center;">
@@ -2744,91 +2749,91 @@
 
             switch(layoutNum) {
                 case 1: // Two badges left and right
-                    return `<div class="status-badge-container layout-1" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-1">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                         <span class="layout-indicator">#1 ${ticker}</span>
                     </div>`;
 
                 case 2: // Vertical stack centered
-                    return `<div class="status-badge-container layout-2" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-2">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                         <span class="layout-indicator">#2 ${ticker}</span>
                     </div>`;
 
                 case 3: // Badges centered with gap
-                    return `<div class="status-badge-container layout-3" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-3">
                         <div class="badge-row">${activityBadge}${sentimentBadge}${noOptionsBadge}</div>
                         <span class="layout-indicator">#3 ${ticker}</span>
                     </div>`;
 
                 case 4: // Badges stacked right aligned
-                    return `<div class="status-badge-container layout-4" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-4">
                         <div class="badges-stack">${activityBadge}${sentimentBadge}${noOptionsBadge}</div>
                         <span class="layout-indicator">#4 ${ticker}</span>
                     </div>`;
 
                 case 5: // Large activity badge, small sentiment
-                    return `<div class="status-badge-container layout-5" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-5">
                         <span class="status-badge ${badgeClass} large">${badgeText}</span>
                         <div class="right-group">${sentimentBadge}${noOptionsBadge}</div>
                         <span class="layout-indicator">#5 ${ticker}</span>
                     </div>`;
 
                 case 6: // Pill/rounded badges centered
-                    return `<div class="status-badge-container layout-6" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-6">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                     </div>`;
 
                 case 7: // Compact badges centered
-                    return `<div class="status-badge-container layout-7" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-7">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                         <span class="layout-indicator">#7 ${ticker}</span>
                     </div>`;
 
                 case 8: // Full width stacked badges
-                    return `<div class="status-badge-container layout-8" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-8">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                         <span class="layout-indicator">#8 ${ticker}</span>
                     </div>`;
 
                 case 9: // Badges side by side centered with large gap
-                    return `<div class="status-badge-container layout-9" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-9">
                         <div class="badge-row">${activityBadge}${sentimentBadge}${noOptionsBadge}</div>
                         <span class="layout-indicator">#9 ${ticker}</span>
                     </div>`;
 
                 case 10: // Badges spread with space between
-                    return `<div class="status-badge-container layout-10" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-10">
                         <div class="top-row">${activityBadge}${sentimentBadge}${noOptionsBadge}</div>
                         <span class="layout-indicator">#10 ${ticker}</span>
                     </div>`;
 
                 case 11: // Tab style connected badges
-                    return `<div class="status-badge-container layout-11" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-11">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                         <span class="layout-indicator">#11 ${ticker}</span>
                     </div>`;
 
                 case 12: // Circular badges
-                    return `<div class="status-badge-container layout-12" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-12">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                         <span class="layout-indicator">#12 ${ticker}</span>
                     </div>`;
 
                 case 13: // Outline badges (transparent background)
-                    return `<div class="status-badge-container layout-13" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-13">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                         <span class="layout-indicator">#13 ${ticker}</span>
                     </div>`;
 
                 case 14: // Badges with glow effect
-                    return `<div class="status-badge-container layout-14" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-14">
                         ${activityBadge}${sentimentBadge}${noOptionsBadge}
                         <span class="layout-indicator">#14 ${ticker}</span>
                     </div>`;
 
                 case 15: // Text only, no badge borders
-                    return `<div class="status-badge-container layout-15" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-15">
                         <span class="text-only ${badgeClass}">${badgeText}</span>
                         <span class="text-only ${sentimentClass}">${sentimentText}</span>
                         <span class="layout-indicator">#15 ${ticker}</span>
@@ -2837,20 +2842,20 @@
                 case 16: // Icon + text badges
                     const actIcon = badgeClass === 'unusual' ? '⚠' : '✓';
                     const sentIcon = sentimentClass === 'bullish' ? '↑' : (sentimentClass === 'bearish' ? '↓' : '→');
-                    return `<div class="status-badge-container layout-16" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-16">
                         <span class="status-badge ${badgeClass}">${actIcon} ${badgeText}</span>
                         <span class="status-badge ${sentimentClass}">${sentIcon} ${sentimentText}</span>
                         <span class="layout-indicator">#16 ${ticker}</span>
                     </div>`;
 
                 case 17: // Small badges centered
-                    return `<div class="status-badge-container layout-17" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-17">
                         <div class="badge-row">${activityBadge}${sentimentBadge}</div>
                         <span class="layout-indicator">#17 ${ticker}</span>
                     </div>`;
 
                 case 18: // Badges with subtle expand indicator
-                    return `<div class="status-badge-container layout-18" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-18">
                         ${activityBadge}
                         <span class="toggle-arrow" style="color: rgba(255,255,255,0.3);">▼</span>
                         ${sentimentBadge}
@@ -2858,13 +2863,13 @@
                     </div>`;
 
                 case 19: // Full width badges side by side
-                    return `<div class="status-badge-container layout-19" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-19">
                         <div class="badge-row">${activityBadge}${sentimentBadge}</div>
                         <span class="layout-indicator">#19 ${ticker}</span>
                     </div>`;
 
                 default:
-                    return `<div class="status-badge-container layout-1" onclick="toggleInsights(event, '${ticker}')">
+                    return `<div class="status-badge-container layout-1">
                         ${activityBadge}${sentimentBadge}
                     </div>`;
             }
@@ -2935,6 +2940,16 @@
 
             container.classList.remove('expanded');
             content.classList.remove('expanded');
+        }
+
+        function toggleInsightsWrapper(event) {
+            event.stopPropagation();
+            const wrapper = event.currentTarget;
+            const container = wrapper.querySelector('.status-badge-container');
+            const content = wrapper.querySelector('.ai-insights-content');
+
+            container.classList.toggle('expanded');
+            content.classList.toggle('expanded');
         }
 
         function navigateToTicker(ticker) {
