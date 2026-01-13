@@ -2713,7 +2713,7 @@
                     `}
                     ${hasData ? `
                     ${generateBottomSection(item, layoutNum, badgeClass, badgeText, sentimentClass, sentimentText, '')}
-                    <div class="ai-insights-content">
+                    <div class="ai-insights-content" onclick="collapseInsights(event)">
                         ${generateInsights(item)}
                     </div>
                     ` : `
@@ -2921,6 +2921,15 @@
 
             container.classList.toggle('expanded');
             content.classList.toggle('expanded');
+        }
+
+        function collapseInsights(event) {
+            event.stopPropagation();
+            const content = event.currentTarget;
+            const container = content.previousElementSibling;
+
+            container.classList.remove('expanded');
+            content.classList.remove('expanded');
         }
 
         function navigateToTicker(ticker) {
