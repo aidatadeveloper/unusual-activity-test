@@ -2392,8 +2392,7 @@
         function renderAllTabs() {
             if (!activityData) return;
 
-            const generatedAt = new Date(activityData.generated_at);
-            const timeStr = generatedAt.toLocaleString();
+            const timeStr = new Date().toLocaleString();
 
             // Display the trade date from the data
             const tradeDateEl = document.getElementById('tradeDate');
