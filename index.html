@@ -494,9 +494,12 @@
             border-radius: 8px;
             padding: 20px;
             transition: all 0.3s;
-            cursor: pointer;
             position: relative;
             min-height: var(--card-height);
+        }
+
+        .card-navigate {
+            cursor: pointer;
         }
 
         /* ========== MOBILE MODE - YouTube Shorts Safe Zone Layout ========== */
@@ -2633,84 +2636,86 @@
             const infoTip = "OPTION VOLUME:&#10;Contracts traded. Shows retail activity (small money). More than 2x 7-day avg = unusual activity.&#10;&#10;DOLLAR VOLUME:&#10;Premium traded. Shows institutional activity (big money). More than 2x 7-day avg = unusual activity.&#10;&#10;PUT/CALL RATIO:&#10;Puts vs calls ratio. Shows sentiment. Below 0.5 (very bullish) / Above 2.0 (very bearish) = unusual activity.";
 
             return `
-                <div class="activity-card ${cardClass}" onclick="navigateToTicker('${item.ticker}')">
+                <div class="activity-card ${cardClass}">
                     <div class="card-actions">
-                        <span class="card-info" data-tip="${infoTip}" onclick="event.stopPropagation();">ℹ</span>
+                        <span class="card-info" data-tip="${infoTip}">ℹ</span>
                         <button class="card-remove" onclick="event.stopPropagation(); removeTicker('${item.ticker}', '${item.group || ''}')" title="Remove ${item.ticker}">&times;</button>
                     </div>
-                    <div class="card-header">
-                        <div class="ticker-info">
-                            <h3>${item.ticker}</h3>
-                            ${item.company_name ? `<div class="company-name" title="${item.company_name}">${item.company_name}</div>` : ''}
-                            <div class="ticker-price">
-                                $${item.price.toFixed(2)}
-                                <span class="ticker-change ${priceChangeClass}">
-                                    ${priceChangeSign}${item.price_change_pct.toFixed(2)}%
+                    <div class="card-navigate" onclick="navigateToTicker('${item.ticker}')">
+                        <div class="card-header">
+                            <div class="ticker-info">
+                                <h3>${item.ticker}</h3>
+                                ${item.company_name ? `<div class="company-name" title="${item.company_name}">${item.company_name}</div>` : ''}
+                                <div class="ticker-price">
+                                    $${item.price.toFixed(2)}
+                                    <span class="ticker-change ${priceChangeClass}">
+                                        ${priceChangeSign}${item.price_change_pct.toFixed(2)}%
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        ${hasData ? `
+                        <div class="metrics-section">
+                            <div class="metric-row">
+                                <span class="metric-label">Option Volume</span>
+                                <span class="metric-value">
+                                    ${item.option_volume_ratio >= 2 ? (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '<span class="arrow-up">▲</span>') : ''}${formatNumber(item.option_volume)}
+                                    <span class="metric-ratio ${volRatioClass}">(${item.option_volume_ratio}x)</span>
                                 </span>
                             </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Dollar Volume</span>
+                                <span class="metric-value">
+                                    ${item.dollar_volume_ratio >= 2 ? (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '<span class="arrow-up">▲</span>') : ''}$${formatNumber(item.dollar_volume)}
+                                    <span class="metric-ratio ${dollarRatioClass}">(${item.dollar_volume_ratio}x)</span>
+                                </span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Put/Call Ratio</span>
+                                <span class="metric-value">${item.put_call_ratio < 0.7 ? '<span class="arrow-up">▲</span>' : (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '')}${item.put_call_ratio.toFixed(2)}</span>
+                            </div>
                         </div>
-                    </div>
 
-                    ${hasData ? `
-                    <div class="metrics-section">
-                        <div class="metric-row">
-                            <span class="metric-label">Option Volume</span>
-                            <span class="metric-value">
-                                ${item.option_volume_ratio >= 2 ? (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '<span class="arrow-up">▲</span>') : ''}${formatNumber(item.option_volume)}
-                                <span class="metric-ratio ${volRatioClass}">(${item.option_volume_ratio}x)</span>
-                            </span>
-                        </div>
-                        <div class="metric-row">
-                            <span class="metric-label">Dollar Volume</span>
-                            <span class="metric-value">
-                                ${item.dollar_volume_ratio >= 2 ? (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '<span class="arrow-up">▲</span>') : ''}$${formatNumber(item.dollar_volume)}
-                                <span class="metric-ratio ${dollarRatioClass}">(${item.dollar_volume_ratio}x)</span>
-                            </span>
-                        </div>
-                        <div class="metric-row">
-                            <span class="metric-label">Put/Call Ratio</span>
-                            <span class="metric-value">${item.put_call_ratio < 0.7 ? '<span class="arrow-up">▲</span>' : (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '')}${item.put_call_ratio.toFixed(2)}</span>
-                        </div>
-                    </div>
-
-                    <div class="call-put-section">
-                        <div class="bar-row">
-                            <span class="bar-row-label">Opt Vol</span>
-                            <span class="bar-val-left">${item.vol_call_pct || 50}%</span>
-                            <div class="bar-container">
-                                <div class="bar-calls" style="width: ${item.vol_call_pct || 50}%"></div>
-                                <div class="bar-puts" style="width: ${item.vol_put_pct || 50}%"></div>
+                        <div class="call-put-section">
+                            <div class="bar-row">
+                                <span class="bar-row-label">Opt Vol</span>
+                                <span class="bar-val-left">${item.vol_call_pct || 50}%</span>
+                                <div class="bar-container">
+                                    <div class="bar-calls" style="width: ${item.vol_call_pct || 50}%"></div>
+                                    <div class="bar-puts" style="width: ${item.vol_put_pct || 50}%"></div>
+                                </div>
+                                <span class="bar-val-right">${item.vol_put_pct || 50}%</span>
                             </div>
-                            <span class="bar-val-right">${item.vol_put_pct || 50}%</span>
-                        </div>
-                        <div class="bar-row">
-                            <span class="bar-row-label">$ Vol</span>
-                            <span class="bar-val-left">${item.dv_call_pct || 50}%</span>
-                            <div class="bar-container">
-                                <div class="bar-calls" style="width: ${item.dv_call_pct || 50}%"></div>
-                                <div class="bar-puts" style="width: ${item.dv_put_pct || 50}%"></div>
+                            <div class="bar-row">
+                                <span class="bar-row-label">$ Vol</span>
+                                <span class="bar-val-left">${item.dv_call_pct || 50}%</span>
+                                <div class="bar-container">
+                                    <div class="bar-calls" style="width: ${item.dv_call_pct || 50}%"></div>
+                                    <div class="bar-puts" style="width: ${item.dv_put_pct || 50}%"></div>
+                                </div>
+                                <span class="bar-val-right">${item.dv_put_pct || 50}%</span>
                             </div>
-                            <span class="bar-val-right">${item.dv_put_pct || 50}%</span>
-                        </div>
-                        <div class="pc-gauge">
-                            <span class="pc-gauge-label">P/C</span>
-                            <span class="pc-val-left bullish">0</span>
-                            <div class="pc-gauge-container">
-                                <div class="pc-zone-bullish"></div>
-                                <div class="pc-zone-neutral"></div>
-                                <div class="pc-zone-bearish"></div>
-                                <div class="pc-indicator" style="left: ${Math.min(item.put_call_ratio / 2.0 * 100, 100)}%"></div>
+                            <div class="pc-gauge">
+                                <span class="pc-gauge-label">P/C</span>
+                                <span class="pc-val-left bullish">0</span>
+                                <div class="pc-gauge-container">
+                                    <div class="pc-zone-bullish"></div>
+                                    <div class="pc-zone-neutral"></div>
+                                    <div class="pc-zone-bearish"></div>
+                                    <div class="pc-indicator" style="left: ${Math.min(item.put_call_ratio / 2.0 * 100, 100)}%"></div>
+                                </div>
+                                <span class="pc-val-right bearish">2</span>
                             </div>
-                            <span class="pc-val-right bearish">2</span>
                         </div>
-                    </div>
-                    ` : `
-                    <div class="metrics-section">
-                        <div style="text-align: center; color: rgba(255,255,255,0.3); padding: 20px; font-size: 12px;">
-                            No options data available
+                        ` : `
+                        <div class="metrics-section">
+                            <div style="text-align: center; color: rgba(255,255,255,0.3); padding: 20px; font-size: 12px;">
+                                No options data available
+                            </div>
                         </div>
+                        `}
                     </div>
-                    `}
                     ${hasData ? `
                     ${generateBottomSection(item, layoutNum, badgeClass, badgeText, sentimentClass, sentimentText, '')}
                     <div class="ai-insights-content" onclick="collapseInsights(event)">
