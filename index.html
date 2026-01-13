@@ -1130,20 +1130,29 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
-            font-size: 11px;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.8);
         }
 
         .ai-insights-content.expanded {
             max-height: 200px;
         }
 
-        .ai-insights-content p {
+        .ai-insights-inner {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-out;
+            font-size: 11px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .ai-insights-content.expanded .ai-insights-inner {
+            transform: translateY(0);
+        }
+
+        .ai-insights-inner p {
             margin: 0 0 6px 0;
         }
 
-        .ai-insights-content p:first-child {
+        .ai-insights-inner p:first-child {
             margin-top: 10px;
         }
 
@@ -2722,7 +2731,9 @@
                     <div class="insights-wrapper" onclick="toggleInsightsWrapper(event)">
                         ${generateBottomSection(item, layoutNum, badgeClass, badgeText, sentimentClass, sentimentText, '')}
                         <div class="ai-insights-content">
-                            ${generateInsights(item)}
+                            <div class="ai-insights-inner">
+                                ${generateInsights(item)}
+                            </div>
                         </div>
                     </div>
                     ` : `
