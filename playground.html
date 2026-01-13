@@ -200,16 +200,18 @@
             color: #ff3333;
         }
 
-        /* ========== STYLE 14: Animated Arrow ========== */
+        /* ========== STYLE 14: Static Arrows (Bullish/Bearish) ========== */
         .style-14 .arrow-up {
             display: inline-block;
             margin-left: 6px;
             color: #0f0;
-            animation: bounce 0.6s ease infinite;
+            font-size: 12px;
         }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+        .style-14 .arrow-down {
+            display: inline-block;
+            margin-left: 6px;
+            color: #ff4444;
+            font-size: 12px;
         }
 
         /* ========== STYLE 15: Mini Progress Bar ========== */
@@ -541,9 +543,9 @@
             </div>
         </div>
 
-        <!-- Style 14: Animated Arrow -->
+        <!-- Style 14: Static Arrows (BULLISH example) -->
         <div class="card style-14">
-            <div class="card-title">14. ANIMATED ARROW</div>
+            <div class="card-title">14A. STATIC ARROWS - BULLISH</div>
             <div class="metrics">
                 <div class="metric-row">
                     <span class="metric-label">Option Volume</span>
@@ -555,7 +557,45 @@
                 </div>
                 <div class="metric-row">
                     <span class="metric-label">Put/Call Ratio</span>
-                    <span class="metric-value">0.35</span>
+                    <span class="metric-value">0.35 <span class="arrow-up">▲</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Style 14B: Static Arrows (BEARISH example) -->
+        <div class="card style-14">
+            <div class="card-title">14B. STATIC ARROWS - BEARISH</div>
+            <div class="metrics">
+                <div class="metric-row">
+                    <span class="metric-label">Option Volume</span>
+                    <span class="metric-value">192.8K (2x) <span class="arrow-up">▲</span></span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Dollar Volume</span>
+                    <span class="metric-value">$55.3M (3x) <span class="arrow-up">▲</span></span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Put/Call Ratio</span>
+                    <span class="metric-value">2.21 <span class="arrow-down">▼</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Style 14C: Arrows only when unusual (no arrow = normal) -->
+        <div class="card style-14">
+            <div class="card-title">14C. ARROWS ONLY WHEN UNUSUAL</div>
+            <div class="metrics">
+                <div class="metric-row">
+                    <span class="metric-label">Option Volume</span>
+                    <span class="metric-value">192.8K (2x) <span class="arrow-up">▲</span></span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Dollar Volume</span>
+                    <span class="metric-value">$12.1M</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Put/Call Ratio</span>
+                    <span class="metric-value">0.85</span>
                 </div>
             </div>
         </div>
