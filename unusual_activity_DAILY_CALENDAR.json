@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-15T17:39:00.699826",
+  "generated_at": "2026-01-15T17:49:22.459821",
   "entries": [
     {
       "trade_date": "2026-01-06",
@@ -7,9 +7,19 @@
       "path_from_screener": "DAILY/202601/unusual_activity_20260106_1737.html"
     },
     {
+      "trade_date": "2026-01-06",
+      "filename": "unusual_activity_20260106_1747.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260106_1747.html"
+    },
+    {
       "trade_date": "2026-01-07",
       "filename": "unusual_activity_20260107_1737.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260107_1737.html"
+    },
+    {
+      "trade_date": "2026-01-07",
+      "filename": "unusual_activity_20260107_1748.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260107_1748.html"
     },
     {
       "trade_date": "2026-01-08",
@@ -17,9 +27,19 @@
       "path_from_screener": "DAILY/202601/unusual_activity_20260108_1737.html"
     },
     {
+      "trade_date": "2026-01-08",
+      "filename": "unusual_activity_20260108_1748.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1748.html"
+    },
+    {
       "trade_date": "2026-01-09",
       "filename": "unusual_activity_20260109_1738.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260109_1738.html"
+    },
+    {
+      "trade_date": "2026-01-09",
+      "filename": "unusual_activity_20260109_1748.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1748.html"
     },
     {
       "trade_date": "2026-01-12",
@@ -27,14 +47,29 @@
       "path_from_screener": "DAILY/202601/unusual_activity_20260112_1738.html"
     },
     {
+      "trade_date": "2026-01-12",
+      "filename": "unusual_activity_20260112_1748.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1748.html"
+    },
+    {
       "trade_date": "2026-01-13",
       "filename": "unusual_activity_20260113_1738.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260113_1738.html"
     },
     {
+      "trade_date": "2026-01-13",
+      "filename": "unusual_activity_20260113_1749.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1749.html"
+    },
+    {
       "trade_date": "2026-01-14",
       "filename": "unusual_activity_20260114_1739.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260114_1739.html"
+    },
+    {
+      "trade_date": "2026-01-14",
+      "filename": "unusual_activity_20260114_1749.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1749.html"
     }
   ]
 }
