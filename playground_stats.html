@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats Playground - Color Options</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', monospace;
+            text-align: center;
+            color: #00ff88;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* Charts Grid - Desktop: 2 per row, Mobile: 1 per row */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+            }
+        }
+
+        .chart-container {
+            background: rgba(20, 20, 35, 0.9);
+            border: 1px solid rgba(100, 100, 150, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .chart-container:hover {
+            border-color: rgba(0, 255, 136, 0.5);
+            box-shadow: 0 5px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .chart-title {
+            font-family: 'Orbitron', monospace;
+            color: #00ff88;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Color swatches */
+        .color-swatches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(100, 100, 150, 0.2);
+        }
+
+        .swatch {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.55rem;
+            color: #666;
+        }
+
+        .swatch-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+
+        /* Summary stat buttons - Two rows */
+        .button-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .button-row-label {
+            font-size: 0.5rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .summary-stat {
+            background: rgba(30, 30, 50, 0.8);
+            border: 1px solid rgba(100, 100, 150, 0.3);
+            border-radius: 6px;
+            padding: 6px 12px;
+            text-align: center;
+            min-width: 60px;
+            flex: 1;
+            max-width: 90px;
+        }
+
+        .summary-stat-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1px;
+        }
+
+        .summary-stat-label {
+            font-size: 0.5rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Stacked dual layout */
+        .stacked-dual {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .chart-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-label {
+            text-align: center;
+            font-size: 0.55rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .chart-half {
+            position: relative;
+            height: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .chart-half {
+                height: 120px;
+            }
+
+            .summary-stat {
+                padding: 8px 10px;
+            }
+
+            .summary-stat-value {
+                font-size: 1.2rem;
+            }
+
+            .summary-stat-label {
+                font-size: 0.55rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Activity Color Options</h1>
+    <p class="subtitle">Buttons in two rows | Pick your preferred palette</p>
+
+    <!-- Charts Grid -->
+    <div class="charts-grid" id="chartsGrid"></div>
+
+    <script>
+        // ==========================================
+        // DATA - Banks Sector (7 Trading Days)
+        // ==========================================
+        const DATA = {
+            dates: ['01-07', '01-08', '01-09', '01-10', '01-13', '01-14', '01-15'],
+            bullish: [6, 7, 5, 7, 9, 8, 8],
+            neutral: [9, 8, 10, 7, 6, 7, 7],
+            bearish: [4, 4, 4, 5, 4, 4, 4],
+            unusual: [11, 13, 10, 12, 15, 14, 14],
+            normal: [8, 6, 9, 7, 4, 5, 5]
+        };
+
+        // Today's values
+        const today = {
+            tickers: 19,
+            bullish: DATA.bullish[DATA.bullish.length - 1],
+            neutral: DATA.neutral[DATA.neutral.length - 1],
+            bearish: DATA.bearish[DATA.bearish.length - 1],
+            unusual: DATA.unusual[DATA.unusual.length - 1],
+            normal: DATA.normal[DATA.normal.length - 1]
+        };
+
+        // Sentiment colors (fixed)
+        const sentimentColors = {
+            bullish: '#00ff88',
+            neutral: '#ff9f43',
+            bearish: '#ff4757'
+        };
+
+        // Activity color options
+        const activityPalettes = [
+            { name: 'Purple / Blue', unusual: '#a855f7', normal: '#4dabf7', tickers: '#00ff88' },
+            { name: 'Pink / Cyan', unusual: '#f472b6', normal: '#22d3d3', tickers: '#00ff88' },
+            { name: 'Violet / Ice', unusual: '#8b5cf6', normal: '#7dd3fc', tickers: '#00ff88' },
+            { name: 'Magenta / Teal', unusual: '#e879f9', normal: '#2dd4bf', tickers: '#00ff88' },
+            { name: 'Coral / Sky', unusual: '#fb7185', normal: '#38bdf8', tickers: '#00ff88' },
+            { name: 'Aqua / Charcoal', unusual: '#06b6d4', normal: '#52525b', tickers: '#00ff88' },
+            { name: 'White / Gray', unusual: '#ffffff', normal: '#6b7280', tickers: '#00ff88' },
+            { name: 'Electric / Dim', unusual: '#3b82f6', normal: '#475569', tickers: '#00ff88' }
+        ];
+
+        const gridColor = 'rgba(100, 100, 150, 0.2)';
+        const textColor = '#888888';
+
+        // Generate HTML for each option
+        const grid = document.getElementById('chartsGrid');
+
+        activityPalettes.forEach((palette, idx) => {
+            const num = idx + 1;
+            const borderStyle = palette.unusual === '#ffffff' ? 'border: 1px solid #444' : '';
+
+            const html = `
+                <div class="chart-container">
+                    <div class="chart-title">Option ${num}: ${palette.name}</div>
+                    <div class="color-swatches">
+                        <div class="swatch"><div class="swatch-color" style="background:${palette.tickers}"></div>Tickers</div>
+                        <div class="swatch"><div class="swatch-color" style="background:${palette.unusual}; ${borderStyle}"></div>Unusual</div>
+                        <div class="swatch"><div class="swatch-color" style="background:${palette.normal}"></div>Normal</div>
+                        <div class="swatch"><div class="swatch-color" style="background:${sentimentColors.bullish}"></div>Bullish</div>
+                        <div class="swatch"><div class="swatch-color" style="background:${sentimentColors.neutral}"></div>Neutral</div>
+                        <div class="swatch"><div class="swatch-color" style="background:${sentimentColors.bearish}"></div>Bearish</div>
+                    </div>
+
+                    <!-- Two rows of buttons -->
+                    <div class="button-rows">
+                        <!-- Row 1: Activity -->
+                        <div class="button-row">
+                            <div class="summary-stat">
+                                <div class="summary-stat-value" style="color: ${palette.tickers}">${today.tickers}</div>
+                                <div class="summary-stat-label">Tickers</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="summary-stat-value" style="color: ${palette.unusual}">${today.unusual}</div>
+                                <div class="summary-stat-label">Unusual</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="summary-stat-value" style="color: ${palette.normal}">${today.normal}</div>
+                                <div class="summary-stat-label">Normal</div>
+                            </div>
+                        </div>
+                        <!-- Row 2: Sentiment -->
+                        <div class="button-row">
+                            <div class="summary-stat">
+                                <div class="summary-stat-value" style="color: ${sentimentColors.bullish}">${today.bullish}</div>
+                                <div class="summary-stat-label">Bullish</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="summary-stat-value" style="color: ${sentimentColors.neutral}">${today.neutral}</div>
+                                <div class="summary-stat-label">Neutral</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="summary-stat-value" style="color: ${sentimentColors.bearish}">${today.bearish}</div>
+                                <div class="summary-stat-label">Bearish</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="stacked-dual">
+                        <div class="chart-section">
+                            <div class="chart-label">Activity</div>
+                            <div class="chart-half"><canvas id="chart${num}a"></canvas></div>
+                        </div>
+                        <div class="chart-section">
+                            <div class="chart-label">Sentiment</div>
+                            <div class="chart-half"><canvas id="chart${num}b"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.insertAdjacentHTML('beforeend', html);
+        });
+
+        // Create charts for each option
+        activityPalettes.forEach((palette, idx) => {
+            const num = idx + 1;
+
+            // Activity chart
+            new Chart(document.getElementById(`chart${num}a`), {
+                type: 'line',
+                data: {
+                    labels: DATA.dates,
+                    datasets: [
+                        {
+                            label: 'Unusual',
+                            data: DATA.unusual,
+                            borderColor: palette.unusual,
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 2
+                        },
+                        {
+                            label: 'Normal',
+                            data: DATA.normal,
+                            borderColor: palette.normal,
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            align: 'center',
+                            labels: { color: textColor, font: { size: 8 }, boxWidth: 8, padding: 6 }
+                        }
+                    },
+                    scales: {
+                        x: { ticks: { color: textColor, font: { size: 7 } }, grid: { color: gridColor } },
+                        y: { ticks: { color: textColor, font: { size: 7 } }, grid: { color: gridColor }, beginAtZero: true }
+                    }
+                }
+            });
+
+            // Sentiment chart
+            new Chart(document.getElementById(`chart${num}b`), {
+                type: 'line',
+                data: {
+                    labels: DATA.dates,
+                    datasets: [
+                        {
+                            label: 'Bullish',
+                            data: DATA.bullish,
+                            borderColor: sentimentColors.bullish,
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 2
+                        },
+                        {
+                            label: 'Neutral',
+                            data: DATA.neutral,
+                            borderColor: sentimentColors.neutral,
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 2
+                        },
+                        {
+                            label: 'Bearish',
+                            data: DATA.bearish,
+                            borderColor: sentimentColors.bearish,
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            align: 'center',
+                            labels: { color: textColor, font: { size: 8 }, boxWidth: 8, padding: 6 }
+                        }
+                    },
+                    scales: {
+                        x: { ticks: { color: textColor, font: { size: 7 } }, grid: { color: gridColor } },
+                        y: { ticks: { color: textColor, font: { size: 7 } }, grid: { color: gridColor }, beginAtZero: true }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
