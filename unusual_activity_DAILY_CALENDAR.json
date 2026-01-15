@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-15T09:28:26.429220",
+  "generated_at": "2026-01-15T09:32:57.835042",
   "entries": [
     {
       "trade_date": "2026-01-05",
@@ -45,6 +45,11 @@
       "trade_date": "2026-01-14",
       "filename": "unusual_activity_20260114_0928.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260114_0928.html"
+    },
+    {
+      "trade_date": "2026-01-14",
+      "filename": "unusual_activity_20260114_0932.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260114_0932.html"
     }
   ]
 }
