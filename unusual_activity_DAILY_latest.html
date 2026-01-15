@@ -572,19 +572,19 @@
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
 
-        /* Summary Stats - Two rows layout */
+        /* Summary Stats - Desktop: 1 row, Mobile: 2 rows */
         .summary-stats {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 25px;
-            align-items: center;
+            justify-content: center;
         }
 
+        /* Desktop: hide row wrappers, show all buttons in one row */
         .summary-row {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
+            display: contents;
         }
 
         .summary-stat {
@@ -601,6 +601,23 @@
         .summary-stat:hover {
             border-color: rgba(59, 130, 246, 0.5);
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Mobile: 2 rows of 3 buttons */
+        @media (max-width: 700px) {
+            .summary-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            .summary-row {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+            }
+            .summary-stat {
+                min-width: 80px;
+                padding: 10px 15px;
+            }
         }
 
         .summary-stat-value {
@@ -2285,18 +2302,19 @@
                 });
             }
 
-            // Build chart data from activityData
+            // Build chart data from current activityData
             const chartData = buildChartData(tabId, metric);
             if (!chartData) return;
 
-            // Update title
+            // Update title based on metric type
+            const tabName = tabId === 'all' ? 'All Sectors' : tabId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
             const titleMap = {
-                tickers: 'Tickers (7-Day)',
-                unusual: 'Unusual Activity (7-Day)',
-                normal: 'Normal Activity (7-Day)',
-                bullish: 'Bullish Sentiment (7-Day)',
-                neutral: 'Neutral Sentiment (7-Day)',
-                bearish: 'Bearish Sentiment (7-Day)'
+                tickers: `${tabName} - All Tickers`,
+                unusual: `${tabName} - Activity Breakdown`,
+                normal: `${tabName} - Activity Breakdown`,
+                bullish: `${tabName} - Sentiment Breakdown`,
+                neutral: `${tabName} - Sentiment Breakdown`,
+                bearish: `${tabName} - Sentiment Breakdown`
             };
             document.getElementById('chartModalTitle').textContent = titleMap[metric] || metric;
 
@@ -2308,21 +2326,18 @@
                 currentChart.destroy();
             }
 
-            // Create chart with solid legend boxes
+            // Create bar chart with solid legend boxes
             const ctx = document.getElementById('popupChart').getContext('2d');
             currentChart = new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: chartData.labels,
                     datasets: [{
-                        label: metric.charAt(0).toUpperCase() + metric.slice(1),
+                        label: 'Count',
                         data: chartData.values,
-                        borderColor: chartColors[metric],
-                        backgroundColor: chartColors[metric],
-                        tension: 0.3,
-                        pointRadius: 4,
-                        pointBackgroundColor: chartColors[metric],
-                        fill: false
+                        backgroundColor: chartData.colors,
+                        borderColor: chartData.colors,
+                        borderWidth: 1
                     }]
                 },
                 options: {
@@ -2330,24 +2345,16 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'bottom',
-                            labels: {
-                                color: '#888',
-                                font: { size: 11 },
-                                boxWidth: 12,
-                                boxHeight: 12,
-                                usePointStyle: false,  // Use box, not point
-                                padding: 15
-                            }
+                            display: false
                         }
                     },
                     scales: {
                         x: {
-                            ticks: { color: '#888', font: { size: 10 } },
+                            ticks: { color: '#888', font: { size: 11 } },
                             grid: { color: 'rgba(100, 100, 150, 0.2)' }
                         },
                         y: {
-                            ticks: { color: '#888', font: { size: 10 } },
+                            ticks: { color: '#888', font: { size: 11 } },
                             grid: { color: 'rgba(100, 100, 150, 0.2)' },
                             beginAtZero: true
                         }
@@ -2363,41 +2370,38 @@
             }
         }
 
-        // Build chart data from 7-day history
+        // Build chart data from current day's data
         function buildChartData(tabId, metric) {
-            if (!activityData || !activityData.history_7day) return null;
+            if (!activityData) return null;
 
-            const history = activityData.history_7day;
-            const labels = [];
-            const values = [];
+            // Get data for the selected tab
+            const groupKey = tabId === 'all' ? 'all' : tabId.replace(/-/g, '_');
+            const data = activityData[groupKey] || activityData.all || [];
 
-            // Get data for each day
-            history.forEach(day => {
-                // Format date label as MM/DD
-                const dateParts = day.trade_date.split('-');
-                labels.push(`${dateParts[1]}/${dateParts[2]}`);
+            // Calculate counts
+            const total = data.length;
+            const unusual = data.filter(d => d.is_unusual).length;
+            const normal = total - unusual;
+            const bullish = data.filter(d => d.put_call_ratio < 0.7).length;
+            const neutral = data.filter(d => d.put_call_ratio >= 0.7 && d.put_call_ratio <= 1.0).length;
+            const bearish = data.filter(d => d.put_call_ratio > 1.0).length;
 
-                // Calculate counts for this day based on tab filter
-                const groupData = tabId === 'all' ? day.all_tickers : day.groups?.[tabId.replace(/-/g, '_')] || [];
-
-                let count = 0;
-                if (metric === 'tickers') {
-                    count = groupData.length || 0;
-                } else if (metric === 'unusual') {
-                    count = groupData.filter(t => t.is_unusual).length;
-                } else if (metric === 'normal') {
-                    count = groupData.filter(t => !t.is_unusual).length;
-                } else if (metric === 'bullish') {
-                    count = groupData.filter(t => t.sentiment === 'bullish').length;
-                } else if (metric === 'neutral') {
-                    count = groupData.filter(t => t.sentiment === 'neutral').length;
-                } else if (metric === 'bearish') {
-                    count = groupData.filter(t => t.sentiment === 'bearish').length;
-                }
-                values.push(count);
-            });
-
-            return { labels, values };
+            // Return appropriate chart based on metric clicked
+            if (metric === 'tickers' || metric === 'unusual' || metric === 'normal') {
+                // Activity breakdown
+                return {
+                    labels: ['Unusual', 'Normal'],
+                    values: [unusual, normal],
+                    colors: [chartColors.unusual, chartColors.normal]
+                };
+            } else {
+                // Sentiment breakdown
+                return {
+                    labels: ['Bullish', 'Neutral', 'Bearish'],
+                    values: [bullish, neutral, bearish],
+                    colors: [chartColors.bullish, chartColors.neutral, chartColors.bearish]
+                };
+            }
         }
 
         // Load calendar data from external JSON file
