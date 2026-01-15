@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* ========== FORMAT VARIABLES (DESKTOP/MOBILE) ========== */
         :root {
@@ -571,49 +572,73 @@
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
 
-        /* Summary Stats */
+        /* Summary Stats - Two rows layout */
         .summary-stats {
             display: flex;
-            gap: 15px;
+            flex-direction: column;
+            gap: 10px;
             margin-bottom: 25px;
-            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .summary-row {
+            display: flex;
+            gap: 10px;
             justify-content: center;
         }
 
         .summary-stat {
-            background: rgba(0, 15, 0, 0.85);
-            border: 1px solid rgba(0, 255, 0, 0.4);
+            background: rgba(20, 20, 35, 0.9);
+            border: 1px solid rgba(100, 100, 150, 0.3);
             border-radius: 8px;
-            padding: 15px 25px;
+            padding: 12px 20px;
             text-align: center;
-            min-width: 100px;
+            min-width: 90px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .summary-stat:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
         }
 
         .summary-stat-value {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 24px;
             font-weight: 700;
-            color: #0f0;
+            color: #e8e8e8;
         }
 
-        .summary-stat-value.alert {
-            color: #f00;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        .summary-stat-value.unusual {
+            color: #3b82f6;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .summary-stat-value.normal {
+            color: #64748b;
+            text-shadow: 0 0 10px rgba(100, 116, 139, 0.3);
         }
 
         .summary-stat-value.bullish {
-            color: #0f0;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
         }
 
         .summary-stat-value.neutral {
-            color: #ff0;
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+            color: #ff9f43;
+            text-shadow: 0 0 10px rgba(255, 159, 67, 0.5);
         }
 
         .summary-stat-value.bearish {
-            color: #f00;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            color: #ff4757;
+            text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+        }
+
+        /* Legacy class for backwards compatibility */
+        .summary-stat-value.alert {
+            color: #3b82f6;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
         }
 
         .summary-stat-label {
@@ -622,6 +647,81 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 5px;
+        }
+
+        /* Chart Popup Modal */
+        .chart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chart-modal.active {
+            display: flex;
+        }
+
+        .chart-modal-content {
+            background: rgba(20, 20, 35, 0.98);
+            border: 1px solid rgba(100, 100, 150, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            position: relative;
+        }
+
+        .chart-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(100, 100, 150, 0.3);
+        }
+
+        .chart-modal-title {
+            font-family: 'Orbitron', monospace;
+            color: #3b82f6;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-modal-close {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        .chart-modal-close:hover {
+            color: #ff4757;
+        }
+
+        .chart-modal-body {
+            height: 300px;
+            position: relative;
+        }
+
+        @media (max-width: 600px) {
+            .chart-modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+            .chart-modal-body {
+                height: 250px;
+            }
         }
 
         /* Tab Content */
@@ -2142,6 +2242,160 @@
                            'July', 'August', 'September', 'October', 'November', 'December'];
         const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
+        // Chart popup state
+        let currentChart = null;
+
+        // Color scheme (Option 8: Electric / Dim)
+        const chartColors = {
+            tickers: '#e8e8e8',
+            unusual: '#3b82f6',
+            normal: '#64748b',
+            bullish: '#00ff88',
+            neutral: '#ff9f43',
+            bearish: '#ff4757'
+        };
+
+        // Show chart popup when clicking a summary stat button
+        function showChart(tabId, metric) {
+            // Get or create modal
+            let modal = document.getElementById('chartModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'chartModal';
+                modal.className = 'chart-modal';
+                modal.innerHTML = `
+                    <div class="chart-modal-content">
+                        <div class="chart-modal-header">
+                            <span class="chart-modal-title" id="chartModalTitle">Chart</span>
+                            <button class="chart-modal-close" onclick="closeChart()">&times;</button>
+                        </div>
+                        <div class="chart-modal-body">
+                            <canvas id="popupChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                // Close on backdrop click
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeChart();
+                });
+            }
+
+            // Build chart data from activityData
+            const chartData = buildChartData(tabId, metric);
+            if (!chartData) return;
+
+            // Update title
+            const titleMap = {
+                tickers: 'Tickers (7-Day)',
+                unusual: 'Unusual Activity (7-Day)',
+                normal: 'Normal Activity (7-Day)',
+                bullish: 'Bullish Sentiment (7-Day)',
+                neutral: 'Neutral Sentiment (7-Day)',
+                bearish: 'Bearish Sentiment (7-Day)'
+            };
+            document.getElementById('chartModalTitle').textContent = titleMap[metric] || metric;
+
+            // Show modal
+            modal.classList.add('active');
+
+            // Destroy previous chart
+            if (currentChart) {
+                currentChart.destroy();
+            }
+
+            // Create chart with solid legend boxes
+            const ctx = document.getElementById('popupChart').getContext('2d');
+            currentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        label: metric.charAt(0).toUpperCase() + metric.slice(1),
+                        data: chartData.values,
+                        borderColor: chartColors[metric],
+                        backgroundColor: chartColors[metric],
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: chartColors[metric],
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#888',
+                                font: { size: 11 },
+                                boxWidth: 12,
+                                boxHeight: 12,
+                                usePointStyle: false,  // Use box, not point
+                                padding: 15
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#888', font: { size: 10 } },
+                            grid: { color: 'rgba(100, 100, 150, 0.2)' }
+                        },
+                        y: {
+                            ticks: { color: '#888', font: { size: 10 } },
+                            grid: { color: 'rgba(100, 100, 150, 0.2)' },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function closeChart() {
+            const modal = document.getElementById('chartModal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Build chart data from 7-day history
+        function buildChartData(tabId, metric) {
+            if (!activityData || !activityData.history_7day) return null;
+
+            const history = activityData.history_7day;
+            const labels = [];
+            const values = [];
+
+            // Get data for each day
+            history.forEach(day => {
+                // Format date label as MM/DD
+                const dateParts = day.trade_date.split('-');
+                labels.push(`${dateParts[1]}/${dateParts[2]}`);
+
+                // Calculate counts for this day based on tab filter
+                const groupData = tabId === 'all' ? day.all_tickers : day.groups?.[tabId.replace(/-/g, '_')] || [];
+
+                let count = 0;
+                if (metric === 'tickers') {
+                    count = groupData.length || 0;
+                } else if (metric === 'unusual') {
+                    count = groupData.filter(t => t.is_unusual).length;
+                } else if (metric === 'normal') {
+                    count = groupData.filter(t => !t.is_unusual).length;
+                } else if (metric === 'bullish') {
+                    count = groupData.filter(t => t.sentiment === 'bullish').length;
+                } else if (metric === 'neutral') {
+                    count = groupData.filter(t => t.sentiment === 'neutral').length;
+                } else if (metric === 'bearish') {
+                    count = groupData.filter(t => t.sentiment === 'bearish').length;
+                }
+                values.push(count);
+            });
+
+            return { labels, values };
+        }
+
         // Load calendar data from external JSON file
         // This allows old archives to navigate to new dates created after them
         async function loadCalendarFromJSON() {
@@ -2787,25 +3041,33 @@
                 panelsHtml += `
                     <div class="tab-panel${activeClass}" id="panel-${tabId}">
                         <div class="summary-stats" id="${tabId}-summary">
-                            <div class="summary-stat">
-                                <div class="summary-stat-value" id="${tabId}-total">-</div>
-                                <div class="summary-stat-label">Tickers</div>
+                            <div class="summary-row">
+                                <div class="summary-stat" onclick="showChart('${tabId}', 'tickers')">
+                                    <div class="summary-stat-value" id="${tabId}-total">-</div>
+                                    <div class="summary-stat-label">Tickers</div>
+                                </div>
+                                <div class="summary-stat" onclick="showChart('${tabId}', 'unusual')">
+                                    <div class="summary-stat-value unusual" id="${tabId}-unusual">-</div>
+                                    <div class="summary-stat-label">Unusual</div>
+                                </div>
+                                <div class="summary-stat" onclick="showChart('${tabId}', 'normal')">
+                                    <div class="summary-stat-value normal" id="${tabId}-normal">-</div>
+                                    <div class="summary-stat-label">Normal</div>
+                                </div>
                             </div>
-                            <div class="summary-stat">
-                                <div class="summary-stat-value alert" id="${tabId}-unusual">-</div>
-                                <div class="summary-stat-label">Unusual</div>
-                            </div>
-                            <div class="summary-stat">
-                                <div class="summary-stat-value bullish" id="${tabId}-bullish">-</div>
-                                <div class="summary-stat-label">Bullish</div>
-                            </div>
-                            <div class="summary-stat">
-                                <div class="summary-stat-value neutral" id="${tabId}-neutral">-</div>
-                                <div class="summary-stat-label">Neutral</div>
-                            </div>
-                            <div class="summary-stat">
-                                <div class="summary-stat-value bearish" id="${tabId}-bearish">-</div>
-                                <div class="summary-stat-label">Bearish</div>
+                            <div class="summary-row">
+                                <div class="summary-stat" onclick="showChart('${tabId}', 'bullish')">
+                                    <div class="summary-stat-value bullish" id="${tabId}-bullish">-</div>
+                                    <div class="summary-stat-label">Bullish</div>
+                                </div>
+                                <div class="summary-stat" onclick="showChart('${tabId}', 'neutral')">
+                                    <div class="summary-stat-value neutral" id="${tabId}-neutral">-</div>
+                                    <div class="summary-stat-label">Neutral</div>
+                                </div>
+                                <div class="summary-stat" onclick="showChart('${tabId}', 'bearish')">
+                                    <div class="summary-stat-value bearish" id="${tabId}-bearish">-</div>
+                                    <div class="summary-stat-label">Bearish</div>
+                                </div>
                             </div>
                         </div>
                         <div class="activity-grid" id="${tabId}-grid"></div>
@@ -2817,25 +3079,33 @@
             panelsHtml += `
                 <div class="tab-panel" id="panel-all">
                     <div class="summary-stats" id="all-summary">
-                        <div class="summary-stat">
-                            <div class="summary-stat-value" id="all-total">-</div>
-                            <div class="summary-stat-label">Tickers</div>
+                        <div class="summary-row">
+                            <div class="summary-stat" onclick="showChart('all', 'tickers')">
+                                <div class="summary-stat-value" id="all-total">-</div>
+                                <div class="summary-stat-label">Tickers</div>
+                            </div>
+                            <div class="summary-stat" onclick="showChart('all', 'unusual')">
+                                <div class="summary-stat-value unusual" id="all-unusual">-</div>
+                                <div class="summary-stat-label">Unusual</div>
+                            </div>
+                            <div class="summary-stat" onclick="showChart('all', 'normal')">
+                                <div class="summary-stat-value normal" id="all-normal">-</div>
+                                <div class="summary-stat-label">Normal</div>
+                            </div>
                         </div>
-                        <div class="summary-stat">
-                            <div class="summary-stat-value alert" id="all-unusual">-</div>
-                            <div class="summary-stat-label">Unusual</div>
-                        </div>
-                        <div class="summary-stat">
-                            <div class="summary-stat-value bullish" id="all-bullish">-</div>
-                            <div class="summary-stat-label">Bullish</div>
-                        </div>
-                        <div class="summary-stat">
-                            <div class="summary-stat-value neutral" id="all-neutral">-</div>
-                            <div class="summary-stat-label">Neutral</div>
-                        </div>
-                        <div class="summary-stat">
-                            <div class="summary-stat-value bearish" id="all-bearish">-</div>
-                            <div class="summary-stat-label">Bearish</div>
+                        <div class="summary-row">
+                            <div class="summary-stat" onclick="showChart('all', 'bullish')">
+                                <div class="summary-stat-value bullish" id="all-bullish">-</div>
+                                <div class="summary-stat-label">Bullish</div>
+                            </div>
+                            <div class="summary-stat" onclick="showChart('all', 'neutral')">
+                                <div class="summary-stat-value neutral" id="all-neutral">-</div>
+                                <div class="summary-stat-label">Neutral</div>
+                            </div>
+                            <div class="summary-stat" onclick="showChart('all', 'bearish')">
+                                <div class="summary-stat-value bearish" id="all-bearish">-</div>
+                                <div class="summary-stat-label">Bearish</div>
+                            </div>
                         </div>
                     </div>
                     <div class="activity-grid" id="all-grid"></div>
@@ -2892,18 +3162,21 @@
             // Update summary stats
             const total = data ? data.length : 0;
             const unusual = data ? data.filter(d => d.is_unusual).length : 0;
+            const normal = total - unusual;  // Normal = not unusual
             const bullish = data ? data.filter(d => d.put_call_ratio < 0.7).length : 0;
             const neutral = data ? data.filter(d => d.put_call_ratio >= 0.7 && d.put_call_ratio <= 1.0).length : 0;
             const bearish = data ? data.filter(d => d.put_call_ratio > 1.0).length : 0;
 
             const totalEl = document.getElementById(`${tabId}-total`);
             const unusualEl = document.getElementById(`${tabId}-unusual`);
+            const normalEl = document.getElementById(`${tabId}-normal`);
             const bullishEl = document.getElementById(`${tabId}-bullish`);
             const neutralEl = document.getElementById(`${tabId}-neutral`);
             const bearishEl = document.getElementById(`${tabId}-bearish`);
 
             if (totalEl) totalEl.textContent = total;
             if (unusualEl) unusualEl.textContent = unusual;
+            if (normalEl) normalEl.textContent = normal;
             if (bullishEl) bullishEl.textContent = bullish;
             if (neutralEl) neutralEl.textContent = neutral;
             if (bearishEl) bearishEl.textContent = bearish;
