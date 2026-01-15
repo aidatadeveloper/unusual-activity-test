@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-15T09:32:57.835042",
+  "generated_at": "2026-01-15T10:20:17.005542",
   "entries": [
     {
       "trade_date": "2026-01-05",
@@ -8,8 +8,18 @@
     },
     {
       "trade_date": "2026-01-06",
+      "filename": "unusual_activity_20260106_1020.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260106_1020.html"
+    },
+    {
+      "trade_date": "2026-01-06",
       "filename": "unusual_activity_20260106_1111.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260106_1111.html"
+    },
+    {
+      "trade_date": "2026-01-07",
+      "filename": "unusual_activity_20260107_1020.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260107_1020.html"
     },
     {
       "trade_date": "2026-01-07",
@@ -18,8 +28,18 @@
     },
     {
       "trade_date": "2026-01-08",
+      "filename": "unusual_activity_20260108_1019.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1019.html"
+    },
+    {
+      "trade_date": "2026-01-08",
       "filename": "unusual_activity_20260108_1111.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260108_1111.html"
+    },
+    {
+      "trade_date": "2026-01-09",
+      "filename": "unusual_activity_20260109_1019.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1019.html"
     },
     {
       "trade_date": "2026-01-09",
@@ -28,8 +48,18 @@
     },
     {
       "trade_date": "2026-01-12",
+      "filename": "unusual_activity_20260112_1019.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1019.html"
+    },
+    {
+      "trade_date": "2026-01-12",
       "filename": "unusual_activity_20260112_1110.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260112_1110.html"
+    },
+    {
+      "trade_date": "2026-01-13",
+      "filename": "unusual_activity_20260113_1019.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1019.html"
     },
     {
       "trade_date": "2026-01-13",
@@ -50,6 +80,11 @@
       "trade_date": "2026-01-14",
       "filename": "unusual_activity_20260114_0932.html",
       "path_from_screener": "DAILY/202601/unusual_activity_20260114_0932.html"
+    },
+    {
+      "trade_date": "2026-01-14",
+      "filename": "unusual_activity_20260114_1018.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1018.html"
     }
   ]
 }
