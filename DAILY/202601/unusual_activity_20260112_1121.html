@@ -2353,11 +2353,15 @@
                     }
                 }
 
-                // Save tab and scroll state before navigating (for mobile persistence)
+                // Save tab state before navigating (both desktop and mobile)
                 if (currentTab) {
                     localStorage.setItem('unusual_activity_selected_tab', currentTab);
                 }
-                sessionStorage.setItem('unusual_activity_scroll_pos', window.scrollY.toString());
+                // Save scroll state only on mobile (viewport < 768px or portrait orientation)
+                const isMobile = window.innerWidth < 768 || (window.innerWidth < 1024 && window.innerHeight > window.innerWidth);
+                if (isMobile) {
+                    sessionStorage.setItem('unusual_activity_scroll_pos', window.scrollY.toString());
+                }
 
                 window.location.href = targetPath;
                 return;
@@ -3611,31 +3615,32 @@
             }
 
             // ===== NAVIGATION HELPERS =====
-            function saveStateAndNavigate(url) {
+            function saveStateAndNavigate(url, saveScroll = true) {
                 if (!url || url === '#' || url === 'NEXT_HREF') return;
-                saveCurrentTab();
-                saveScrollPosition();
+                saveCurrentTab();  // Always save tab (both desktop and mobile)
+                if (saveScroll && isMobileMode()) {
+                    saveScrollPosition();  // Only save scroll on mobile
+                }
                 window.location.href = url;
             }
 
-            // Override nav arrow clicks to save state (mobile only)
+            // Override nav arrow clicks to save tab state (both desktop and mobile)
             function enhanceNavArrows() {
-                if (!isMobileMode()) return;
-
                 const prevBtn = document.getElementById('staticPrevBtn');
                 const nextBtn = document.getElementById('staticNextBtn');
 
                 if (prevBtn && prevBtn.href && prevBtn.href !== '#') {
                     prevBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        saveStateAndNavigate(prevBtn.href);
+                        // Desktop: save tab only. Mobile: save tab + scroll
+                        saveStateAndNavigate(prevBtn.href, isMobileMode());
                     });
                 }
 
                 if (nextBtn && nextBtn.href && nextBtn.href !== '#' && nextBtn.style.display !== 'none') {
                     nextBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        saveStateAndNavigate(nextBtn.href);
+                        saveStateAndNavigate(nextBtn.href, isMobileMode());
                     });
                 }
             }
@@ -3686,13 +3691,13 @@
             }
 
             // ===== CALENDAR PICKER ENHANCEMENT =====
-            // Override the calendar date click to save state
+            // Override the calendar date click to save state (both desktop and mobile)
             const originalNavigateToDate = window.navigateToDate;
             if (typeof originalNavigateToDate === 'function') {
                 window.navigateToDate = function(dateStr) {
+                    saveCurrentTab();  // Always save tab (both desktop and mobile)
                     if (isMobileMode()) {
-                        saveCurrentTab();
-                        saveScrollPosition();
+                        saveScrollPosition();  // Only save scroll on mobile
                     }
                     originalNavigateToDate(dateStr);
                 };
@@ -3721,14 +3726,12 @@
                 setTimeout(() => clearInterval(checkInterval), 3000);
             }
 
-            // Also save tab when user manually switches tabs
+            // Also save tab when user manually switches tabs (both desktop and mobile)
             const originalSwitchTab = window.switchTab;
             if (typeof originalSwitchTab === 'function') {
                 window.switchTab = function(tabId) {
                     originalSwitchTab(tabId);
-                    if (isMobileMode()) {
-                        saveCurrentTab();
-                    }
+                    saveCurrentTab();  // Always save tab selection
                 };
             }
 

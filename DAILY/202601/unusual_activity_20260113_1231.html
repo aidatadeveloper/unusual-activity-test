@@ -2357,11 +2357,15 @@
                     }
                 }
 
-                // Save tab and scroll state before navigating (for mobile persistence)
+                // Save tab state before navigating (both desktop and mobile)
                 if (currentTab) {
                     localStorage.setItem('unusual_activity_selected_tab', currentTab);
                 }
-                sessionStorage.setItem('unusual_activity_scroll_pos', window.scrollY.toString());
+                // Save scroll state only on mobile (viewport < 768px or portrait orientation)
+                const isMobile = window.innerWidth < 768 || (window.innerWidth < 1024 && window.innerHeight > window.innerWidth);
+                if (isMobile) {
+                    sessionStorage.setItem('unusual_activity_scroll_pos', window.scrollY.toString());
+                }
 
                 window.location.href = targetPath;
                 return;
@@ -3618,31 +3622,32 @@
             }
 
             // ===== NAVIGATION HELPERS =====
-            function saveStateAndNavigate(url) {
+            function saveStateAndNavigate(url, saveScroll = true) {
                 if (!url || url === '#' || url === 'NEXT_HREF') return;
-                saveCurrentTab();
-                saveScrollPosition();
+                saveCurrentTab();  // Always save tab (both desktop and mobile)
+                if (saveScroll && isMobileMode()) {
+                    saveScrollPosition();  // Only save scroll on mobile
+                }
                 window.location.href = url;
             }
 
-            // Override nav arrow clicks to save state (mobile only)
+            // Override nav arrow clicks to save tab state (both desktop and mobile)
             function enhanceNavArrows() {
-                if (!isMobileMode()) return;
-
                 const prevBtn = document.getElementById('staticPrevBtn');
                 const nextBtn = document.getElementById('staticNextBtn');
 
                 if (prevBtn && prevBtn.href && prevBtn.href !== '#') {
                     prevBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        saveStateAndNavigate(prevBtn.href);
+                        // Desktop: save tab only. Mobile: save tab + scroll
+                        saveStateAndNavigate(prevBtn.href, isMobileMode());
                     });
                 }
 
                 if (nextBtn && nextBtn.href && nextBtn.href !== '#' && nextBtn.style.display !== 'none') {
                     nextBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        saveStateAndNavigate(nextBtn.href);
+                        saveStateAndNavigate(nextBtn.href, isMobileMode());
                     });
                 }
             }
@@ -3693,13 +3698,13 @@
             }
 
             // ===== CALENDAR PICKER ENHANCEMENT =====
-            // Override the calendar date click to save state
+            // Override the calendar date click to save state (both desktop and mobile)
             const originalNavigateToDate = window.navigateToDate;
             if (typeof originalNavigateToDate === 'function') {
                 window.navigateToDate = function(dateStr) {
+                    saveCurrentTab();  // Always save tab (both desktop and mobile)
                     if (isMobileMode()) {
-                        saveCurrentTab();
-                        saveScrollPosition();
+                        saveScrollPosition();  // Only save scroll on mobile
                     }
                     originalNavigateToDate(dateStr);
                 };
@@ -3711,50 +3716,52 @@
                 document.addEventListener('touchend', handleTouchEnd, { passive: true });
             }
 
-            // Wait for tabs to be rendered, then restore saved tab
+            // Wait for tabs to be rendered, then restore saved tab (both desktop and mobile)
             function waitForTabsAndRestore() {
                 // Debug: track execution
-                window._mobileDebug = window._mobileDebug || {};
-                window._mobileDebug.listenerRegistered = true;
+                window._tabDebug = window._tabDebug || {};
+                window._tabDebug.listenerRegistered = true;
 
                 // Listen for custom event dispatched after renderAllTabs completes
                 document.addEventListener('tabsRendered', () => {
-                    window._mobileDebug.eventFired = true;
-                    window._mobileDebug.isMobileAtEvent = isMobileMode();
+                    window._tabDebug.eventFired = true;
+                    window._tabDebug.isMobileAtEvent = isMobileMode();
+                    // Always restore tab (both desktop and mobile)
+                    window._tabDebug.restoreAttempted = true;
+                    restoreSavedTab();
+                    // Only restore scroll on mobile
                     if (isMobileMode()) {
-                        window._mobileDebug.restoreAttempted = true;
-                        restoreSavedTab();
                         restoreScrollPosition();
-                        window._mobileDebug.restoreCompleted = true;
-                        window._mobileDebug.currentTabAfterRestore = currentTab;
                     }
+                    window._tabDebug.restoreCompleted = true;
+                    window._tabDebug.currentTabAfterRestore = currentTab;
                 }, { once: true });
 
                 // Fallback: if event doesn't fire within 3 seconds, try polling
                 setTimeout(() => {
-                    window._mobileDebug.fallbackRan = true;
+                    window._tabDebug.fallbackRan = true;
                     const tabs = document.querySelectorAll('.tab-btn');
-                    if (tabs.length > 0 && isMobileMode()) {
+                    if (tabs.length > 0) {
                         const savedTab = localStorage.getItem(TAB_STORAGE_KEY);
-                        window._mobileDebug.fallbackSavedTab = savedTab;
-                        window._mobileDebug.fallbackCurrentTab = currentTab;
+                        window._tabDebug.fallbackSavedTab = savedTab;
+                        window._tabDebug.fallbackCurrentTab = currentTab;
                         if (savedTab && currentTab !== savedTab) {
-                            window._mobileDebug.fallbackRestoreAttempted = true;
-                            restoreSavedTab();
-                            restoreScrollPosition();
+                            window._tabDebug.fallbackRestoreAttempted = true;
+                            restoreSavedTab();  // Always restore tab
+                            if (isMobileMode()) {
+                                restoreScrollPosition();  // Only restore scroll on mobile
+                            }
                         }
                     }
                 }, 3000);
             }
 
-            // Also save tab when user manually switches tabs
+            // Also save tab when user manually switches tabs (both desktop and mobile)
             const originalSwitchTab = window.switchTab;
             if (typeof originalSwitchTab === 'function') {
                 window.switchTab = function(tabId) {
                     originalSwitchTab(tabId);
-                    if (isMobileMode()) {
-                        saveCurrentTab();
-                    }
+                    saveCurrentTab();  // Always save tab selection
                 };
             }
 
