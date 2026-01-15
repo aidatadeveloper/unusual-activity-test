@@ -666,7 +666,7 @@
             margin-top: 5px;
         }
 
-        /* Chart Popup Modal */
+        /* Chart Popup Modal - Green Matrix Style */
         .chart-modal {
             display: none;
             position: fixed;
@@ -674,7 +674,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 10000;
             justify-content: center;
             align-items: center;
@@ -685,9 +685,9 @@
         }
 
         .chart-modal-content {
-            background: rgba(20, 20, 35, 0.98);
-            border: 1px solid rgba(100, 100, 150, 0.5);
-            border-radius: 12px;
+            background: rgba(0, 15, 0, 0.95);
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            border-radius: 8px;
             padding: 20px;
             width: 90%;
             max-width: 500px;
@@ -701,7 +701,7 @@
             align-items: flex-start;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(100, 100, 150, 0.3);
+            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
         }
 
         .chart-modal-title-wrapper {
@@ -711,7 +711,7 @@
 
         .chart-modal-title {
             font-family: 'Orbitron', monospace;
-            color: #3b82f6;
+            color: #0f0;
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -719,23 +719,25 @@
 
         .chart-modal-subtitle {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #888;
+            color: rgba(0, 255, 0, 0.7);
             font-size: 0.8rem;
             margin-top: 2px;
         }
 
         .chart-modal-close {
             background: none;
-            border: none;
-            color: #888;
-            font-size: 24px;
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            border-radius: 4px;
+            color: #0f0;
+            font-size: 20px;
             cursor: pointer;
-            padding: 5px 10px;
-            transition: color 0.3s;
+            padding: 2px 10px;
+            transition: all 0.3s;
         }
 
         .chart-modal-close:hover {
             color: #ff4757;
+            border-color: #ff4757;
         }
 
         .chart-modal-body {
@@ -752,7 +754,7 @@
         .chart-section-label {
             text-align: center;
             font-size: 0.65rem;
-            color: #666;
+            color: rgba(0, 255, 0, 0.6);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 5px;
@@ -761,6 +763,15 @@
         .chart-canvas-wrapper {
             height: 140px;
             position: relative;
+        }
+
+        .chart-modal-timestamp {
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(0, 255, 0, 0.5);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 255, 0, 0.2);
         }
 
         @media (max-width: 600px) {
@@ -2336,6 +2347,7 @@
                                 <div class="chart-canvas-wrapper"><canvas id="sentimentChart"></canvas></div>
                             </div>
                         </div>
+                        <div class="chart-modal-timestamp" id="chartTimestamp"></div>
                     </div>
                 `;
                 document.body.appendChild(modal);
@@ -2349,6 +2361,12 @@
             const tabName = tabId === 'all' ? 'All Sectors' : tabId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
             document.getElementById('chartModalSubtitle').textContent = `(${tabName})`;
 
+            // Update timestamp
+            const now = new Date();
+            const timestamp = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' ' +
+                             now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('chartTimestamp').textContent = `Generated: ${timestamp}`;
+
             // Show modal
             modal.classList.add('active');
 
@@ -2359,8 +2377,8 @@
             // Get 7-day data for the selected tab
             const chartData = build7DayData(tabId);
 
-            const gridColor = 'rgba(100, 100, 150, 0.2)';
-            const textColor = '#888';
+            const gridColor = 'rgba(0, 255, 0, 0.1)';
+            const textColor = '#0f0';
 
             // Create Activity chart (Unusual / Normal)
             const activityCtx = document.getElementById('activityChart').getContext('2d');
