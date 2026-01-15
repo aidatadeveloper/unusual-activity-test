@@ -2327,9 +2327,9 @@
             const messageEl = document.getElementById('datePickerMessage');
 
             // Find matching entry for this date in calendarEntries (from external JSON)
-            // Use the LAST (newest) entry for this date since multiple snapshots may exist
+            // Calendar JSON is sorted newest-first, so use FIRST entry (index 0) for newest snapshot
             const matchingEntries = calendarEntries.filter(entry => entry.trade_date === dateStr);
-            const matchingEntry = matchingEntries.length > 0 ? matchingEntries[matchingEntries.length - 1] : null;
+            const matchingEntry = matchingEntries.length > 0 ? matchingEntries[0] : null;
 
             if (matchingEntry) {
                 // Archive file exists - calculate correct path based on current location
