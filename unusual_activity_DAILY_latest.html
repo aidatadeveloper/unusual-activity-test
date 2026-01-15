@@ -1232,14 +1232,14 @@
 
         .status-badge.unusual {
             background: transparent;
-            color: #f00;
-            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.4);
         }
 
         .status-badge.normal {
             background: transparent;
-            color: #0f0;
-            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #64748b;
+            border: 1px solid rgba(100, 116, 139, 0.4);
         }
 
         .status-badge.no-data {
@@ -1250,20 +1250,20 @@
 
         .status-badge.bullish {
             background: transparent;
-            color: #0f0;
-            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.4);
         }
 
         .status-badge.neutral {
             background: transparent;
-            color: #ff0;
-            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #ff9f43;
+            border: 1px solid rgba(255, 159, 67, 0.4);
         }
 
         .status-badge.bearish {
             background: transparent;
-            color: #f00;
-            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #ff4757;
+            border: 1px solid rgba(255, 71, 87, 0.4);
         }
 
         /* ========== LAYOUT VARIATIONS FOR TESTING ========== */
@@ -1362,16 +1362,20 @@
 
         /* Layout 14: Badges with glow effect */
         .layout-14 { display: flex; justify-content: space-between; align-items: center; }
-        .layout-14 .status-badge.unusual, .layout-14 .status-badge.bearish { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-        .layout-14 .status-badge.normal, .layout-14 .status-badge.bullish { box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
-        .layout-14 .status-badge.neutral { box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+        .layout-14 .status-badge.unusual { box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        .layout-14 .status-badge.normal { box-shadow: 0 0 10px rgba(100, 116, 139, 0.3); }
+        .layout-14 .status-badge.bullish { box-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
+        .layout-14 .status-badge.neutral { box-shadow: 0 0 10px rgba(255, 159, 67, 0.5); }
+        .layout-14 .status-badge.bearish { box-shadow: 0 0 10px rgba(255, 71, 87, 0.5); }
 
         /* Layout 15: Text only, no badge styling */
         .layout-15 { display: flex; justify-content: space-between; align-items: center; }
         .layout-15 .text-only { font-size: 11px; font-weight: 600; }
-        .layout-15 .text-only.unusual, .layout-15 .text-only.bearish { color: #f00; }
-        .layout-15 .text-only.normal, .layout-15 .text-only.bullish { color: #0f0; }
-        .layout-15 .text-only.neutral { color: #ff0; }
+        .layout-15 .text-only.unusual { color: #3b82f6; }
+        .layout-15 .text-only.normal { color: #64748b; }
+        .layout-15 .text-only.bullish { color: #00ff88; }
+        .layout-15 .text-only.neutral { color: #ff9f43; }
+        .layout-15 .text-only.bearish { color: #ff4757; }
 
         /* Layout 16: Icon + text badges */
         .layout-16 { display: flex; justify-content: space-between; align-items: center; }
