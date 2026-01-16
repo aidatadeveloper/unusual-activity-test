@@ -1036,6 +1036,10 @@
             .chart-modal-timestamp {
                 display: none;
             }
+            /* Hide nav arrows on mobile - use swipe instead */
+            .chart-nav-btn {
+                display: none;
+            }
         }
 
         /* Tab Content */
@@ -2615,6 +2619,30 @@
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') closeChart();
                 });
+
+                // Swipe navigation for chart modal (mobile)
+                const modalContent = modal.querySelector('.chart-modal-content');
+                let chartTouchStartX = 0;
+                let chartTouchStartY = 0;
+
+                modalContent.addEventListener('touchstart', (e) => {
+                    chartTouchStartX = e.touches[0].clientX;
+                    chartTouchStartY = e.touches[0].clientY;
+                }, { passive: true });
+
+                modalContent.addEventListener('touchend', (e) => {
+                    const deltaX = e.changedTouches[0].clientX - chartTouchStartX;
+                    const deltaY = e.changedTouches[0].clientY - chartTouchStartY;
+
+                    // Only navigate if horizontal swipe is dominant and > 80px threshold
+                    if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                        if (deltaX > 0) {
+                            navigateChart(-1);  // Swipe right = previous
+                        } else {
+                            navigateChart(1);   // Swipe left = next
+                        }
+                    }
+                }, { passive: true });
             }
 
             // Update subtitle with tab name (no parentheses)
