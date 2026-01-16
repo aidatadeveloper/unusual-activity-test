@@ -4532,6 +4532,12 @@
             }
 
             function handleSwipe() {
+                // Don't process main page swipe if chart modal or date picker is open
+                const chartModal = document.getElementById('chartModal');
+                if (chartModal && chartModal.classList.contains('active')) return;
+                const datePicker = document.getElementById('datePickerDropdown');
+                if (datePicker && datePicker.classList.contains('active')) return;
+
                 const deltaX = touchEndX - touchStartX;
                 const deltaY = Math.abs(touchEndY - touchStartY);
 
