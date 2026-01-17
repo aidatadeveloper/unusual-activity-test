@@ -955,6 +955,8 @@
         // Add swipe/drag support to carousel 1
         let isDragging1 = false;
         let startX1 = 0;
+        let startY1 = 0;
+        let isHorizontalSwipe1 = false;
         const dragThreshold1 = 50;
         const container1 = document.getElementById('container1');
 
@@ -966,8 +968,23 @@
 
         container1.addEventListener('touchstart', (e) => {
             isDragging1 = true;
+            isHorizontalSwipe1 = false;
             startX1 = e.touches[0].clientX;
+            startY1 = e.touches[0].clientY;
         }, { passive: true });
+
+        // Prevent page scroll when swiping horizontally on carousel
+        container1.addEventListener('touchmove', (e) => {
+            if (!isDragging1) return;
+            const deltaX = Math.abs(e.touches[0].clientX - startX1);
+            const deltaY = Math.abs(e.touches[0].clientY - startY1);
+
+            // If horizontal movement > vertical, it's a carousel swipe
+            if (deltaX > deltaY && deltaX > 10) {
+                isHorizontalSwipe1 = true;
+                e.preventDefault(); // Stop page from scrolling
+            }
+        }, { passive: false });
 
         document.addEventListener('mouseup', (e) => {
             if (!isDragging1) return;
@@ -1053,49 +1070,58 @@
         const carousel5 = new Carousel3D('container5', 'carousel5', 'content5', { noClick: true });
 
         // Add swipe/drag support
-        let isDragging = false;
-        let startX = 0;
-        let dragThreshold = 50;
+        let isDragging5 = false;
+        let startX5 = 0;
+        let startY5 = 0;
+        let dragThreshold5 = 50;
 
         const container5 = document.getElementById('container5');
 
         container5.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.clientX;
+            isDragging5 = true;
+            startX5 = e.clientX;
             container5.classList.add('dragging');
         });
 
         container5.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].clientX;
-        });
+            isDragging5 = true;
+            startX5 = e.touches[0].clientX;
+            startY5 = e.touches[0].clientY;
+        }, { passive: true });
 
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-        });
+        // Prevent page scroll when swiping horizontally on carousel
+        container5.addEventListener('touchmove', (e) => {
+            if (!isDragging5) return;
+            const deltaX = Math.abs(e.touches[0].clientX - startX5);
+            const deltaY = Math.abs(e.touches[0].clientY - startY5);
+
+            if (deltaX > deltaY && deltaX > 10) {
+                e.preventDefault();
+            }
+        }, { passive: false });
 
         document.addEventListener('mouseup', (e) => {
-            if (!isDragging) return;
-            isDragging = false;
+            if (!isDragging5) return;
+            isDragging5 = false;
             container5.classList.remove('dragging');
 
-            const diff = e.clientX - startX;
-            if (Math.abs(diff) > dragThreshold) {
+            const diff = e.clientX - startX5;
+            if (Math.abs(diff) > dragThreshold5) {
                 if (diff > 0) carousel5.prev();
                 else carousel5.next();
             }
         });
 
         container5.addEventListener('touchend', (e) => {
-            if (!isDragging) return;
-            isDragging = false;
+            if (!isDragging5) return;
+            isDragging5 = false;
 
-            const diff = e.changedTouches[0].clientX - startX;
-            if (Math.abs(diff) > dragThreshold) {
+            const diff = e.changedTouches[0].clientX - startX5;
+            if (Math.abs(diff) > dragThreshold5) {
                 if (diff > 0) carousel5.prev();
                 else carousel5.next();
             }
-        });
+        }, { passive: true });
 
         // ========================================
         // CAROUSEL 6: Dots + Click
