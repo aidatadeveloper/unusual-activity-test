@@ -736,15 +736,19 @@
 <body>
     <h1>3D Carousel Navigation Options</h1>
 
-    <!-- 1. Click-to-Navigate -->
+    <!-- 1. Click-to-Navigate + Swipe/Drag -->
     <div class="section">
-        <h2><span class="number">1</span> Click Side Items to Navigate</h2>
-        <p class="description">Click on any visible item to bring it to center. Direct, intuitive navigation.</p>
+        <h2><span class="number">1</span> Click + Swipe/Drag Navigation</h2>
+        <p class="description">Click on any visible item OR swipe/drag to navigate. Best of both worlds.</p>
         <div class="demo-area">
-            <div class="carousel-3d-container" id="container1">
+            <div class="carousel-3d-container" id="container1" style="cursor: grab;">
                 <div class="carousel-3d" id="carousel1"></div>
             </div>
-            <p class="nav-hint">Click any sector card to select it</p>
+            <div class="swipe-indicator">
+                <span class="arrow">←</span>
+                <span>Click items or swipe/drag</span>
+                <span class="arrow">→</span>
+            </div>
             <div class="content-panel" id="content1">Banks - Financial sector stocks</div>
         </div>
     </div>
@@ -944,9 +948,49 @@
         }
 
         // ========================================
-        // CAROUSEL 1: Click to Navigate
+        // CAROUSEL 1: Click to Navigate + Swipe/Drag
         // ========================================
         const carousel1 = new Carousel3D('container1', 'carousel1', 'content1');
+
+        // Add swipe/drag support to carousel 1
+        let isDragging1 = false;
+        let startX1 = 0;
+        const dragThreshold1 = 50;
+        const container1 = document.getElementById('container1');
+
+        container1.addEventListener('mousedown', (e) => {
+            isDragging1 = true;
+            startX1 = e.clientX;
+            container1.style.cursor = 'grabbing';
+        });
+
+        container1.addEventListener('touchstart', (e) => {
+            isDragging1 = true;
+            startX1 = e.touches[0].clientX;
+        }, { passive: true });
+
+        document.addEventListener('mouseup', (e) => {
+            if (!isDragging1) return;
+            isDragging1 = false;
+            container1.style.cursor = 'grab';
+
+            const diff = e.clientX - startX1;
+            if (Math.abs(diff) > dragThreshold1) {
+                if (diff > 0) carousel1.prev();
+                else carousel1.next();
+            }
+        });
+
+        container1.addEventListener('touchend', (e) => {
+            if (!isDragging1) return;
+            isDragging1 = false;
+
+            const diff = e.changedTouches[0].clientX - startX1;
+            if (Math.abs(diff) > dragThreshold1) {
+                if (diff > 0) carousel1.prev();
+                else carousel1.next();
+            }
+        }, { passive: true });
 
         // ========================================
         // CAROUSEL 2: Coverflow
