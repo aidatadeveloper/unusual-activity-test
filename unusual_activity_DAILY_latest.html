@@ -1090,7 +1090,7 @@
             padding: 20px;
             transition: all 0.3s;
             position: relative;
-            min-height: var(--card-height);
+            /* min-height removed - let content determine height */
         }
 
         .card-navigate {
@@ -1118,7 +1118,7 @@
         }
 
         .card-metrics-zone:hover {
-            background: rgba(0, 100, 255, 0.15);
+            background: rgba(0, 255, 0, 0.15);  /* Same green as header zone */
         }
 
         .insights-wrapper {
@@ -1130,7 +1130,7 @@
         }
 
         .insights-wrapper:hover {
-            background: rgba(255, 165, 0, 0.15);
+            background: rgba(0, 255, 0, 0.15);  /* Same green as header zone */
         }
 
         /* ========== MOBILE MODE - YouTube Shorts Safe Zone Layout ========== */
@@ -1227,8 +1227,8 @@
         }
 
         body.mobile-mode .activity-card {
-            min-height: var(--card-height) !important;
             font-size: var(--font-small) !important;
+            /* min-height removed - let content determine height */
         }
 
         body.mobile-mode .page-title {
@@ -1373,8 +1373,8 @@
         }
 
         body.desktop-mode .activity-card {
-            min-height: 380px !important;
             font-size: 18px !important;
+            /* min-height removed - let content determine height */
         }
 
         body.desktop-mode .page-title {
@@ -1771,6 +1771,7 @@
 
         .ai-insights-content.expanded {
             max-height: 200px;
+            margin-bottom: -13px;  /* Pull into remaining card padding (20px - 7px from container) */
         }
 
         .ai-insights-inner {
@@ -1791,6 +1792,10 @@
 
         .ai-insights-inner p:first-child {
             margin-top: 10px;
+        }
+
+        .ai-insights-inner p:last-child {
+            margin-bottom: 0;  /* Remove bottom margin from last paragraph */
         }
 
         .ai-insights-content .highlight-bullish {
@@ -4755,6 +4760,17 @@
                 touchStartY = e.changedTouches[0].screenY;
             }
 
+            function handleTouchMove(e) {
+                if (!isMobileMode()) return;
+                const deltaX = Math.abs(e.changedTouches[0].screenX - touchStartX);
+                const deltaY = Math.abs(e.changedTouches[0].screenY - touchStartY);
+
+                // If horizontal movement > vertical and > 10px, prevent browser back/forward gesture
+                if (deltaX > deltaY && deltaX > 10) {
+                    e.preventDefault();
+                }
+            }
+
             function handleTouchEnd(e) {
                 if (!isMobileMode()) return;
                 touchEndX = e.changedTouches[0].screenX;
@@ -4810,6 +4826,7 @@
             // ===== INITIALIZATION =====
             function initSwipeListeners() {
                 document.addEventListener('touchstart', handleTouchStart, { passive: true });
+                document.addEventListener('touchmove', handleTouchMove, { passive: false });  // passive: false to allow preventDefault
                 document.addEventListener('touchend', handleTouchEnd, { passive: true });
             }
 
