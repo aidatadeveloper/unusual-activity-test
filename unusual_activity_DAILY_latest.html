@@ -3187,8 +3187,10 @@
         }
 
         // Toggle date picker dropdown
+        let datePickerOpenedAt = 0;  // Timestamp to prevent immediate close on mobile
         function toggleDatePicker(event) {
             event.stopPropagation();
+            event.preventDefault();  // Prevent any default behavior
             const dropdown = document.getElementById('datePickerDropdown');
             const isActive = dropdown.classList.contains('active');
 
@@ -3202,6 +3204,7 @@
                 calYear = d.getFullYear();
                 renderCalendar();
                 dropdown.classList.add('active');
+                datePickerOpenedAt = Date.now();  // Track when opened
             }
 
             // Clear any previous message
@@ -3334,6 +3337,9 @@
 
         // Close date picker on outside click
         document.addEventListener('click', function(e) {
+            // Don't close if just opened (prevents mobile touch event race condition)
+            if (Date.now() - datePickerOpenedAt < 300) return;
+
             if (!e.target.closest('.date-picker-container')) {
                 const dropdown = document.getElementById('datePickerDropdown');
                 if (dropdown) dropdown.classList.remove('active');
