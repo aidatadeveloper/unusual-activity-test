@@ -4787,16 +4787,17 @@
 
                     // Swipe threshold of 50px
                     if (Math.abs(deltaX) > 50) {
+                        const total = carouselGroups.length;
+                        if (total === 0) return;
+
                         if (deltaX > 0) {
-                            // Swipe right = previous sector
-                            if (typeof window.rotateTo === 'function') {
-                                window.rotateTo(window.currentIndex - 1);
-                            }
+                            // Swipe right = previous sector (wrap around)
+                            const newIndex = (carouselCurrentIndex - 1 + total) % total;
+                            selectCarouselSector(newIndex);
                         } else {
-                            // Swipe left = next sector
-                            if (typeof window.rotateTo === 'function') {
-                                window.rotateTo(window.currentIndex + 1);
-                            }
+                            // Swipe left = next sector (wrap around)
+                            const newIndex = (carouselCurrentIndex + 1) % total;
+                            selectCarouselSector(newIndex);
                         }
                     }
                 }, { passive: true });
