@@ -4746,34 +4746,60 @@
                 }
             }
 
-            // ===== SWIPE DETECTION (MOBILE ONLY) =====
-            let touchStartX = 0;
-            let touchStartY = 0;
-            let touchEndX = 0;
-            let touchEndY = 0;
-            const SWIPE_THRESHOLD = 80;  // Minimum distance for swipe
-            const SWIPE_VERTICAL_LIMIT = 100;  // Max vertical movement to count as horizontal swipe
+            // ===== CAROUSEL SWIPE SUPPORT (MOBILE) =====
+            // Only applies to the sector carousel - does not block other touch events
+            function initCarouselSwipe() {
+                const carousel = document.getElementById('sectorCarousel');
+                if (!carousel) return;
 
-            function handleTouchStart(e) {
-                if (!isMobileMode()) return;
-                touchStartX = e.changedTouches[0].screenX;
-                touchStartY = e.changedTouches[0].screenY;
-            }
+                let startX = 0;
+                let startY = 0;
+                let isDragging = false;
+                let isHorizontalSwipe = false;
 
-            function handleTouchMove(e) {
-                if (!isMobileMode()) return;
-                const deltaX = Math.abs(e.changedTouches[0].screenX - touchStartX);
-                const deltaY = Math.abs(e.changedTouches[0].screenY - touchStartY);
+                carousel.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    isHorizontalSwipe = false;
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                }, { passive: true });
 
-                // If horizontal movement > vertical and > 10px, prevent browser back/forward gesture
-                if (deltaX > deltaY && deltaX > 10) {
-                    e.preventDefault();
-                }
-            }
+                carousel.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    const deltaX = Math.abs(e.touches[0].clientX - startX);
+                    const deltaY = Math.abs(e.touches[0].clientY - startY);
 
-            function handleTouchEnd(e) {
-                // Swipe navigation removed - only preventing browser back/forward gesture
-                // Touch end does nothing now
+                    // If horizontal movement > vertical, it's a carousel swipe
+                    if (deltaX > deltaY && deltaX > 10) {
+                        isHorizontalSwipe = true;
+                        e.preventDefault(); // Prevent page scroll & browser back/forward
+                    }
+                }, { passive: false });
+
+                carousel.addEventListener('touchend', (e) => {
+                    if (!isDragging) return;
+                    isDragging = false;
+
+                    if (!isHorizontalSwipe) return;
+
+                    const endX = e.changedTouches[0].clientX;
+                    const deltaX = endX - startX;
+
+                    // Swipe threshold of 50px
+                    if (Math.abs(deltaX) > 50) {
+                        if (deltaX > 0) {
+                            // Swipe right = previous sector
+                            if (typeof window.rotateTo === 'function') {
+                                window.rotateTo(window.currentIndex - 1);
+                            }
+                        } else {
+                            // Swipe left = next sector
+                            if (typeof window.rotateTo === 'function') {
+                                window.rotateTo(window.currentIndex + 1);
+                            }
+                        }
+                    }
+                }, { passive: true });
             }
 
             // ===== CALENDAR PICKER ENHANCEMENT =====
@@ -4790,11 +4816,7 @@
             }
 
             // ===== INITIALIZATION =====
-            function initSwipeListeners() {
-                document.addEventListener('touchstart', handleTouchStart, { passive: true });
-                document.addEventListener('touchmove', handleTouchMove, { passive: false });  // passive: false to allow preventDefault
-                document.addEventListener('touchend', handleTouchEnd, { passive: true });
-            }
+            // initSwipeListeners removed - now using initCarouselSwipe for carousel-only swipe
 
             // Wait for tabs to be rendered, then restore saved tab (both desktop and mobile)
             function waitForTabsAndRestore() {
@@ -4846,7 +4868,7 @@
             }
 
             // Initialize
-            initSwipeListeners();
+            initCarouselSwipe();  // Carousel swipe only - doesn't block date picker
             enhanceNavArrows();
             waitForTabsAndRestore();
 
