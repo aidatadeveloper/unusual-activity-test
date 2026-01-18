@@ -1102,7 +1102,7 @@
             cursor: pointer;
             transition: background 0.2s;
             margin: -20px -20px 0 -20px;
-            padding: 20px 20px 6px 20px;
+            padding: 20px 20px 10px 20px;  /* Gap 1 = 10px */
             border-radius: 8px 8px 0 0;
         }
 
@@ -1465,6 +1465,9 @@
             font-size: 18px;
             color: #fff;
             margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* Remove Button */
@@ -1564,7 +1567,6 @@
 
         .ticker-change {
             font-size: 14px;
-            margin-left: 10px;
             padding: 2px 8px;
             border-radius: 3px;
         }
@@ -1630,8 +1632,8 @@
         /* Wrapper for entire bottom section (badges + insights) */
         /* Base status container */
         .status-badge-container {
-            padding: 6px 0 0 0;
-            margin-top: 0;
+            padding: 10px 0;  /* Gap 4 = 10px top, 10px bottom for badge centering */
+            margin: 0 0 -10px 0;  /* Pull into card's 20px bottom padding to get 10px gap */
             border-top: 1px solid rgba(0, 255, 0, 0.3);
             transition: background 0.2s;
         }
@@ -1657,7 +1659,7 @@
         }
 
         /* Layout 1: Current - horizontal row evenly spaced */
-        .layout-1 { display: flex; justify-content: space-between; align-items: center; }
+        .layout-1 { display: flex; justify-content: center; gap: 20px; align-items: flex-start; }
 
         /* Layout 2: Vertical stack centered */
         .layout-2 { display: flex; flex-direction: column; align-items: center; gap: 8px; }
@@ -1819,7 +1821,7 @@
         /* Metrics - matches data-row style */
         .metrics-section {
             border-top: 1px solid rgba(0, 255, 0, 0.2);
-            padding-top: 6px;
+            padding-top: 4px;  /* Gap 2 = 4px + 6px (metric-row padding) = 10px */
             margin-top: 0;
         }
 
@@ -1888,7 +1890,7 @@
         /* Call/Put Bar */
         .call-put-section {
             margin-top: 10px;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
             padding-top: 0;
             /* border-top removed to merge metrics and bars into one section */
         }
