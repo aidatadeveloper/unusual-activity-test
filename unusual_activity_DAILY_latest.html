@@ -2485,7 +2485,7 @@
 
                     <!-- Trade Date Display with Date Picker (moved here) -->
                     <div class="date-picker-container">
-                        <span id="tradeDateText" onclick="toggleDatePicker(event)" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026</span>
+                        <span id="tradeDateText" onclick="toggleDatePicker(event)" ontouchend="toggleDatePicker(event)" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026</span>
                         <div class="date-picker-dropdown" id="datePickerDropdown">
                             <div class="calendar-nav">
                                 <button class="calendar-nav-btn" id="calPrevBtn" onclick="changeCalendarMonth(-1, event)">&lt;</button>
@@ -3188,9 +3188,16 @@
 
         // Toggle date picker dropdown
         let datePickerOpenedAt = 0;  // Timestamp to prevent immediate close on mobile
+        let datePickerLastToggle = 0;  // Prevent double-trigger from touchend + click
         function toggleDatePicker(event) {
             event.stopPropagation();
             event.preventDefault();  // Prevent any default behavior
+
+            // Prevent double-trigger (touchend fires, then click fires)
+            const now = Date.now();
+            if (now - datePickerLastToggle < 300) return;
+            datePickerLastToggle = now;
+
             const dropdown = document.getElementById('datePickerDropdown');
             const isActive = dropdown.classList.contains('active');
 
