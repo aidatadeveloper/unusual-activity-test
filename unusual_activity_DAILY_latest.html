@@ -4772,42 +4772,8 @@
             }
 
             function handleTouchEnd(e) {
-                if (!isMobileMode()) return;
-                touchEndX = e.changedTouches[0].screenX;
-                touchEndY = e.changedTouches[0].screenY;
-                handleSwipe();
-            }
-
-            function handleSwipe() {
-                // Don't process main page swipe if any modal or date picker is open
-                const chartModal = document.getElementById('chartModal');
-                if (chartModal && chartModal.classList.contains('active')) return;
-                const tickerChartModal = document.getElementById('tickerChartModal');
-                if (tickerChartModal && tickerChartModal.classList.contains('active')) return;
-                const datePicker = document.getElementById('datePickerDropdown');
-                if (datePicker && datePicker.classList.contains('active')) return;
-
-                const deltaX = touchEndX - touchStartX;
-                const deltaY = Math.abs(touchEndY - touchStartY);
-
-                // Only count as horizontal swipe if vertical movement is limited
-                if (deltaY > SWIPE_VERTICAL_LIMIT) return;
-
-                if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
-
-                if (deltaX > 0) {
-                    // Swipe RIGHT = go to PREVIOUS (older date)
-                    const prevBtn = document.getElementById('staticPrevBtn');
-                    if (prevBtn && prevBtn.href && prevBtn.href !== '#' && prevBtn.style.display !== 'none') {
-                        saveStateAndNavigate(prevBtn.href);
-                    }
-                } else {
-                    // Swipe LEFT = go to NEXT (newer date)
-                    const nextBtn = document.getElementById('staticNextBtn');
-                    if (nextBtn && nextBtn.href && nextBtn.href !== '#' && nextBtn.style.display !== 'none') {
-                        saveStateAndNavigate(nextBtn.href);
-                    }
-                }
+                // Swipe navigation removed - only preventing browser back/forward gesture
+                // Touch end does nothing now
             }
 
             // ===== CALENDAR PICKER ENHANCEMENT =====
