@@ -3162,7 +3162,7 @@
                 });
             }
             // Add version indicator
-            document.title = 'Unusual Activity v2026.3';
+            document.title = 'Unusual Activity v2026.4';
         });
 
         // Detect current timeframe from the URL/filename
@@ -3829,16 +3829,7 @@
         function renderAllTabs() {
             if (!activityData) return;
 
-            const timeStr = new Date().toLocaleString();
-
-            // Display the trade date from the data (in date picker)
-            const tradeDateEl = document.getElementById('tradeDateText');
-            if (activityData.all && activityData.all.length > 0) {
-                const tradeDate = activityData.all[0].trade_date;
-                tradeDateEl.textContent = formatTradeDate(tradeDate);
-            } else {
-                tradeDateEl.textContent = 'No data available';
-            }
+            // Trade date is already set in static HTML - no need to overwrite
 
             // Get groups from data (or fall back to hardcoded if not present)
             const groups = activityData.groups || ['banks', 'gold_silver'];
