@@ -266,11 +266,26 @@
             opacity: 0.8;
         }
 
+        /* Date Picker Modal Backdrop */
+        .date-picker-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 99998;
+        }
+
+        .date-picker-backdrop.active {
+            display: block;
+        }
+
         /* Date Picker Dropdown */
         .date-picker-container {
             position: relative;
             display: inline-block;
-            z-index: 10001;  /* Above carousel and other content */
         }
 
         .date-picker-dropdown {
@@ -279,13 +294,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgb(0, 15, 0);  /* Fully opaque */
-            border: 1px solid rgba(0, 255, 0, 0.4);
-            border-radius: 8px;
+            background: rgb(0, 20, 0);
+            border: 2px solid rgba(0, 255, 0, 0.6);
+            border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 10px 40px rgba(0, 255, 0, 0.2);
-            z-index: 99999;  /* Very high to appear above everything */
-            min-width: 320px;
+            box-shadow: 0 0 60px rgba(0, 255, 0, 0.4);
+            z-index: 99999;
+            min-width: 300px;
+            max-width: 90vw;
         }
 
         .date-picker-dropdown.active {
@@ -294,8 +310,8 @@
         }
 
         @keyframes fadeInPicker {
-            from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
 
         .calendar-nav {
@@ -2442,6 +2458,9 @@
     </style>
 </head>
 <body>
+    <!-- Modal backdrop for date picker -->
+    <div class="date-picker-backdrop" id="datePickerBackdrop"></div>
+
     <div class="safe-zone-overlay">
         <div class="safe-zone-top"></div>
         <div class="safe-zone-bottom"></div>
@@ -2486,7 +2505,7 @@
 
                     <!-- Trade Date Display with Date Picker (moved here) -->
                     <div class="date-picker-container">
-                        <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026 v11</span>
+                        <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026 v12</span>
                         <div class="date-picker-dropdown" id="datePickerDropdown">
                             <div class="calendar-nav">
                                 <button class="calendar-nav-btn" id="calPrevBtn" onclick="changeCalendarMonth(-1, event)">&lt;</button>
@@ -3223,10 +3242,12 @@
             datePickerLastToggle = now;
 
             const dropdown = document.getElementById('datePickerDropdown');
+            const backdrop = document.getElementById('datePickerBackdrop');
             const isActive = dropdown.classList.contains('active');
 
             if (isActive) {
                 dropdown.classList.remove('active');
+                backdrop.classList.remove('active');
             } else {
                 // Initialize calendar to current date's month
                 const currentDate = getCurrentDate();
@@ -3234,6 +3255,7 @@
                 calMonth = d.getMonth();
                 calYear = d.getFullYear();
                 renderCalendar();
+                backdrop.classList.add('active');
                 dropdown.classList.add('active');
                 datePickerOpenedAt = Date.now();  // Track when opened
             }
@@ -3241,6 +3263,14 @@
             // Clear any previous message
             document.getElementById('datePickerMessage').className = 'date-picker-message';
             document.getElementById('datePickerMessage').textContent = '';
+        }
+
+        // Close date picker when clicking backdrop
+        function closeDatePicker() {
+            const dropdown = document.getElementById('datePickerDropdown');
+            const backdrop = document.getElementById('datePickerBackdrop');
+            dropdown.classList.remove('active');
+            backdrop.classList.remove('active');
         }
 
         // Change calendar month
@@ -3372,16 +3402,24 @@
             if (Date.now() - datePickerOpenedAt < 300) return;
 
             if (!e.target.closest('.date-picker-container')) {
-                const dropdown = document.getElementById('datePickerDropdown');
-                if (dropdown) dropdown.classList.remove('active');
+                closeDatePicker();
             }
         });
+
+        // Close modal when tapping/clicking the backdrop
+        const datePickerBackdrop = document.getElementById('datePickerBackdrop');
+        if (datePickerBackdrop) {
+            datePickerBackdrop.addEventListener('click', closeDatePicker);
+            datePickerBackdrop.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                closeDatePicker();
+            });
+        }
 
         // Close date picker on Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const dropdown = document.getElementById('datePickerDropdown');
-                if (dropdown) dropdown.classList.remove('active');
+                closeDatePicker();
             }
         });
 
