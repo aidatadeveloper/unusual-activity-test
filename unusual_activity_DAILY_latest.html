@@ -2505,7 +2505,7 @@
 
                     <!-- Trade Date Display with Date Picker (moved here) -->
                     <div class="date-picker-container">
-                        <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026 v12</span>
+                        <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026 v13</span>
                         <div class="date-picker-dropdown" id="datePickerDropdown">
                             <div class="calendar-nav">
                                 <button class="calendar-nav-btn" id="calPrevBtn" onclick="changeCalendarMonth(-1, event)">&lt;</button>
@@ -3330,10 +3330,27 @@
                     // Trading day WITH archive data - show green dot, clickable
                     dateCell.classList.add('has-data');
                     if (isSelected) dateCell.classList.add('selected');
-                    dateCell.onclick = () => selectDate(dateStr);
+                    // Use both touch and click for mobile compatibility
+                    dateCell.addEventListener('touchend', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        selectDate(dateStr);
+                    });
+                    dateCell.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        selectDate(dateStr);
+                    });
                 } else {
                     // Trading day but NO archive data - enabled but no green dot
-                    dateCell.onclick = () => selectDate(dateStr);
+                    dateCell.addEventListener('touchend', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        selectDate(dateStr);
+                    });
+                    dateCell.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        selectDate(dateStr);
+                    });
                 }
 
                 grid.appendChild(dateCell);
