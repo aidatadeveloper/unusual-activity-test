@@ -2460,6 +2460,16 @@
 <body>
     <!-- Modal backdrop for date picker -->
     <div class="date-picker-backdrop" id="datePickerBackdrop"></div>
+    <!-- Calendar dropdown - at body level for proper z-index stacking -->
+    <div class="date-picker-dropdown" id="datePickerDropdown">
+        <div class="calendar-nav">
+            <button class="calendar-nav-btn" id="calPrevBtn" onclick="changeCalendarMonth(-1, event)">&lt;</button>
+            <div class="calendar-header" id="calMonthHeader">January 2026</div>
+            <button class="calendar-nav-btn" id="calNextBtn" onclick="changeCalendarMonth(1, event)">&gt;</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <div class="date-picker-message" id="datePickerMessage"></div>
+    </div>
 
     <div class="safe-zone-overlay">
         <div class="safe-zone-top"></div>
@@ -2503,19 +2513,8 @@
                 <div class="nav-center">
                     <span class="nav-separator">|</span>
 
-                    <!-- Trade Date Display with Date Picker (moved here) -->
-                    <div class="date-picker-container">
-                        <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026 v13</span>
-                        <div class="date-picker-dropdown" id="datePickerDropdown">
-                            <div class="calendar-nav">
-                                <button class="calendar-nav-btn" id="calPrevBtn" onclick="changeCalendarMonth(-1, event)">&lt;</button>
-                                <div class="calendar-header" id="calMonthHeader">January 2026</div>
-                                <button class="calendar-nav-btn" id="calNextBtn" onclick="changeCalendarMonth(1, event)">&gt;</button>
-                            </div>
-                            <div class="calendar-grid" id="calendarGrid"></div>
-                            <div class="date-picker-message" id="datePickerMessage"></div>
-                        </div>
-                    </div>
+                    <!-- Trade Date Display - clicking opens calendar modal -->
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026 v14</span>
 
                     <span class="nav-separator">|</span>
                 </div>
