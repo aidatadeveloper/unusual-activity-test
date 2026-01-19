@@ -3141,15 +3141,28 @@
             loadData();
             loadCalendarFromJSON();  // Load calendar entries for date picker
 
-            // Attach date picker event listeners (more reliable than inline handlers)
+            // Attach date picker event listeners
             const tradeDateEl = document.getElementById('tradeDateText');
+            let touchHandled = false;  // Flag to prevent double-trigger
+
             if (tradeDateEl) {
-                tradeDateEl.addEventListener('click', toggleDatePicker);
+                // Use touchend for mobile (more reliable than click on touch devices)
                 tradeDateEl.addEventListener('touchend', function(e) {
-                    e.preventDefault();
+                    e.preventDefault();  // Prevent ghost click
+                    touchHandled = true;
+                    toggleDatePicker(e);
+                    // Reset flag after a short delay
+                    setTimeout(() => { touchHandled = false; }, 300);
+                });
+
+                // Use click for desktop (mouse)
+                tradeDateEl.addEventListener('click', function(e) {
+                    if (touchHandled) return;  // Skip if touch already handled
                     toggleDatePicker(e);
                 });
             }
+            // Add version indicator
+            document.title = 'Unusual Activity v2026.3';
         });
 
         // Detect current timeframe from the URL/filename
