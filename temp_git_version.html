@@ -2485,7 +2485,7 @@
 
                     <!-- Trade Date Display with Date Picker (moved here) -->
                     <div class="date-picker-container">
-                        <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026 v7</span>
+                        <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 16, 2026 v6</span>
                         <div class="date-picker-dropdown" id="datePickerDropdown">
                             <div class="calendar-nav">
                                 <button class="calendar-nav-btn" id="calPrevBtn" onclick="changeCalendarMonth(-1, event)">&lt;</button>
@@ -3830,9 +3830,6 @@
             if (!activityData) return;
 
             // Trade date is already set in static HTML - no need to overwrite
-            const now = new Date();
-            const timeStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' ' +
-                           now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
             // Get groups from data (or fall back to hardcoded if not present)
             const groups = activityData.groups || ['banks', 'gold_silver'];
