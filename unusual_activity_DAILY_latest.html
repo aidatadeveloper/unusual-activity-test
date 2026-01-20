@@ -1121,10 +1121,15 @@
             margin: -20px -20px 0 -20px;
             padding: 13px 20px 10px 20px;  /* Top gap = 10px (matches bottom gap) */
             border-radius: 8px 8px 0 0;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .card-header-zone:hover {
-            background: rgba(0, 255, 0, 0.15);
+        /* Only apply hover effects on devices with mouse/trackpad (not touch) */
+        @media (hover: hover) and (pointer: fine) {
+            .card-header-zone:hover {
+                background: rgba(0, 255, 0, 0.15);
+            }
         }
 
         .card-metrics-zone {
@@ -1136,8 +1141,11 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        .card-metrics-zone:hover {
-            background: rgba(0, 255, 0, 0.15);  /* Same green as header zone */
+        /* Only apply hover effects on devices with mouse/trackpad (not touch) */
+        @media (hover: hover) and (pointer: fine) {
+            .card-metrics-zone:hover {
+                background: rgba(0, 255, 0, 0.15);
+            }
         }
 
         .insights-wrapper {
@@ -1146,10 +1154,15 @@
             margin: 0 -20px -20px -20px;
             padding: 0 20px 20px 20px;
             border-radius: 0 0 8px 8px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .insights-wrapper:hover {
-            background: rgba(0, 255, 0, 0.15);  /* Same green as header zone */
+        /* Only apply hover effects on devices with mouse/trackpad (not touch) */
+        @media (hover: hover) and (pointer: fine) {
+            .insights-wrapper:hover {
+                background: rgba(0, 255, 0, 0.15);
+            }
         }
 
         /* ========== MOBILE MODE - YouTube Shorts Safe Zone Layout ========== */
@@ -1833,12 +1846,12 @@
         }
 
         .ai-insights-content .highlight-unusual {
-            color: #f55;
+            color: #3b82f6;  /* Match UNUSUAL badge color (blue) */
             font-weight: 600;
         }
 
         .ai-insights-content .highlight-normal {
-            color: #0f0;
+            color: #64748b;  /* Match NORMAL badge color (grey) */
             font-weight: 600;
         }
 
@@ -2516,7 +2529,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v17</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v18</span>
 
                     <span class="nav-separator">|</span>
                 </div>
