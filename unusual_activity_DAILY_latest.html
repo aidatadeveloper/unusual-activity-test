@@ -2537,7 +2537,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v28</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v29</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -2700,16 +2700,18 @@
                 const modalContent = modal.querySelector('.chart-modal-content');
 
                 // Close on click anywhere except nav buttons (backdrop)
-                // stopPropagation prevents click-through to elements underneath
+                // stopPropagation + preventDefault prevents click-through to elements underneath
                 modal.addEventListener('click', (e) => {
                     e.stopPropagation();
+                    e.preventDefault();
                     const isNavBtn = e.target.closest('.chart-nav-btn');
                     if (!isNavBtn) closeChart();
                 });
 
-                // Also add click handler to modal content (in case Chart.js stops propagation)
+                // Also add click handler to modal content
                 modalContent.addEventListener('click', (e) => {
                     e.stopPropagation();
+                    e.preventDefault();
                     const isNavBtn = e.target.closest('.chart-nav-btn');
                     if (!isNavBtn) closeChart();
                 });
@@ -2719,6 +2721,7 @@
                 chartSections.forEach(section => {
                     section.addEventListener('click', (e) => {
                         e.stopPropagation();
+                        e.preventDefault();
                         closeChart();
                     }, true);
                 });
@@ -2896,7 +2899,11 @@
         function closeChart() {
             const modal = document.getElementById('chartModal');
             if (modal) {
-                modal.classList.remove('active');
+                // Small delay to let touch/click events fully complete
+                // Prevents click-through to elements underneath on mobile
+                setTimeout(() => {
+                    modal.classList.remove('active');
+                }, 50);
             }
         }
 
