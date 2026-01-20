@@ -1768,10 +1768,10 @@
         /* Layout 15: Text only, no badge styling */
         .layout-15 { display: flex; justify-content: space-between; align-items: center; }
         .layout-15 .text-only { font-size: 11px; font-weight: 600; }
-        .layout-15 .text-only.unusual { color: #3b82f6; }
+        .layout-15 .text-only.unusual { color: #a855f7; }  /* Purple */
         .layout-15 .text-only.normal { color: #64748b; }
         .layout-15 .text-only.bullish { color: #00ff88; }
-        .layout-15 .text-only.neutral { color: #ff9f43; }
+        .layout-15 .text-only.neutral { color: #d4a574; }  /* Beige */
         .layout-15 .text-only.bearish { color: #ff4757; }
 
         /* Layout 16: Icon + text badges */
@@ -1854,7 +1854,7 @@
         }
 
         .ai-insights-content .highlight-unusual {
-            color: #3b82f6;  /* Match UNUSUAL badge color (blue) */
+            color: #a855f7;  /* Match UNUSUAL badge color (purple) */
             font-weight: 600;
         }
 
@@ -2537,7 +2537,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v30</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v31</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -2657,10 +2657,10 @@
         // Color scheme (Option 8: Electric / Dim)
         const chartColors = {
             tickers: '#e8e8e8',
-            unusual: '#3b82f6',
+            unusual: '#a855f7',  // Purple
             normal: '#64748b',
             bullish: '#0f0',
-            neutral: '#ff9f43',
+            neutral: '#d4a574',  // Beige
             bearish: '#f00'
         };
 
