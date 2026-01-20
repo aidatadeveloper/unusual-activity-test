@@ -2532,7 +2532,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v21</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v22</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -2920,12 +2920,10 @@
                 `;
                 document.body.appendChild(modal);
 
-                // Close on backdrop click OR modal content click (but not on charts/buttons)
+                // Close on click anywhere except nav buttons
                 modal.addEventListener('click', (e) => {
-                    // Close if clicking backdrop, footer, or non-interactive areas
-                    const isChart = e.target.closest('canvas');
                     const isNavBtn = e.target.closest('.chart-nav-btn');
-                    if (!isChart && !isNavBtn) {
+                    if (!isNavBtn) {
                         closeTickerChart();
                     }
                 });
@@ -2965,11 +2963,9 @@
                             navigateTicker(1);   // Swipe left = next
                         }
                     } else if (Math.abs(deltaX) < 20 && Math.abs(deltaY) < 20) {
-                        // Tap detected (small movement) - close modal unless tapping on charts/buttons
-                        const target = e.target;
-                        const isChart = target.closest('canvas');
-                        const isNavBtn = target.closest('.chart-nav-btn');
-                        if (!isChart && !isNavBtn) {
+                        // Tap detected (small movement) - close modal unless tapping nav buttons
+                        const isNavBtn = e.target.closest('.chart-nav-btn');
+                        if (!isNavBtn) {
                             closeTickerChart();
                         }
                     }
