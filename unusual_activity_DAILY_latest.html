@@ -2532,7 +2532,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v23</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v24</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -2687,16 +2687,14 @@
                                 <div class="chart-canvas-wrapper"><canvas id="sentimentChart"></canvas></div>
                             </div>
                         </div>
-                        <div class="chart-modal-footer">
-                            <button class="chart-close-btn" onclick="closeChart()">CLOSE</button>
-                        </div>
                         <div class="chart-modal-timestamp" id="chartTimestamp"></div>
                     </div>
                 `;
                 document.body.appendChild(modal);
-                // Close on backdrop click
+                // Close on click anywhere except nav buttons
                 modal.addEventListener('click', (e) => {
-                    if (e.target === modal) closeChart();
+                    const isNavBtn = e.target.closest('.chart-nav-btn');
+                    if (!isNavBtn) closeChart();
                 });
                 // Close on Esc key (desktop)
                 document.addEventListener('keydown', (e) => {
@@ -2717,13 +2715,17 @@
                     const deltaX = e.changedTouches[0].clientX - chartTouchStartX;
                     const deltaY = e.changedTouches[0].clientY - chartTouchStartY;
 
-                    // Only navigate if horizontal swipe is dominant and > 80px threshold
+                    // Swipe navigation if horizontal swipe is dominant and > 80px threshold
                     if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY)) {
                         if (deltaX > 0) {
                             navigateChart(-1);  // Swipe right = previous
                         } else {
                             navigateChart(1);   // Swipe left = next
                         }
+                    } else if (Math.abs(deltaX) < 20 && Math.abs(deltaY) < 20) {
+                        // Tap detected (small movement) - close modal unless tapping nav buttons
+                        const isNavBtn = e.target.closest('.chart-nav-btn');
+                        if (!isNavBtn) closeChart();
                     }
                 }, { passive: true });
             }
