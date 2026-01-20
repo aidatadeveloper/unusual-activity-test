@@ -2529,7 +2529,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v18</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Friday, January 16, 2026 v19</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -3173,6 +3173,20 @@
         function closeTickerChart() {
             const modal = document.getElementById('tickerChartModal');
             if (modal) {
+                // Scroll to the current ticker's card before closing
+                if (currentTickerList.length > 0 && currentTickerIndex >= 0) {
+                    const currentTicker = currentTickerList[currentTickerIndex].ticker;
+                    // Find the card with this ticker
+                    const cards = document.querySelectorAll('.activity-card');
+                    for (const card of cards) {
+                        const tickerEl = card.querySelector('.card-header h3');
+                        if (tickerEl && tickerEl.textContent === currentTicker) {
+                            // Scroll card into view with smooth animation
+                            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            break;
+                        }
+                    }
+                }
                 modal.classList.remove('active');
             }
         }
