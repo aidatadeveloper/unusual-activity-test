@@ -2740,6 +2740,16 @@
                     chartTouchStartY = e.touches[0].clientY;
                 }, { passive: true });
 
+                // Prevent scroll during swipe gestures (both horizontal and vertical)
+                modalContent.addEventListener('touchmove', (e) => {
+                    const deltaX = Math.abs(e.touches[0].clientX - chartTouchStartX);
+                    const deltaY = Math.abs(e.touches[0].clientY - chartTouchStartY);
+                    // Prevent default if swipe threshold reached in either direction
+                    if (deltaX > 10 || deltaY > 10) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+
                 modalContent.addEventListener('touchend', (e) => {
                     const deltaX = e.changedTouches[0].clientX - chartTouchStartX;
                     const deltaY = e.changedTouches[0].clientY - chartTouchStartY;
@@ -2987,10 +2997,12 @@
                     tickerTouchStartY = e.touches[0].clientY;
                 }, { passive: true });
 
+                // Prevent scroll during swipe gestures (both horizontal and vertical)
                 modalContent.addEventListener('touchmove', (e) => {
                     const deltaX = Math.abs(e.touches[0].clientX - tickerTouchStartX);
                     const deltaY = Math.abs(e.touches[0].clientY - tickerTouchStartY);
-                    if (deltaX > deltaY && deltaX > 10) {
+                    // Prevent default if swipe threshold reached in either direction
+                    if (deltaX > 10 || deltaY > 10) {
                         e.preventDefault();
                     }
                 }, { passive: false });
