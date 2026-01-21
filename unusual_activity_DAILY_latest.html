@@ -4723,9 +4723,9 @@
             const putPct = 100 - callPct;
 
             if (pcRatio < 0.7) {
-                insights.push(`<p><span class="highlight-bullish">BULLISH</span> sentiment: Calls represent ${callPct}% of option volume. P/C ratio of ${pcRatio.toFixed(2)} indicates strong call buying.</p>`);
+                insights.push(`<p><span class="highlight-bullish">BULLISH</span> sentiment: Option volume has ${callPct}% calls. P/C ratio of ${pcRatio.toFixed(2)} indicates strong call buying.</p>`);
             } else if (pcRatio > 1.0) {
-                insights.push(`<p><span class="highlight-bearish">BEARISH</span> sentiment: Puts represent ${putPct}% of option volume. P/C ratio of ${pcRatio.toFixed(2)} indicates elevated put activity.</p>`);
+                insights.push(`<p><span class="highlight-bearish">BEARISH</span> sentiment: Option volume has ${putPct}% puts. P/C ratio of ${pcRatio.toFixed(2)} indicates elevated put activity.</p>`);
             } else {
                 insights.push(`<p><span class="highlight-neutral">NEUTRAL</span> sentiment: P/C ratio of ${pcRatio.toFixed(2)} shows balanced call/put activity.</p>`);
             }
