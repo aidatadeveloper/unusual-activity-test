@@ -4753,14 +4753,14 @@
                 bearishSignals.push(`P/C ratio is ${pcRatio.toFixed(2)}`);
             }
 
-            // Determine overall sentiment
-            if (bullishSignals.length > bearishSignals.length || (bullishSignals.length > 0 && bearishSignals.length === 0)) {
-                insights.push(`<p><span class="highlight-bullish">BULLISH</span> sentiment: ${bullishSignals.join(', ')}.</p>`);
-            } else if (bearishSignals.length > bullishSignals.length || (bearishSignals.length > 0 && bullishSignals.length === 0)) {
-                insights.push(`<p><span class="highlight-bearish">BEARISH</span> sentiment: ${bearishSignals.join(', ')}.</p>`);
-            } else if (bullishSignals.length > 0 && bearishSignals.length > 0) {
+            // Determine overall sentiment - MIXED takes priority when both signals exist
+            if (bullishSignals.length > 0 && bearishSignals.length > 0) {
                 // MIXED: conflicting signals (both bullish and bearish present)
                 insights.push(`<p><span class="highlight-mixed">MIXED</span> sentiment: ${bullishSignals.join(', ')} (bullish) vs ${bearishSignals.join(', ')} (bearish).</p>`);
+            } else if (bullishSignals.length > 0) {
+                insights.push(`<p><span class="highlight-bullish">BULLISH</span> sentiment: ${bullishSignals.join(', ')}.</p>`);
+            } else if (bearishSignals.length > 0) {
+                insights.push(`<p><span class="highlight-bearish">BEARISH</span> sentiment: ${bearishSignals.join(', ')}.</p>`);
             } else {
                 insights.push(`<p><span class="highlight-neutral">NEUTRAL</span> sentiment: Balanced flow with ${volCallPct}% calls, P/C ratio ${pcRatio.toFixed(2)}.</p>`);
             }
