@@ -677,6 +677,19 @@
             font-size: 26px;
         }
 
+        /* USA Flag Icon */
+        .usa-flag-img {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .sector-item.center .usa-flag-img {
+            width: 26px;
+            height: 26px;
+        }
+
         .zero-dte-icon {
             position: relative;
             display: inline-block;
@@ -2557,7 +2570,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v38</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v39</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -4051,7 +4064,7 @@
         // Sector icons mapping for 3D carousel
         // Some icons use HTML for custom styling (btc-coin, china-char)
         const SECTOR_ICONS = {
-            'index_usa': '🗽',
+            'index_usa': '<img src="usa_flag_icon.png" class="usa-flag-img" alt="USA">',
             'index_global': '🌍',
             'index_sector': '📊',
             'index_volatility': '📈',
