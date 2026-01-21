@@ -1700,6 +1700,12 @@
             border: 1px solid rgba(255, 0, 0, 0.4);
         }
 
+        .status-badge.mixed {
+            background: transparent;
+            color: #ff8c00;
+            border: 1px solid rgba(255, 140, 0, 0.4);
+        }
+
         /* ========== LAYOUT VARIATIONS FOR TESTING ========== */
 
         /* Wrapper for entire bottom section (badges + insights) */
@@ -1797,6 +1803,7 @@
         .layout-14 .status-badge.bullish { box-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
         .layout-14 .status-badge.neutral { box-shadow: 0 0 10px rgba(255, 159, 67, 0.5); }
         .layout-14 .status-badge.bearish { box-shadow: 0 0 10px rgba(255, 71, 87, 0.5); }
+        .layout-14 .status-badge.mixed { box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); }
 
         /* Layout 15: Text only, no badge styling */
         .layout-15 { display: flex; justify-content: space-between; align-items: center; }
@@ -3107,15 +3114,35 @@
             activityBadge.textContent = isUnusual ? 'UNUSUAL' : 'NORMAL';
             activityBadge.className = 'status-badge ' + (isUnusual ? 'unusual' : 'normal');
 
-            // Update sentiment badge (BULLISH/NEUTRAL/BEARISH) - same logic as card
+            // Update sentiment badge (BULLISH/NEUTRAL/BEARISH/MIXED) - same 3-signal logic as card and AI Insights
             const sentimentBadge = document.getElementById('tickerSentimentBadge');
             let sentimentClass = 'neutral';
             let sentimentText = 'NEUTRAL';
-            const pcr = item.put_call_ratio || 1.0;
-            if (pcr <= 0.5 || (item.dollar_volume_ratio >= 2 && item.dv_call_pct >= 70) || (item.option_volume_ratio >= 2 && item.vol_call_pct >= 70) || pcr < 0.7) {
+
+            // Count bullish and bearish signals
+            let bullishCount = 0;
+            let bearishCount = 0;
+
+            // Dollar volume signal (60%+ threshold)
+            if (item.dv_call_pct >= 60) bullishCount++;
+            else if (item.dv_put_pct >= 60) bearishCount++;
+
+            // Option volume signal (60%+ threshold)
+            if (item.vol_call_pct >= 60) bullishCount++;
+            else if (item.vol_put_pct >= 60) bearishCount++;
+
+            // P/C ratio signal
+            if (item.put_call_ratio < 0.7) bullishCount++;
+            else if (item.put_call_ratio > 1.0) bearishCount++;
+
+            // Determine sentiment - MIXED takes priority when both exist
+            if (bullishCount > 0 && bearishCount > 0) {
+                sentimentClass = 'mixed';
+                sentimentText = 'MIXED';
+            } else if (bullishCount > 0) {
                 sentimentClass = 'bullish';
                 sentimentText = 'BULLISH';
-            } else if (pcr >= 2.0 || (item.dollar_volume_ratio >= 2 && item.dv_put_pct >= 70) || (item.option_volume_ratio >= 2 && item.vol_put_pct >= 70) || pcr > 1.0) {
+            } else if (bearishCount > 0) {
                 sentimentClass = 'bearish';
                 sentimentText = 'BEARISH';
             }
@@ -4392,39 +4419,34 @@
             const badgeClass = !hasData ? 'normal' : (item.is_unusual ? 'unusual' : 'normal');
             const badgeText = !hasData ? 'NORMAL' : (item.is_unusual ? 'UNUSUAL' : 'NORMAL');
 
-            // Sentiment badge - P/C ratio + unusual volume with directional skew
+            // Sentiment badge - uses same 3-signal logic as AI Insights
             let sentimentClass = 'neutral';
             let sentimentText = 'NEUTRAL';
             if (hasData) {
-                // Priority 1: Extreme P/C ratios (always override)
-                if (item.put_call_ratio <= 0.5) {
+                // Count bullish and bearish signals (same thresholds as generateInsights)
+                let bullishCount = 0;
+                let bearishCount = 0;
+
+                // Dollar volume signal (60%+ threshold)
+                if (item.dv_call_pct >= 60) bullishCount++;
+                else if (item.dv_put_pct >= 60) bearishCount++;
+
+                // Option volume signal (60%+ threshold)
+                if (item.vol_call_pct >= 60) bullishCount++;
+                else if (item.vol_put_pct >= 60) bearishCount++;
+
+                // P/C ratio signal
+                if (item.put_call_ratio < 0.7) bullishCount++;
+                else if (item.put_call_ratio > 1.0) bearishCount++;
+
+                // Determine sentiment - MIXED takes priority when both exist
+                if (bullishCount > 0 && bearishCount > 0) {
+                    sentimentClass = 'mixed';
+                    sentimentText = 'MIXED';
+                } else if (bullishCount > 0) {
                     sentimentClass = 'bullish';
                     sentimentText = 'BULLISH';
-                } else if (item.put_call_ratio >= 2.0) {
-                    sentimentClass = 'bearish';
-                    sentimentText = 'BEARISH';
-                }
-                // Priority 2: Unusual dollar volume with strong directional skew (70%+)
-                else if (item.dollar_volume_ratio >= 2 && item.dv_call_pct >= 70) {
-                    sentimentClass = 'bullish';
-                    sentimentText = 'BULLISH';
-                } else if (item.dollar_volume_ratio >= 2 && item.dv_put_pct >= 70) {
-                    sentimentClass = 'bearish';
-                    sentimentText = 'BEARISH';
-                }
-                // Priority 3: Unusual option volume with strong directional skew (70%+)
-                else if (item.option_volume_ratio >= 2 && item.vol_call_pct >= 70) {
-                    sentimentClass = 'bullish';
-                    sentimentText = 'BULLISH';
-                } else if (item.option_volume_ratio >= 2 && item.vol_put_pct >= 70) {
-                    sentimentClass = 'bearish';
-                    sentimentText = 'BEARISH';
-                }
-                // Priority 4: Standard P/C ratio thresholds
-                else if (item.put_call_ratio < 0.7) {
-                    sentimentClass = 'bullish';
-                    sentimentText = 'BULLISH';
-                } else if (item.put_call_ratio > 1.0) {
+                } else if (bearishCount > 0) {
                     sentimentClass = 'bearish';
                     sentimentText = 'BEARISH';
                 }
@@ -4655,7 +4677,7 @@
 
                 case 16: // Icon + text badges
                     const actIcon = badgeClass === 'unusual' ? '⚠' : '✓';
-                    const sentIcon = sentimentClass === 'bullish' ? '↑' : (sentimentClass === 'bearish' ? '↓' : '→');
+                    const sentIcon = sentimentClass === 'bullish' ? '↑' : (sentimentClass === 'bearish' ? '↓' : (sentimentClass === 'mixed' ? '↕' : '→'));
                     return `<div class="status-badge-container layout-16">
                         <span class="status-badge ${badgeClass}">${actIcon} ${badgeText}</span>
                         <span class="status-badge ${sentimentClass}">${sentIcon} ${sentimentText}</span>
