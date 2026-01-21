@@ -1941,6 +1941,11 @@
             margin-right: 4px;
         }
 
+        .pc-unusual {
+            color: #a855f7;
+            font-weight: bold;
+        }
+
         /* Alert Tags - 2 column grid with equal height rows */
         .alert-tags {
             display: grid;
@@ -2570,7 +2575,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v44</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v45</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -4082,6 +4087,7 @@
             'healthcare': '💊',
             'consumer': '🛒',
             'industrial': '🏭',
+            'real_estate': '🏠',
             'all': '📊'
         };
 
@@ -4475,7 +4481,7 @@
                             </div>
                             <div class="metric-row">
                                 <span class="metric-label">Put/Call Ratio</span>
-                                <span class="metric-value">${item.put_call_ratio < 0.7 ? '<span class="arrow-up">▲</span>' : (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '')}${item.put_call_ratio.toFixed(2)}</span>
+                                <span class="metric-value">${item.put_call_ratio < 0.7 ? '<span class="arrow-up">▲</span>' : (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '')}<span class="${(item.put_call_ratio < 0.7 || item.put_call_ratio > 1.0) ? 'pc-unusual' : ''}">${item.put_call_ratio.toFixed(2)}</span></span>
                             </div>
                         </div>
 
@@ -4717,9 +4723,9 @@
             const putPct = 100 - callPct;
 
             if (pcRatio < 0.7) {
-                insights.push(`<p><span class="highlight-bullish">BULLISH</span> sentiment: P/C ratio of ${pcRatio.toFixed(2)} indicates strong call buying. Calls represent ${callPct}% of option volume.</p>`);
+                insights.push(`<p><span class="highlight-bullish">BULLISH</span> sentiment: Calls represent ${callPct}% of option volume. P/C ratio of ${pcRatio.toFixed(2)} indicates strong call buying.</p>`);
             } else if (pcRatio > 1.0) {
-                insights.push(`<p><span class="highlight-bearish">BEARISH</span> sentiment: P/C ratio of ${pcRatio.toFixed(2)} indicates elevated put activity. Puts represent ${putPct}% of option volume.</p>`);
+                insights.push(`<p><span class="highlight-bearish">BEARISH</span> sentiment: Puts represent ${putPct}% of option volume. P/C ratio of ${pcRatio.toFixed(2)} indicates elevated put activity.</p>`);
             } else {
                 insights.push(`<p><span class="highlight-neutral">NEUTRAL</span> sentiment: P/C ratio of ${pcRatio.toFixed(2)} shows balanced call/put activity.</p>`);
             }
