@@ -1,320 +1,50 @@
 {
-  "generated_at": "2026-01-20T00:29:05.274565",
+  "generated_at": "2026-01-20T22:12:55.926616",
   "entries": [
     {
       "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_0027.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_0027.html"
-    },
-    {
-      "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_1334.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1334.html"
-    },
-    {
-      "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_1359.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1359.html"
-    },
-    {
-      "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_1404.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1404.html"
-    },
-    {
-      "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_1601.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1601.html"
-    },
-    {
-      "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_1625.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1625.html"
-    },
-    {
-      "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_1630.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1630.html"
-    },
-    {
-      "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_1729.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1729.html"
-    },
-    {
-      "trade_date": "2026-01-08",
-      "filename": "unusual_activity_20260108_1734.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1734.html"
+      "filename": "unusual_activity_20260108_1933.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260108_1933.html"
     },
     {
       "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_0027.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_0027.html"
-    },
-    {
-      "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_1334.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1334.html"
-    },
-    {
-      "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_1400.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1400.html"
-    },
-    {
-      "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_1405.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1405.html"
-    },
-    {
-      "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_1602.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1602.html"
-    },
-    {
-      "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_1626.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1626.html"
-    },
-    {
-      "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_1630.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1630.html"
-    },
-    {
-      "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_1729.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1729.html"
-    },
-    {
-      "trade_date": "2026-01-09",
-      "filename": "unusual_activity_20260109_1734.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1734.html"
+      "filename": "unusual_activity_20260109_1931.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260109_1931.html"
     },
     {
       "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_0028.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_0028.html"
-    },
-    {
-      "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_1334.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1334.html"
-    },
-    {
-      "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_1400.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1400.html"
-    },
-    {
-      "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_1405.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1405.html"
-    },
-    {
-      "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_1602.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1602.html"
-    },
-    {
-      "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_1626.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1626.html"
-    },
-    {
-      "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_1630.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1630.html"
-    },
-    {
-      "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_1729.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1729.html"
-    },
-    {
-      "trade_date": "2026-01-12",
-      "filename": "unusual_activity_20260112_1734.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1734.html"
+      "filename": "unusual_activity_20260112_1931.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260112_1931.html"
     },
     {
       "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_0028.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_0028.html"
-    },
-    {
-      "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_1334.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1334.html"
-    },
-    {
-      "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_1400.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1400.html"
-    },
-    {
-      "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_1405.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1405.html"
-    },
-    {
-      "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_1602.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1602.html"
-    },
-    {
-      "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_1626.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1626.html"
-    },
-    {
-      "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_1630.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1630.html"
-    },
-    {
-      "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_1729.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1729.html"
-    },
-    {
-      "trade_date": "2026-01-13",
-      "filename": "unusual_activity_20260113_1734.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1734.html"
+      "filename": "unusual_activity_20260113_1932.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260113_1932.html"
     },
     {
       "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_0028.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_0028.html"
-    },
-    {
-      "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_1335.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1335.html"
-    },
-    {
-      "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_1400.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1400.html"
-    },
-    {
-      "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_1405.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1405.html"
-    },
-    {
-      "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_1602.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1602.html"
-    },
-    {
-      "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_1626.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1626.html"
-    },
-    {
-      "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_1631.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1631.html"
-    },
-    {
-      "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_1730.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1730.html"
-    },
-    {
-      "trade_date": "2026-01-14",
-      "filename": "unusual_activity_20260114_1735.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1735.html"
+      "filename": "unusual_activity_20260114_1932.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260114_1932.html"
     },
     {
       "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_0028.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_0028.html"
-    },
-    {
-      "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_1335.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1335.html"
-    },
-    {
-      "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_1401.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1401.html"
-    },
-    {
-      "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_1406.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1406.html"
-    },
-    {
-      "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_1603.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1603.html"
-    },
-    {
-      "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_1627.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1627.html"
-    },
-    {
-      "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_1631.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1631.html"
-    },
-    {
-      "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_1730.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1730.html"
-    },
-    {
-      "trade_date": "2026-01-15",
-      "filename": "unusual_activity_20260115_1735.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1735.html"
+      "filename": "unusual_activity_20260115_1932.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260115_1932.html"
     },
     {
       "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_0029.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_0029.html"
+      "filename": "unusual_activity_20260116_1933.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1933.html"
     },
     {
-      "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_1335.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1335.html"
+      "trade_date": "2026-01-20",
+      "filename": "unusual_activity_20260120_1933.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260120_1933.html"
     },
     {
-      "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_1401.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1401.html"
-    },
-    {
-      "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_1406.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1406.html"
-    },
-    {
-      "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_1603.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1603.html"
-    },
-    {
-      "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_1627.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1627.html"
-    },
-    {
-      "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_1631.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1631.html"
-    },
-    {
-      "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_1730.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1730.html"
-    },
-    {
-      "trade_date": "2026-01-16",
-      "filename": "unusual_activity_20260116_1735.html",
-      "path_from_screener": "DAILY/202601/unusual_activity_20260116_1735.html"
+      "trade_date": "2026-01-20",
+      "filename": "unusual_activity_20260120_2212.html",
+      "path_from_screener": "DAILY/202601/unusual_activity_20260120_2212.html"
     }
   ]
 }
