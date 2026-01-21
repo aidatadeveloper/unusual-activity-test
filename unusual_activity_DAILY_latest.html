@@ -677,31 +677,17 @@
             font-size: 26px;
         }
 
-        /* USA Flag Icon - wrapper clips the white border */
-        .usa-flag-wrapper {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
+        /* USA Flag Icon */
         .usa-flag-img {
-            width: 40px;
-            height: 40px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
             object-fit: cover;
         }
 
-        .sector-item.center .usa-flag-wrapper {
-            width: 24px;
-            height: 24px;
-        }
-
         .sector-item.center .usa-flag-img {
-            width: 48px;
-            height: 48px;
+            width: 26px;
+            height: 26px;
         }
 
         .zero-dte-icon {
@@ -2584,7 +2570,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v43</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v44</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -4079,7 +4065,7 @@
         // Sector icons mapping for 3D carousel
         // Some icons use HTML for custom styling (btc-coin, china-char)
         const SECTOR_ICONS = {
-            'index_usa': '<span class="usa-flag-wrapper"><img src="usa_flag_icon.png" class="usa-flag-img" alt="USA"></span>',
+            'index_usa': '<img src="usa_flag_icon.png" class="usa-flag-img" alt="USA">',
             'index_global': '🌍',
             'index_sector': '📊',
             'index_volatility': '📈',
