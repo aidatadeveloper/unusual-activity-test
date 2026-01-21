@@ -2570,7 +2570,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v39</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v40</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -2805,8 +2805,9 @@
                 }, { passive: true });
             }
 
-            // Update subtitle with tab name (no parentheses)
-            const tabName = tabId === 'all' ? 'All Sectors' : tabId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            // Update subtitle with tab name (use formatGroupName for special cases)
+            const groupKey = tabId.replace(/-/g, '_');
+            const tabName = tabId === 'all' ? 'All Sectors' : formatGroupName(groupKey);
             document.getElementById('chartModalSubtitle').textContent = tabName;
 
             // Track current tab/metric for navigation
