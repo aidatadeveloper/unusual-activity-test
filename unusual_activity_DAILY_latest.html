@@ -677,6 +677,48 @@
             font-size: 26px;
         }
 
+        /* USA Flag Icon */
+        .usa-flag {
+            width: 26px;
+            height: 16px;
+            display: inline-block;
+            position: relative;
+            background: repeating-linear-gradient(
+                to bottom,
+                #bf0a30 0px, #bf0a30 2px,
+                #fff 2px, #fff 4px
+            );
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .usa-flag::before {
+            content: '★★★';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 11px;
+            height: 9px;
+            background: #002868;
+            font-size: 4px;
+            color: #fff;
+            line-height: 3px;
+            letter-spacing: -0.5px;
+            overflow: hidden;
+            border-radius: 1px 0 0 0;
+        }
+
+        .sector-item.center .usa-flag {
+            width: 30px;
+            height: 18px;
+        }
+
+        .sector-item.center .usa-flag::before {
+            width: 13px;
+            height: 10px;
+            font-size: 5px;
+        }
+
         .zero-dte-icon {
             position: relative;
             display: inline-block;
@@ -2557,7 +2599,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v35</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v36</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -4051,7 +4093,7 @@
         // Sector icons mapping for 3D carousel
         // Some icons use HTML for custom styling (btc-coin, china-char)
         const SECTOR_ICONS = {
-            'index_usa': '🇺🇸',
+            'index_usa': '<span class="usa-flag"></span>',
             'index_global': '🌍',
             'index_sector': '📊',
             'index_volatility': '📈',
