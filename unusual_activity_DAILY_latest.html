@@ -2537,7 +2537,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v34</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Tuesday, January 20, 2026 v33</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -2746,8 +2746,6 @@
 
                     // Swipe navigation if horizontal swipe is dominant and > 80px threshold
                     if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY)) {
-                        e.preventDefault();
-                        e.stopPropagation();
                         if (deltaX > 0) {
                             navigateChart(-1);  // Swipe right = previous
                         } else {
@@ -2755,19 +2753,13 @@
                         }
                     } else if (Math.abs(deltaY) > 80 && Math.abs(deltaY) > Math.abs(deltaX)) {
                         // Vertical swipe (up or down) = close popup
-                        e.preventDefault();
-                        e.stopPropagation();
                         closeChart();
                     } else if (Math.abs(deltaX) < 20 && Math.abs(deltaY) < 20) {
                         // Tap detected (small movement) - close modal unless tapping nav buttons
                         const isNavBtn = e.target.closest('.chart-nav-btn');
-                        if (!isNavBtn) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            closeChart();
-                        }
+                        if (!isNavBtn) closeChart();
                     }
-                }, { passive: false });
+                }, { passive: true });
             }
 
             // Update subtitle with tab name (no parentheses)
@@ -3009,8 +3001,6 @@
 
                     // Swipe navigation if horizontal swipe is dominant and > 80px threshold
                     if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY)) {
-                        e.preventDefault();
-                        e.stopPropagation();
                         if (deltaX > 0) {
                             navigateTicker(-1);  // Swipe right = previous
                         } else {
@@ -3018,19 +3008,15 @@
                         }
                     } else if (Math.abs(deltaY) > 80 && Math.abs(deltaY) > Math.abs(deltaX)) {
                         // Vertical swipe (up or down) = close popup
-                        e.preventDefault();
-                        e.stopPropagation();
                         closeTickerChart();
                     } else if (Math.abs(deltaX) < 20 && Math.abs(deltaY) < 20) {
                         // Tap detected (small movement) - close modal unless tapping nav buttons
                         const isNavBtn = e.target.closest('.chart-nav-btn');
                         if (!isNavBtn) {
-                            e.preventDefault();
-                            e.stopPropagation();
                             closeTickerChart();
                         }
                     }
-                }, { passive: false });
+                }, { passive: true });
             }
 
             // Build ticker list from current tab's data using ACTIVITY_DATA
