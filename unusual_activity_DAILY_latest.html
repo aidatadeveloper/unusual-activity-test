@@ -4087,7 +4087,13 @@
 
         // Select a sector from the carousel
         function selectCarouselSector(index) {
-            if (index === carouselCurrentIndex) return; // Already selected
+            if (index === carouselCurrentIndex) {
+                // Already selected (center) - show the sector chart popup
+                const group = carouselGroups[index];
+                const tabId = group.replace(/_/g, '-');
+                showChart(tabId, 'tickers');
+                return;
+            }
             carouselCurrentIndex = index;
             updateCarouselPositions();
 
