@@ -1,0 +1,114 @@
+{
+  "ticker": "SPY",
+  "type": "INTRADAY",
+  "description": "All intraday snapshots",
+  "entries": [
+    {
+      "date": "2026-01-22",
+      "displayLabel": "01/22",
+      "path": "INTRADAY/20260122/SPY_20260122_1430.html",
+      "datetime": "2026-01-22T14:30:00",
+      "time_bucket": "14:25"
+    },
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21",
+      "path": "INTRADAY/20260121/SPY_20260121_1620.html",
+      "datetime": "2026-01-21T16:20:00",
+      "time_bucket": "16:20"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20",
+      "path": "INTRADAY/20260120/SPY_20260120_1620.html",
+      "datetime": "2026-01-20T16:20:00",
+      "time_bucket": "16:20"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16",
+      "path": "INTRADAY/20260116/SPY_20260116_1620.html",
+      "datetime": "2026-01-16T16:20:00",
+      "time_bucket": "16:20"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15",
+      "path": "INTRADAY/20260115/SPY_20260115_1621.html",
+      "datetime": "2026-01-15T16:21:00",
+      "time_bucket": "16:20"
+    },
+    {
+      "date": "2025-12-08",
+      "displayLabel": "12/08 12:49",
+      "path": "INTRADAY/20251208/SPY_20251208_1249.html",
+      "datetime": "2025-12-08T12:49:00"
+    },
+    {
+      "date": "2025-12-08",
+      "displayLabel": "12/08 12:44",
+      "path": "INTRADAY/20251208/SPY_20251208_1244.html",
+      "datetime": "2025-12-08T12:44:00"
+    },
+    {
+      "date": "2025-12-08",
+      "displayLabel": "12/08 12:34",
+      "path": "INTRADAY/20251208/SPY_20251208_1234.html",
+      "datetime": "2025-12-08T12:34:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 16:00",
+      "path": "INTRADAY/20251205/SPY_20251205_1600.html",
+      "datetime": "2025-12-05T16:00:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 15:56",
+      "path": "INTRADAY/20251205/SPY_20251205_1556.html",
+      "datetime": "2025-12-05T15:56:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 15:50",
+      "path": "INTRADAY/20251205/SPY_20251205_1550.html",
+      "datetime": "2025-12-05T15:50:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 15:45",
+      "path": "INTRADAY/20251205/SPY_20251205_1545.html",
+      "datetime": "2025-12-05T15:45:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 15:40",
+      "path": "INTRADAY/20251205/SPY_20251205_1540.html",
+      "datetime": "2025-12-05T15:40:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 15:35",
+      "path": "INTRADAY/20251205/SPY_20251205_1535.html",
+      "datetime": "2025-12-05T15:35:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 15:30",
+      "path": "INTRADAY/20251205/SPY_20251205_1530.html",
+      "datetime": "2025-12-05T15:30:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 15:25",
+      "path": "INTRADAY/20251205/SPY_20251205_1525.html",
+      "datetime": "2025-12-05T15:25:00"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 15:20",
+      "path": "INTRADAY/20251205/SPY_20251205_1520.html",
+      "datetime": "2025-12-05T15:20:00"
+    }
+  ]
+}
