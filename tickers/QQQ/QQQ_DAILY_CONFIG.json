@@ -4,11 +4,11 @@
   "description": "Daily snapshots",
   "history": [
     {
-      "filename": "QQQ_20260121_0949.html",
-      "displayLabel": "01/21 09:49",
+      "filename": "QQQ_20260121_1208.html",
+      "displayLabel": "01/21 12:08",
       "subfolder": "202601",
-      "relative_path": "DAILY/202601/QQQ_20260121_0949.html",
-      "timestamp": "2026-01-22T09:49:54.812422",
+      "relative_path": "DAILY/202601/QQQ_20260121_1208.html",
+      "timestamp": "2026-01-22T12:08:37.095644",
       "time_bucket": "16:20",
       "card_data": {
         "option_volume": {
@@ -43,7 +43,7 @@
         }
       },
       "intraday_data": {
-        "pull_timestamp": "2026-01-22T09:49:54.812422",
+        "pull_timestamp": "2026-01-22T12:08:37.095644",
         "time_bucket": "16:20",
         "total_volume": 7262059,
         "call_volume": 3743712,
@@ -343,10 +343,10 @@
     }
   ],
   "latest": {
-    "filename": "QQQ_20260121_0949.html",
-    "displayLabel": "01/21 09:49",
-    "relative_path": "DAILY/202601/QQQ_20260121_0949.html",
-    "timestamp": "2026-01-22T09:49:54.812422",
+    "filename": "QQQ_20260121_1208.html",
+    "displayLabel": "01/21 12:08",
+    "relative_path": "DAILY/202601/QQQ_20260121_1208.html",
+    "timestamp": "2026-01-22T12:08:37.095644",
     "time_bucket": "16:20",
     "card_data": {
       "option_volume": {
@@ -527,7 +527,6 @@
           2730498
         ],
         "rs_expiry_avg": [
-          20.02,
           25.52,
           22.46,
           11.08,
@@ -536,7 +535,6 @@
           27.55
         ],
         "rs_next_avg": [
-          0.52,
           0.52,
           1.03,
           1.42,
@@ -589,8 +587,8 @@
         "yesterday_next_avg": 1.19,
         "yesterday_next_call": 1.15,
         "yesterday_next_put": 1.23,
-        "avg_7day_expiry": 21.361428571428572,
-        "avg_7day_next": 1.0728571428571427
+        "avg_7day_expiry": 21.584999999999997,
+        "avg_7day_next": 1.165
       },
       "relative_spread_detail": {
         "smallest": [
