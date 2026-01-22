@@ -1,0 +1,147 @@
+{
+  "ticker": "ABNB",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:46",
+      "path": "DAILY/202601/ABNB_20260121_0946.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 18:07",
+      "path": "DAILY/202601/ABNB_20260120_1807.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 18:07",
+      "path": "DAILY/202601/ABNB_20260116_1807.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 18:07",
+      "path": "DAILY/202601/ABNB_20260115_1807.html"
+    },
+    {
+      "date": "2026-01-14",
+      "displayLabel": "01/14 18:06",
+      "path": "DAILY/202601/ABNB_20260114_1806.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 18:07",
+      "path": "DAILY/202601/ABNB_20260113_1807.html"
+    },
+    {
+      "date": "2026-01-12",
+      "displayLabel": "01/12 18:07",
+      "path": "DAILY/202601/ABNB_20260112_1807.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 18:06",
+      "path": "DAILY/202601/ABNB_20260109_1806.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 18:06",
+      "path": "DAILY/202601/ABNB_20260108_1806.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 18:06",
+      "path": "DAILY/202601/ABNB_20260107_1806.html"
+    },
+    {
+      "date": "2026-01-06",
+      "displayLabel": "01/06 18:06",
+      "path": "DAILY/202601/ABNB_20260106_1806.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 18:06",
+      "path": "DAILY/202601/ABNB_20260105_1806.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 18:06",
+      "path": "DAILY/202601/ABNB_20260102_1806.html"
+    },
+    {
+      "date": "2026-01-01",
+      "displayLabel": "01/01 18:05",
+      "path": "DAILY/202601/ABNB_20260101_1805.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 19:02",
+      "path": "DAILY/202512/ABNB_20251230_1902.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 18:05",
+      "path": "DAILY/202512/ABNB_20251229_1805.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 18:05",
+      "path": "DAILY/202512/ABNB_20251226_1805.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 18:05",
+      "path": "DAILY/202512/ABNB_20251224_1805.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 18:04",
+      "path": "DAILY/202512/ABNB_20251223_1804.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 18:04",
+      "path": "DAILY/202512/ABNB_20251222_1804.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 18:04",
+      "path": "DAILY/202512/ABNB_20251221_1804.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 18:04",
+      "path": "DAILY/202512/ABNB_20251218_1804.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 18:03",
+      "path": "DAILY/202512/ABNB_20251217_1803.html"
+    },
+    {
+      "date": "2025-12-16",
+      "displayLabel": "12/16 18:04",
+      "path": "DAILY/202512/ABNB_20251216_1804.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 18:03",
+      "path": "DAILY/202512/ABNB_20251215_1803.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 00:05",
+      "path": "DAILY/202512/ABNB_20251212_0005.html"
+    },
+    {
+      "date": "2025-12-11",
+      "displayLabel": "12/11 18:03",
+      "path": "DAILY/202512/ABNB_20251211_1803.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 18:04",
+      "path": "DAILY/202512/ABNB_20251210_1804.html"
+    }
+  ]
+}

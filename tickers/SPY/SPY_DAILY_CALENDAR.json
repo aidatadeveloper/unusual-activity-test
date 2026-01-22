@@ -1,0 +1,72 @@
+{
+  "ticker": "SPY",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:50",
+      "path": "DAILY/202601/SPY_20260121_0950.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 21:29",
+      "path": "DAILY/202601/SPY_20260120_2129.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 21:25",
+      "path": "DAILY/202601/SPY_20260116_2125.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 21:54",
+      "path": "DAILY/202601/SPY_20260115_2154.html"
+    },
+    {
+      "date": "2025-12-05",
+      "displayLabel": "12/05 02:07",
+      "path": "DAILY/202512/SPY_20251205_0207.html"
+    },
+    {
+      "date": "2025-12-03",
+      "displayLabel": "12/03 23:40",
+      "path": "DAILY/202512/SPY_20251203_2340.html"
+    },
+    {
+      "date": "2025-11-28",
+      "displayLabel": "11/28 01:29",
+      "path": "DAILY/202511/SPY_20251128_0129.html"
+    },
+    {
+      "date": "2025-11-28",
+      "displayLabel": "11/28 01:21",
+      "path": "DAILY/202511/SPY_20251128_0121.html"
+    },
+    {
+      "date": "2025-11-26",
+      "displayLabel": "11/26 19:05",
+      "path": "DAILY/202511/SPY_20251126_1905.html"
+    },
+    {
+      "date": "2025-11-25",
+      "displayLabel": "11/25 19:10",
+      "path": "DAILY/202511/SPY_20251125_1910.html"
+    },
+    {
+      "date": "2025-11-24",
+      "displayLabel": "11/24 19:10",
+      "path": "DAILY/202511/SPY_20251124_1910.html"
+    },
+    {
+      "date": "2025-11-21",
+      "displayLabel": "11/21 18:56",
+      "path": "DAILY/202511/SPY_20251121_1856.html"
+    },
+    {
+      "date": "2025-11-18",
+      "displayLabel": "11/18 21:47",
+      "path": "DAILY/202511/SPY_20251118_2147.html"
+    }
+  ]
+}

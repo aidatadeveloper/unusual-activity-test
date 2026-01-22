@@ -1,0 +1,117 @@
+{
+  "ticker": "JLL",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:48",
+      "path": "DAILY/202601/JLL_20260121_0948.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 20:06",
+      "path": "DAILY/202601/JLL_20260120_2006.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 20:05",
+      "path": "DAILY/202601/JLL_20260116_2005.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 20:19",
+      "path": "DAILY/202601/JLL_20260115_2019.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 00:59",
+      "path": "DAILY/202601/JLL_20260113_0059.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 20:10",
+      "path": "DAILY/202601/JLL_20260109_2010.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 20:18",
+      "path": "DAILY/202601/JLL_20260108_2018.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 20:15",
+      "path": "DAILY/202601/JLL_20260107_2015.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 20:18",
+      "path": "DAILY/202601/JLL_20260105_2018.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 19:59",
+      "path": "DAILY/202601/JLL_20260102_1959.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 20:56",
+      "path": "DAILY/202512/JLL_20251230_2056.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 20:05",
+      "path": "DAILY/202512/JLL_20251229_2005.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 19:57",
+      "path": "DAILY/202512/JLL_20251226_1957.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 19:57",
+      "path": "DAILY/202512/JLL_20251224_1957.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 19:54",
+      "path": "DAILY/202512/JLL_20251223_1954.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 19:53",
+      "path": "DAILY/202512/JLL_20251222_1953.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 19:52",
+      "path": "DAILY/202512/JLL_20251221_1952.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 19:54",
+      "path": "DAILY/202512/JLL_20251218_1954.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 01:54",
+      "path": "DAILY/202512/JLL_20251217_0154.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 18:49",
+      "path": "DAILY/202512/JLL_20251215_1849.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 01:28",
+      "path": "DAILY/202512/JLL_20251212_0128.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 21:18",
+      "path": "DAILY/202512/JLL_20251210_2118.html"
+    }
+  ]
+}

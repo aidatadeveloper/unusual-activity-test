@@ -1,0 +1,1516 @@
+{
+  "ticker": "LAR",
+  "type": "DAILY",
+  "description": "Daily snapshots",
+  "history": [
+    {
+      "filename": "LAR_20260121_0948.html",
+      "displayLabel": "01/21 09:48",
+      "subfolder": "202601",
+      "relative_path": "DAILY/202601/LAR_20260121_0948.html",
+      "timestamp": "2026-01-22T09:48:58.265392",
+      "card_data": {
+        "option_volume": {
+          "today": 1573,
+          "call_volume": 1213,
+          "put_volume": 360
+        },
+        "dollar_volume": {
+          "call": 160648.0,
+          "put": 18342.0,
+          "today": 178990.0
+        },
+        "put_call": {
+          "ratio": 1.875
+        },
+        "open_interest": {
+          "call_oi": 33560,
+          "put_oi": 808,
+          "total_oi": 34368
+        },
+        "expected_move": {
+          "today_pct": 42.3313,
+          "next_pct": 48.0982
+        },
+        "relative_spread": {
+          "expiry_avg": 17.23,
+          "next_avg": 26.95,
+          "expiry_call": 16.67,
+          "expiry_put": 17.78,
+          "next_call": 27.59,
+          "next_put": 26.32
+        }
+      },
+      "intraday_data": {
+        "pull_timestamp": "2026-01-22T09:48:58.265392",
+        "time_bucket": null,
+        "total_volume": 1573,
+        "call_volume": 1213,
+        "put_volume": 360,
+        "dollar_volume_call": 160648.0,
+        "dollar_volume_put": 18342.0,
+        "total_dollar_volume": 178990.0,
+        "open_interest_call": 33560,
+        "open_interest_put": 808,
+        "total_open_interest": 34368,
+        "put_call_ratio": 1.875,
+        "net_premium": 142306.0,
+        "expected_move_pct": 42.3313,
+        "expected_move_next_pct": 48.0982
+      }
+    },
+    {
+      "filename": "LAR_20260120_2013.html",
+      "displayLabel": "01/20 20:13",
+      "subfolder": "202601",
+      "relative_path": "DAILY/202601/LAR_20260120_2013.html",
+      "timestamp": "2026-01-20T20:13:44.163323",
+      "card_data": {
+        "option_volume": {
+          "today": 5187028,
+          "call_volume": 1768986,
+          "put_volume": 3418042
+        },
+        "dollar_volume": {
+          "call": 159134.0,
+          "put": 22066.0,
+          "today": 181200.0
+        },
+        "put_call": {
+          "ratio": 1.9322
+        },
+        "open_interest": {
+          "call_oi": 33904,
+          "put_oi": 630,
+          "total_oi": 34534
+        },
+        "expected_move": {
+          "today_pct": 42.298288508557455,
+          "next_pct": 51.466992665036685
+        },
+        "relative_spread": {
+          "expiry_avg": 18.27,
+          "next_avg": 44.96,
+          "expiry_call": 21.19,
+          "expiry_put": 15.35,
+          "next_call": 53.8,
+          "next_put": 36.12
+        }
+      },
+      "intraday_data": {
+        "pull_timestamp": "2026-01-20T20:13:44.163323",
+        "time_bucket": null,
+        "total_volume": 5187028,
+        "call_volume": 1768986,
+        "put_volume": 3418042,
+        "dollar_volume_call": 159134.0,
+        "dollar_volume_put": 22066.0,
+        "total_dollar_volume": 181200.0,
+        "open_interest_call": 33904,
+        "open_interest_put": 630,
+        "total_open_interest": 34534,
+        "put_call_ratio": 1.9322,
+        "net_premium": 137068.0,
+        "expected_move_pct": 42.298288508557455,
+        "expected_move_next_pct": 51.466992665036685
+      }
+    },
+    {
+      "filename": "LAR_20260116_2012.html",
+      "displayLabel": "01/16 20:12",
+      "subfolder": "202601",
+      "relative_path": "DAILY/202601/LAR_20260116_2012.html",
+      "timestamp": "2026-01-16T20:12:30.484802",
+      "card_data": {
+        "option_volume": {
+          "today": 4560355,
+          "call_volume": 1276899,
+          "put_volume": 3283456
+        },
+        "dollar_volume": {
+          "call": 288705.0,
+          "put": 19078.0,
+          "today": 307783.0
+        },
+        "put_call": {
+          "ratio": 2.5714
+        },
+        "open_interest": {
+          "call_oi": 43901,
+          "put_oi": 1137,
+          "total_oi": 45038
+        },
+        "expected_move": {
+          "today_pct": 30.525030525030527,
+          "next_pct": 41.88034188034189
+        },
+        "relative_spread": {
+          "expiry_avg": 41.27,
+          "next_avg": 19.73,
+          "expiry_call": 71.43,
+          "expiry_put": 11.11,
+          "next_call": 12.2,
+          "next_put": 27.27
+        }
+      },
+      "intraday_data": {
+        "pull_timestamp": "2026-01-16T20:12:30.484802",
+        "time_bucket": null,
+        "total_volume": 4560355,
+        "call_volume": 1276899,
+        "put_volume": 3283456,
+        "dollar_volume_call": 288705.0,
+        "dollar_volume_put": 19078.0,
+        "total_dollar_volume": 307783.0,
+        "open_interest_call": 43901,
+        "open_interest_put": 1137,
+        "total_open_interest": 45038,
+        "put_call_ratio": 2.5714,
+        "net_premium": 269627.0,
+        "expected_move_pct": 30.525030525030527,
+        "expected_move_next_pct": 41.88034188034189
+      }
+    },
+    {
+      "filename": "LAR_20260115_2027.html",
+      "displayLabel": "01/15 20:27",
+      "subfolder": "202601",
+      "relative_path": "DAILY/202601/LAR_20260115_2027.html",
+      "timestamp": "2026-01-15T20:27:37.564494",
+      "card_data": {
+        "option_volume": {
+          "today": 3845213,
+          "call_volume": 1237025,
+          "put_volume": 2608188
+        },
+        "dollar_volume": {
+          "call": 187902.0,
+          "put": 7622.0,
+          "today": 195524.0
+        },
+        "put_call": {
+          "ratio": 2.1084
+        },
+        "open_interest": {
+          "call_oi": 43082,
+          "put_oi": 2189,
+          "total_oi": 45271
+        },
+        "expected_move": {
+          "today_pct": 31.121833534378773,
+          "next_pct": 42.21954161640531
+        },
+        "relative_spread": {
+          "expiry_avg": 17.61,
+          "next_avg": 22.92,
+          "expiry_call": 18.07,
+          "expiry_put": 17.14,
+          "next_call": 11.28,
+          "next_put": 34.56
+        }
+      },
+      "intraday_data": {
+        "pull_timestamp": "2026-01-15T20:27:37.564494",
+        "time_bucket": null,
+        "total_volume": 3845213,
+        "call_volume": 1237025,
+        "put_volume": 2608188,
+        "dollar_volume_call": 187902.0,
+        "dollar_volume_put": 7622.0,
+        "total_dollar_volume": 195524.0,
+        "open_interest_call": 43082,
+        "open_interest_put": 2189,
+        "total_open_interest": 45271,
+        "put_call_ratio": 2.1084,
+        "net_premium": 180280.0,
+        "expected_move_pct": 31.121833534378773,
+        "expected_move_next_pct": 42.21954161640531
+      }
+    },
+    {
+      "filename": "LAR_20260113_2129.html",
+      "displayLabel": "01/13 21:29",
+      "subfolder": "202601",
+      "relative_path": "DAILY/202601/LAR_20260113_2129.html",
+      "timestamp": "2026-01-13T21:29:52.004390",
+      "card_data": {
+        "option_volume": {
+          "today": 5968952,
+          "call_volume": 1671306,
+          "put_volume": 4297646
+        },
+        "dollar_volume": {
+          "call": 1458663.0,
+          "put": 18235.0,
+          "today": 1476898.0
+        },
+        "put_call": {
+          "ratio": 2.5714
+        },
+        "open_interest": {
+          "call_oi": 39427,
+          "put_oi": 2107,
+          "total_oi": 41534
+        },
+        "expected_move": {
+          "today_pct": 33.74233128834356,
+          "next_pct": 45.030674846625764
+        },
+        "relative_spread": {
+          "expiry_avg": 26.16,
+          "next_avg": 22.8,
+          "expiry_call": 19.48,
+          "expiry_put": 32.83,
+          "next_call": 3.94,
+          "next_put": 41.67
+        }
+      },
+      "intraday_data": {
+        "pull_timestamp": "2026-01-13T21:29:52.004390",
+        "time_bucket": null,
+        "total_volume": 5968952,
+        "call_volume": 1671306,
+        "put_volume": 4297646,
+        "dollar_volume_call": 1458663.0,
+        "dollar_volume_put": 18235.0,
+        "total_dollar_volume": 1476898.0,
+        "open_interest_call": 39427,
+        "open_interest_put": 2107,
+        "total_open_interest": 41534,
+        "put_call_ratio": 2.5714,
+        "net_premium": 1440428.0,
+        "expected_move_pct": 33.74233128834356,
+        "expected_move_next_pct": 45.030674846625764
+      }
+    },
+    {
+      "filename": "LAR_20260109_2017.html",
+      "displayLabel": "01/09 20:17",
+      "subfolder": "202601",
+      "relative_path": "DAILY/202601/LAR_20260109_2017.html",
+      "timestamp": "2026-01-09T20:17:33.169722",
+      "card_data": {
+        "option_volume": {
+          "today": 2519072,
+          "call_volume": 1754353,
+          "put_volume": 764719
+        },
+        "dollar_volume": {
+          "call": 58693.0,
+          "put": 2933.0,
+          "today": 61626.0
+        },
+        "put_call": {
+          "ratio": 0.4359
+        },
+        "open_interest": {
+          "call_oi": 30596,
+          "put_oi": 555,
+          "total_oi": 31151
+        },
+        "expected_move": {
+          "today_pct": 40.114613180515754,
+          "next_pct": 46.70487106017192
+        },
+        "relative_spread": {
+          "expiry_avg": 28.66,
+          "next_avg": 27.86,
+          "expiry_call": 10.26,
+          "expiry_put": 47.06,
+          "next_call": 7.04,
+          "next_put": 48.67
+        }
+      },
+      "intraday_data": {
+        "pull_timestamp": "2026-01-09T20:17:33.169722",
+        "time_bucket": null,
+        "total_volume": 2519072,
+        "call_volume": 1754353,
+        "put_volume": 764719,
+        "dollar_volume_call": 58693.0,
+        "dollar_volume_put": 2933.0,
+        "total_dollar_volume": 61626.0,
+        "open_interest_call": 30596,
+        "open_interest_put": 555,
+        "total_open_interest": 31151,
+        "put_call_ratio": 0.4359,
+        "net_premium": 55760.0,
+        "expected_move_pct": 40.114613180515754,
+        "expected_move_next_pct": 46.70487106017192
+      }
+    }
+  ],
+  "latest": {
+    "filename": "LAR_20260121_0948.html",
+    "displayLabel": "01/21 09:48",
+    "relative_path": "DAILY/202601/LAR_20260121_0948.html",
+    "timestamp": "2026-01-22T09:48:58.265392",
+    "card_data": {
+      "option_volume": {
+        "today": 1573,
+        "call_volume": 1213,
+        "put_volume": 360,
+        "yesterday": 5187028,
+        "yesterday_calls": 1272,
+        "yesterday_puts": 308,
+        "vs_yesterday": -99.97,
+        "vs_prior_calls": -4.64,
+        "vs_prior_puts": 16.88,
+        "total_7day": 33674572,
+        "total_7day_calls": 25519,
+        "total_7day_puts": 1574,
+        "avg_7day": 4810653,
+        "avg_7day_calls": 3646.0,
+        "avg_7day_puts": 225.0,
+        "vs_7day_avg": -99.97,
+        "vs_7day_avg_calls": -66.73,
+        "vs_7day_avg_puts": 60.1
+      },
+      "dollar_volume": {
+        "call": 160648.0,
+        "put": 18342.0,
+        "today": 178990.0,
+        "yesterday": 181200.0,
+        "yesterday_call": 159134.0,
+        "yesterday_put": 22066.0,
+        "vs_yesterday": -1.22,
+        "vs_prior_calls": 0.95,
+        "vs_prior_puts": -16.88,
+        "total_7day": 3093863.0,
+        "total_7day_call": 2978147.0,
+        "total_7day_put": 115716.0,
+        "avg_7day": 441980.4285714286,
+        "avg_7day_call": 425449.57,
+        "avg_7day_put": 16530.86,
+        "vs_7day_avg": -59.5,
+        "vs_7day_avg_calls": -62.24,
+        "vs_7day_avg_puts": 10.96,
+        "net_premium": 142306.0
+      },
+      "put_call": {
+        "ratio": 1.875,
+        "sentiment": "BEARISH",
+        "yesterday": 1.9322,
+        "vs_yesterday": -2.96,
+        "avg_7day": 1.6218,
+        "vs_7day_avg": 15.61
+      },
+      "open_interest": {
+        "call_oi": 33560,
+        "put_oi": 808,
+        "total_oi": 34368,
+        "yesterday": 34534,
+        "yesterday_calls": 33904,
+        "yesterday_puts": 630,
+        "vs_yesterday": -0.48,
+        "total_7day": 283511,
+        "avg_7day": 40501,
+        "vs_7day_avg": -15.14
+      },
+      "expected_move": {
+        "today_pct": 42.3313,
+        "today_dollars": 3.45,
+        "yesterday_pct": 30.525,
+        "avg_7day_pct": 35.2778,
+        "vs_yesterday": 38.68,
+        "vs_7day_avg": 19.99,
+        "next_pct": 48.0982,
+        "next_dollars": 3.92,
+        "next_expiration_date": "03/20",
+        "next_dte": 58,
+        "yesterday_next_pct": 41.8803,
+        "avg_7day_next_pct": 45.1039,
+        "vs_yesterday_next": 14.85,
+        "vs_7day_avg_next": 6.64
+      },
+      "history_7day": {
+        "dates": [
+          "01/09",
+          "01/12",
+          "01/13",
+          "01/14",
+          "01/15",
+          "01/16",
+          "01/20"
+        ],
+        "volumes": [
+          2519072,
+          6125566,
+          5968952,
+          5468386,
+          3845213,
+          4560355,
+          5187028
+        ],
+        "dollar_volumes": [
+          61626.0,
+          570878.0,
+          1476898.0,
+          299954.0,
+          195524.0,
+          307783.0,
+          181200.0
+        ],
+        "put_call_ratios": [
+          0.4359,
+          0.172,
+          2.5714,
+          1.5612,
+          2.1084,
+          2.5714,
+          1.9322
+        ],
+        "expected_moves": [
+          40.1146,
+          39.1188,
+          33.7423,
+          30.0239,
+          31.1218,
+          30.525,
+          42.3313
+        ],
+        "next_expected_moves": [
+          46.7049,
+          47.3965,
+          45.0307,
+          41.0287,
+          42.2195,
+          41.8803,
+          48.0982
+        ],
+        "call_volumes": [
+          433,
+          5401,
+          12532,
+          2415,
+          1356,
+          2110,
+          1272
+        ],
+        "put_volumes": [
+          53,
+          269,
+          499,
+          99,
+          149,
+          197,
+          308
+        ],
+        "call_dollar_volumes": [
+          58693.0,
+          531114.0,
+          1458663.0,
+          293936.0,
+          187902.0,
+          288705.0,
+          159134.0
+        ],
+        "put_dollar_volumes": [
+          2933.0,
+          39764.0,
+          18235.0,
+          6018.0,
+          7622.0,
+          19078.0,
+          22066.0
+        ],
+        "open_interests": [
+          31151,
+          40962,
+          41534,
+          45021,
+          45271,
+          45038,
+          34534
+        ],
+        "rs_expiry_avg": [
+          29.19,
+          28.66,
+          26.16,
+          17.61,
+          41.27,
+          18.27,
+          17.23
+        ],
+        "rs_next_avg": [
+          33.03,
+          27.86,
+          22.8,
+          22.92,
+          19.73,
+          44.96,
+          26.95
+        ]
+      },
+      "sentiments": {
+        "dollar_volume": {
+          "current": "BULLISH",
+          "prior": "BULLISH",
+          "7day": "NEUTRAL"
+        },
+        "option_volume": {
+          "current": "BULLISH",
+          "prior": "BULLISH",
+          "7day": "NEUTRAL"
+        },
+        "put_call_ratio": {
+          "current": "BEARISH",
+          "prior": "BEARISH",
+          "7day": "BEARISH"
+        },
+        "open_interest": {
+          "current": "BULLISH",
+          "prior": "BULLISH",
+          "7day": "NEUTRAL"
+        },
+        "expected_move": {
+          "current": "BEARISH",
+          "prior": "BEARISH",
+          "7day": "BEARISH"
+        }
+      },
+      "relative_spread": {
+        "expiry_avg": 17.23,
+        "expiry_call": 16.67,
+        "expiry_put": 17.78,
+        "expiry_date": "2026-02-20",
+        "expiry_dte": 30,
+        "next_avg": 26.95,
+        "next_call": 27.59,
+        "next_put": 26.32,
+        "next_date": "2026-03-20",
+        "next_dte": 58,
+        "yesterday_expiry_avg": 18.27,
+        "yesterday_expiry_call": 21.19,
+        "yesterday_expiry_put": 15.35,
+        "yesterday_next_avg": 44.96,
+        "yesterday_next_call": 53.8,
+        "yesterday_next_put": 36.12,
+        "avg_7day_expiry": 25.484285714285715,
+        "avg_7day_next": 28.321428571428573
+      },
+      "relative_spread_detail": {
+        "smallest": [
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "02/20/26",
+            "bid": 3.0,
+            "ask": 3.2,
+            "mark": 3.1,
+            "volume": 36,
+            "oi": 3755,
+            "spread_pct": 6.45,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": -0.05
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "02/20/26",
+            "bid": 5.3,
+            "ask": 5.8,
+            "mark": 5.55,
+            "volume": 2,
+            "oi": 0,
+            "spread_pct": 9.01,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.17
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "05/15/26",
+            "bid": 3.1,
+            "ask": 3.5,
+            "mark": 3.3,
+            "volume": 29,
+            "oi": 4878,
+            "spread_pct": 12.12,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "05/15/26",
+            "bid": 5.3,
+            "ask": 6.0,
+            "mark": 5.65,
+            "volume": 5,
+            "oi": 0,
+            "spread_pct": 12.39,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 15.0,
+            "expiry": "03/20/26",
+            "bid": 6.6,
+            "ask": 7.5,
+            "mark": 7.05,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 12.77,
+            "intrinsic_value": 6.85,
+            "extrinsic_value": -6.85
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "05/15/26",
+            "bid": 1.8,
+            "ask": 2.05,
+            "mark": 1.92,
+            "volume": 57,
+            "oi": 6977,
+            "spread_pct": 13.02,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 1.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "02/20/26",
+            "bid": 1.1,
+            "ask": 1.3,
+            "mark": 1.2,
+            "volume": 263,
+            "oi": 6326,
+            "spread_pct": 16.67,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 0.46
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "08/21/26",
+            "bid": 3.2,
+            "ask": 3.8,
+            "mark": 3.5,
+            "volume": 18,
+            "oi": 618,
+            "spread_pct": 17.14,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.55
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "03/20/26",
+            "bid": 2.85,
+            "ask": 3.4,
+            "mark": 3.13,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 17.57,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.05
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "02/20/26",
+            "bid": 2.05,
+            "ask": 2.45,
+            "mark": 2.25,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 17.78,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": 0.45
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "08/21/26",
+            "bid": 2.1,
+            "ask": 2.55,
+            "mark": 2.33,
+            "volume": 76,
+            "oi": 482,
+            "spread_pct": 19.31,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 1.57
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "03/20/26",
+            "bid": 4.2,
+            "ask": 5.1,
+            "mark": 4.65,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 19.35,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "02/20/26",
+            "bid": 4.0,
+            "ask": 4.9,
+            "mark": 4.45,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.22,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "05/15/26",
+            "bid": 4.4,
+            "ask": 5.4,
+            "mark": 4.9,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.41,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "08/21/26",
+            "bid": 4.7,
+            "ask": 5.8,
+            "mark": 5.25,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.95,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": 1.46
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "03/20/26",
+            "bid": 5.1,
+            "ask": 6.4,
+            "mark": 5.75,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 22.61,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -5.65
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "08/21/26",
+            "bid": 5.1,
+            "ask": 6.4,
+            "mark": 5.75,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 22.61,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.2
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "03/20/26",
+            "bid": 2.15,
+            "ask": 2.8,
+            "mark": 2.47,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 26.32,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": -1.85
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "03/20/26",
+            "bid": 1.25,
+            "ask": 1.65,
+            "mark": 1.45,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 27.59,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 0.95
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "08/21/26",
+            "bid": 2.85,
+            "ask": 3.8,
+            "mark": 3.33,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 28.53,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": 2.13
+          }
+        ],
+        "largest": [
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "05/15/26",
+            "bid": 2.45,
+            "ask": 3.4,
+            "mark": 2.93,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 32.42,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": -1.85
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "08/21/26",
+            "bid": 2.85,
+            "ask": 3.8,
+            "mark": 3.33,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 28.53,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": 2.13
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "03/20/26",
+            "bid": 1.25,
+            "ask": 1.65,
+            "mark": 1.45,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 27.59,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 0.95
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "03/20/26",
+            "bid": 2.15,
+            "ask": 2.8,
+            "mark": 2.47,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 26.32,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": -1.85
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "08/21/26",
+            "bid": 5.1,
+            "ask": 6.4,
+            "mark": 5.75,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 22.61,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.2
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "03/20/26",
+            "bid": 5.1,
+            "ask": 6.4,
+            "mark": 5.75,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 22.61,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -5.65
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "08/21/26",
+            "bid": 4.7,
+            "ask": 5.8,
+            "mark": 5.25,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.95,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": 1.46
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "05/15/26",
+            "bid": 4.4,
+            "ask": 5.4,
+            "mark": 4.9,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.41,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "02/20/26",
+            "bid": 4.0,
+            "ask": 4.9,
+            "mark": 4.45,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.22,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "03/20/26",
+            "bid": 4.2,
+            "ask": 5.1,
+            "mark": 4.65,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 19.35,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "08/21/26",
+            "bid": 2.1,
+            "ask": 2.55,
+            "mark": 2.33,
+            "volume": 76,
+            "oi": 482,
+            "spread_pct": 19.31,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 1.57
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "02/20/26",
+            "bid": 2.05,
+            "ask": 2.45,
+            "mark": 2.25,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 17.78,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": 0.45
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "03/20/26",
+            "bid": 2.85,
+            "ask": 3.4,
+            "mark": 3.13,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 17.57,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.05
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "08/21/26",
+            "bid": 3.2,
+            "ask": 3.8,
+            "mark": 3.5,
+            "volume": 18,
+            "oi": 618,
+            "spread_pct": 17.14,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.55
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "02/20/26",
+            "bid": 1.1,
+            "ask": 1.3,
+            "mark": 1.2,
+            "volume": 263,
+            "oi": 6326,
+            "spread_pct": 16.67,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 0.46
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "05/15/26",
+            "bid": 1.8,
+            "ask": 2.05,
+            "mark": 1.92,
+            "volume": 57,
+            "oi": 6977,
+            "spread_pct": 13.02,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 1.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 15.0,
+            "expiry": "03/20/26",
+            "bid": 6.6,
+            "ask": 7.5,
+            "mark": 7.05,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 12.77,
+            "intrinsic_value": 6.85,
+            "extrinsic_value": -6.85
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "05/15/26",
+            "bid": 5.3,
+            "ask": 6.0,
+            "mark": 5.65,
+            "volume": 5,
+            "oi": 0,
+            "spread_pct": 12.39,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "05/15/26",
+            "bid": 3.1,
+            "ask": 3.5,
+            "mark": 3.3,
+            "volume": 29,
+            "oi": 4878,
+            "spread_pct": 12.12,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "02/20/26",
+            "bid": 5.3,
+            "ask": 5.8,
+            "mark": 5.55,
+            "volume": 2,
+            "oi": 0,
+            "spread_pct": 9.01,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.17
+          }
+        ],
+        "all_spreads": [
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "02/20/26",
+            "bid": 3.0,
+            "ask": 3.2,
+            "mark": 3.1,
+            "volume": 36,
+            "oi": 3755,
+            "spread_pct": 6.45,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": -0.05
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "02/20/26",
+            "bid": 5.3,
+            "ask": 5.8,
+            "mark": 5.55,
+            "volume": 2,
+            "oi": 0,
+            "spread_pct": 9.01,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.17
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "05/15/26",
+            "bid": 3.1,
+            "ask": 3.5,
+            "mark": 3.3,
+            "volume": 29,
+            "oi": 4878,
+            "spread_pct": 12.12,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "05/15/26",
+            "bid": 5.3,
+            "ask": 6.0,
+            "mark": 5.65,
+            "volume": 5,
+            "oi": 0,
+            "spread_pct": 12.39,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 15.0,
+            "expiry": "03/20/26",
+            "bid": 6.6,
+            "ask": 7.5,
+            "mark": 7.05,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 12.77,
+            "intrinsic_value": 6.85,
+            "extrinsic_value": -6.85
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "05/15/26",
+            "bid": 1.8,
+            "ask": 2.05,
+            "mark": 1.92,
+            "volume": 57,
+            "oi": 6977,
+            "spread_pct": 13.02,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 1.15
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "02/20/26",
+            "bid": 1.1,
+            "ask": 1.3,
+            "mark": 1.2,
+            "volume": 263,
+            "oi": 6326,
+            "spread_pct": 16.67,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 0.46
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "08/21/26",
+            "bid": 3.2,
+            "ask": 3.8,
+            "mark": 3.5,
+            "volume": 18,
+            "oi": 618,
+            "spread_pct": 17.14,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.55
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 5.0,
+            "expiry": "03/20/26",
+            "bid": 2.85,
+            "ask": 3.4,
+            "mark": 3.13,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 17.57,
+            "intrinsic_value": 3.15,
+            "extrinsic_value": 0.05
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "02/20/26",
+            "bid": 2.05,
+            "ask": 2.45,
+            "mark": 2.25,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 17.78,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": 0.45
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "08/21/26",
+            "bid": 2.1,
+            "ask": 2.55,
+            "mark": 2.33,
+            "volume": 76,
+            "oi": 482,
+            "spread_pct": 19.31,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 1.57
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "03/20/26",
+            "bid": 4.2,
+            "ask": 5.1,
+            "mark": 4.65,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 19.35,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "02/20/26",
+            "bid": 4.0,
+            "ask": 4.9,
+            "mark": 4.45,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.22,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "05/15/26",
+            "bid": 4.4,
+            "ask": 5.4,
+            "mark": 4.9,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.41,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": -4.35
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 12.5,
+            "expiry": "08/21/26",
+            "bid": 4.7,
+            "ask": 5.8,
+            "mark": 5.25,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 20.95,
+            "intrinsic_value": 4.35,
+            "extrinsic_value": 1.46
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "03/20/26",
+            "bid": 5.1,
+            "ask": 6.4,
+            "mark": 5.75,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 22.61,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -5.65
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 2.5,
+            "expiry": "08/21/26",
+            "bid": 5.1,
+            "ask": 6.4,
+            "mark": 5.75,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 22.61,
+            "intrinsic_value": 5.65,
+            "extrinsic_value": -0.2
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "03/20/26",
+            "bid": 2.15,
+            "ask": 2.8,
+            "mark": 2.47,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 26.32,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": -1.85
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "03/20/26",
+            "bid": 1.25,
+            "ask": 1.65,
+            "mark": 1.45,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 27.59,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 0.95
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "08/21/26",
+            "bid": 2.85,
+            "ask": 3.8,
+            "mark": 3.33,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 28.53,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": 2.13
+          },
+          {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "05/15/26",
+            "bid": 2.45,
+            "ask": 3.4,
+            "mark": 2.93,
+            "volume": 0,
+            "oi": 0,
+            "spread_pct": 32.42,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": -1.85
+          }
+        ],
+        "expiry_date": "2026-02-20",
+        "next_date": "2026-03-20",
+        "atm_options": {
+          "expiry_call": {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "02/20/26",
+            "bid": 1.1,
+            "ask": 1.3,
+            "mark": 1.2,
+            "spread_pct": 16.67,
+            "volume": 263,
+            "oi": 6326,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 0.46
+          },
+          "expiry_put": {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "02/20/26",
+            "bid": 2.05,
+            "ask": 2.45,
+            "mark": 2.25,
+            "spread_pct": 17.78,
+            "volume": 0,
+            "oi": 0,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": 0.45
+          },
+          "next_call": {
+            "symbol": "LAR",
+            "put_call": "CALL",
+            "strike": 7.5,
+            "expiry": "03/20/26",
+            "bid": 1.25,
+            "ask": 1.65,
+            "mark": 1.45,
+            "spread_pct": 27.59,
+            "volume": 0,
+            "oi": 0,
+            "intrinsic_value": 0.65,
+            "extrinsic_value": 0.95
+          },
+          "next_put": {
+            "symbol": "LAR",
+            "put_call": "PUT",
+            "strike": 10.0,
+            "expiry": "03/20/26",
+            "bid": 2.15,
+            "ask": 2.8,
+            "mark": 2.47,
+            "spread_pct": 26.32,
+            "volume": 0,
+            "oi": 0,
+            "intrinsic_value": 1.85,
+            "extrinsic_value": -1.85
+          }
+        }
+      }
+    }
+  }
+}

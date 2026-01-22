@@ -1,0 +1,12 @@
+{
+  "ticker": "PSLV",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 09:49",
+      "path": "DAILY/202512/PSLV_20251230_0949.html"
+    }
+  ]
+}

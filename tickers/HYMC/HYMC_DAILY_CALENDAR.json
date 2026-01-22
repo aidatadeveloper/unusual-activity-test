@@ -1,0 +1,122 @@
+{
+  "ticker": "HYMC",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:48",
+      "path": "DAILY/202601/HYMC_20260121_0948.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 19:53",
+      "path": "DAILY/202601/HYMC_20260120_1953.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 19:51",
+      "path": "DAILY/202601/HYMC_20260116_1951.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 20:04",
+      "path": "DAILY/202601/HYMC_20260115_2004.html"
+    },
+    {
+      "date": "2026-01-14",
+      "displayLabel": "01/14 23:54",
+      "path": "DAILY/202601/HYMC_20260114_2354.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 19:59",
+      "path": "DAILY/202601/HYMC_20260113_1959.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 19:56",
+      "path": "DAILY/202601/HYMC_20260109_1956.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 20:03",
+      "path": "DAILY/202601/HYMC_20260108_2003.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 20:01",
+      "path": "DAILY/202601/HYMC_20260107_2001.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 20:03",
+      "path": "DAILY/202601/HYMC_20260105_2003.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 19:46",
+      "path": "DAILY/202601/HYMC_20260102_1946.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 20:43",
+      "path": "DAILY/202512/HYMC_20251230_2043.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 19:51",
+      "path": "DAILY/202512/HYMC_20251229_1951.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 19:44",
+      "path": "DAILY/202512/HYMC_20251226_1944.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 19:45",
+      "path": "DAILY/202512/HYMC_20251224_1945.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 19:41",
+      "path": "DAILY/202512/HYMC_20251223_1941.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 19:41",
+      "path": "DAILY/202512/HYMC_20251222_1941.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 19:40",
+      "path": "DAILY/202512/HYMC_20251221_1940.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 19:43",
+      "path": "DAILY/202512/HYMC_20251218_1943.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 01:47",
+      "path": "DAILY/202512/HYMC_20251217_0147.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 18:44",
+      "path": "DAILY/202512/HYMC_20251215_1844.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 01:17",
+      "path": "DAILY/202512/HYMC_20251212_0117.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 21:08",
+      "path": "DAILY/202512/HYMC_20251210_2108.html"
+    }
+  ]
+}

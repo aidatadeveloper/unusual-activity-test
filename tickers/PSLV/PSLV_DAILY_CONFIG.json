@@ -1,0 +1,299 @@
+{
+  "ticker": "PSLV",
+  "type": "DAILY",
+  "description": "Daily snapshots",
+  "history": [
+    {
+      "filename": "PSLV_20251230_0949.html",
+      "displayLabel": "12/30 09:49",
+      "subfolder": "202512",
+      "relative_path": "DAILY/202512/PSLV_20251230_0949.html",
+      "timestamp": "2026-01-22T09:49:41.246075",
+      "card_data": {
+        "option_volume": {
+          "today": 0,
+          "call_volume": 0,
+          "put_volume": 0
+        },
+        "dollar_volume": {
+          "call": 0,
+          "put": 0,
+          "today": 0
+        },
+        "put_call": {
+          "ratio": 1.0
+        },
+        "open_interest": {
+          "call_oi": 0,
+          "put_oi": 0,
+          "total_oi": 0
+        },
+        "expected_move": {
+          "today_pct": 0,
+          "next_pct": 0
+        },
+        "relative_spread": {
+          "expiry_avg": 0,
+          "next_avg": 0,
+          "expiry_call": 0,
+          "expiry_put": 0,
+          "next_call": 0,
+          "next_put": 0
+        }
+      },
+      "intraday_data": {
+        "pull_timestamp": "2026-01-22T09:49:41.246075",
+        "time_bucket": null,
+        "total_volume": 0,
+        "call_volume": 0,
+        "put_volume": 0,
+        "dollar_volume_call": 0,
+        "dollar_volume_put": 0,
+        "total_dollar_volume": 0,
+        "open_interest_call": 0,
+        "open_interest_put": 0,
+        "total_open_interest": 0,
+        "put_call_ratio": 1.0,
+        "net_premium": 0,
+        "expected_move_pct": 0,
+        "expected_move_next_pct": 0
+      }
+    }
+  ],
+  "latest": {
+    "filename": "PSLV_20251230_0949.html",
+    "displayLabel": "12/30 09:49",
+    "relative_path": "DAILY/202512/PSLV_20251230_0949.html",
+    "timestamp": "2026-01-22T09:49:41.246075",
+    "card_data": {
+      "option_volume": {
+        "today": 0,
+        "call_volume": 0,
+        "put_volume": 0,
+        "yesterday": 4665885,
+        "yesterday_calls": 0,
+        "yesterday_puts": 0,
+        "vs_yesterday": -100.0,
+        "vs_prior_calls": 0,
+        "vs_prior_puts": 0,
+        "total_7day": 42183585,
+        "total_7day_calls": 0,
+        "total_7day_puts": 0,
+        "avg_7day": 7030597,
+        "avg_7day_calls": 0,
+        "avg_7day_puts": 0,
+        "vs_7day_avg": -100.0,
+        "vs_7day_avg_calls": 0,
+        "vs_7day_avg_puts": 0
+      },
+      "dollar_volume": {
+        "call": 0,
+        "put": 0,
+        "today": 0,
+        "yesterday": 0,
+        "yesterday_call": 0,
+        "yesterday_put": 0,
+        "vs_yesterday": 0,
+        "vs_prior_calls": 0,
+        "vs_prior_puts": 0,
+        "total_7day": 0,
+        "total_7day_call": 0,
+        "total_7day_put": 0,
+        "avg_7day": 0.0,
+        "avg_7day_call": 0,
+        "avg_7day_put": 0,
+        "vs_7day_avg": 0,
+        "vs_7day_avg_calls": 0,
+        "vs_7day_avg_puts": 0,
+        "net_premium": 0
+      },
+      "put_call": {
+        "ratio": 1.0,
+        "sentiment": "NEUTRAL",
+        "yesterday": 1.0,
+        "vs_yesterday": 0.0,
+        "avg_7day": 1.0,
+        "vs_7day_avg": 0.0
+      },
+      "open_interest": {
+        "call_oi": 0,
+        "put_oi": 0,
+        "total_oi": 0,
+        "yesterday": 0,
+        "yesterday_calls": 0,
+        "yesterday_puts": 0,
+        "vs_yesterday": 0,
+        "total_7day": 0,
+        "avg_7day": 0,
+        "vs_7day_avg": 0
+      },
+      "expected_move": {
+        "today_pct": 0,
+        "today_dollars": 0,
+        "yesterday_pct": 0,
+        "avg_7day_pct": 0,
+        "vs_yesterday": 0,
+        "vs_7day_avg": 0,
+        "next_pct": 0,
+        "next_dollars": 0,
+        "next_expiration_date": "",
+        "next_dte": 0,
+        "yesterday_next_pct": 0,
+        "avg_7day_next_pct": 0,
+        "vs_yesterday_next": 0,
+        "vs_7day_avg_next": 0
+      },
+      "history_7day": {
+        "dates": [
+          "11/11",
+          "11/12",
+          "11/13",
+          "11/14",
+          "11/17",
+          "11/18"
+        ],
+        "volumes": [
+          4477211,
+          12112496,
+          9444636,
+          6516418,
+          4966939,
+          4665885
+        ],
+        "dollar_volumes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "put_call_ratios": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "expected_moves": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "next_expected_moves": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "call_volumes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "put_volumes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "call_dollar_volumes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "put_dollar_volumes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "open_interests": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rs_expiry_avg": [
+          0
+        ],
+        "rs_next_avg": [
+          0
+        ]
+      },
+      "sentiments": {
+        "dollar_volume": {
+          "current": "NEUTRAL",
+          "prior": "NEUTRAL",
+          "7day": "NEUTRAL"
+        },
+        "option_volume": {
+          "current": "NEUTRAL",
+          "prior": "NEUTRAL",
+          "7day": "NEUTRAL"
+        },
+        "put_call_ratio": {
+          "current": "NEUTRAL",
+          "prior": "NEUTRAL",
+          "7day": "NEUTRAL"
+        },
+        "open_interest": {
+          "current": "NEUTRAL",
+          "prior": "NEUTRAL",
+          "7day": "NEUTRAL"
+        },
+        "expected_move": {
+          "current": "BULLISH",
+          "prior": "BULLISH",
+          "7day": "BULLISH"
+        }
+      },
+      "relative_spread": {
+        "expiry_avg": 0,
+        "expiry_call": 0,
+        "expiry_put": 0,
+        "expiry_date": "",
+        "expiry_dte": 0,
+        "next_avg": 0,
+        "next_call": 0,
+        "next_put": 0,
+        "next_date": "",
+        "next_dte": 0,
+        "yesterday_expiry_avg": 0,
+        "yesterday_expiry_call": 0,
+        "yesterday_expiry_put": 0,
+        "yesterday_next_avg": 0,
+        "yesterday_next_call": 0,
+        "yesterday_next_put": 0,
+        "avg_7day_expiry": 0,
+        "avg_7day_next": 0
+      },
+      "relative_spread_detail": {
+        "smallest": [],
+        "largest": [],
+        "all_spreads": [],
+        "expiry_date": "",
+        "next_date": "",
+        "atm_options": {}
+      }
+    }
+  }
+}

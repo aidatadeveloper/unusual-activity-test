@@ -1,0 +1,117 @@
+{
+  "ticker": "ZION",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:51",
+      "path": "DAILY/202601/ZION_20260121_0951.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 22:11",
+      "path": "DAILY/202601/ZION_20260120_2211.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 22:08",
+      "path": "DAILY/202601/ZION_20260116_2208.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 22:41",
+      "path": "DAILY/202601/ZION_20260115_2241.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 22:59",
+      "path": "DAILY/202601/ZION_20260113_2259.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 22:22",
+      "path": "DAILY/202601/ZION_20260109_2222.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 22:39",
+      "path": "DAILY/202601/ZION_20260108_2239.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 22:25",
+      "path": "DAILY/202601/ZION_20260107_2225.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 22:36",
+      "path": "DAILY/202601/ZION_20260105_2236.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 21:51",
+      "path": "DAILY/202601/ZION_20260102_2151.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 23:01",
+      "path": "DAILY/202512/ZION_20251230_2301.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 22:11",
+      "path": "DAILY/202512/ZION_20251229_2211.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 22:02",
+      "path": "DAILY/202512/ZION_20251226_2202.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 21:58",
+      "path": "DAILY/202512/ZION_20251224_2158.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 21:53",
+      "path": "DAILY/202512/ZION_20251223_2153.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 21:47",
+      "path": "DAILY/202512/ZION_20251222_2147.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 21:48",
+      "path": "DAILY/202512/ZION_20251221_2148.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 21:39",
+      "path": "DAILY/202512/ZION_20251218_2139.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 03:08",
+      "path": "DAILY/202512/ZION_20251217_0308.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 19:38",
+      "path": "DAILY/202512/ZION_20251215_1938.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 02:50",
+      "path": "DAILY/202512/ZION_20251212_0250.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 23:55",
+      "path": "DAILY/202512/ZION_20251210_2355.html"
+    }
+  ]
+}

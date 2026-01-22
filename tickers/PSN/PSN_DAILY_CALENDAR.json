@@ -1,0 +1,117 @@
+{
+  "ticker": "PSN",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:49",
+      "path": "DAILY/202601/PSN_20260121_0949.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 20:59",
+      "path": "DAILY/202601/PSN_20260120_2059.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 20:56",
+      "path": "DAILY/202601/PSN_20260116_2056.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 21:19",
+      "path": "DAILY/202601/PSN_20260115_2119.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 22:04",
+      "path": "DAILY/202601/PSN_20260113_2204.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 21:05",
+      "path": "DAILY/202601/PSN_20260109_2105.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 21:17",
+      "path": "DAILY/202601/PSN_20260108_2117.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 21:09",
+      "path": "DAILY/202601/PSN_20260107_2109.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 21:16",
+      "path": "DAILY/202601/PSN_20260105_2116.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 20:46",
+      "path": "DAILY/202601/PSN_20260102_2046.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 21:47",
+      "path": "DAILY/202512/PSN_20251230_2147.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 20:57",
+      "path": "DAILY/202512/PSN_20251229_2057.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 20:47",
+      "path": "DAILY/202512/PSN_20251226_2047.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 20:48",
+      "path": "DAILY/202512/PSN_20251224_2048.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 20:44",
+      "path": "DAILY/202512/PSN_20251223_2044.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 20:40",
+      "path": "DAILY/202512/PSN_20251222_2040.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 20:40",
+      "path": "DAILY/202512/PSN_20251221_2040.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 20:39",
+      "path": "DAILY/202512/PSN_20251218_2039.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 02:25",
+      "path": "DAILY/202512/PSN_20251217_0225.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 19:09",
+      "path": "DAILY/202512/PSN_20251215_1909.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 02:07",
+      "path": "DAILY/202512/PSN_20251212_0207.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 23:12",
+      "path": "DAILY/202512/PSN_20251210_2312.html"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "ticker": "LDOS",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:48",
+      "path": "DAILY/202601/LDOS_20260121_0948.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 20:14",
+      "path": "DAILY/202601/LDOS_20260120_2014.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 20:13",
+      "path": "DAILY/202601/LDOS_20260116_2013.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 20:28",
+      "path": "DAILY/202601/LDOS_20260115_2028.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 21:30",
+      "path": "DAILY/202601/LDOS_20260113_2130.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 20:18",
+      "path": "DAILY/202601/LDOS_20260109_2018.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 20:27",
+      "path": "DAILY/202601/LDOS_20260108_2027.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 20:23",
+      "path": "DAILY/202601/LDOS_20260107_2023.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 20:27",
+      "path": "DAILY/202601/LDOS_20260105_2027.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 20:06",
+      "path": "DAILY/202601/LDOS_20260102_2006.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 21:04",
+      "path": "DAILY/202512/LDOS_20251230_2104.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 20:12",
+      "path": "DAILY/202512/LDOS_20251229_2012.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 20:05",
+      "path": "DAILY/202512/LDOS_20251226_2005.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 20:05",
+      "path": "DAILY/202512/LDOS_20251224_2005.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 20:02",
+      "path": "DAILY/202512/LDOS_20251223_2002.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 20:00",
+      "path": "DAILY/202512/LDOS_20251222_2000.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 19:59",
+      "path": "DAILY/202512/LDOS_20251221_1959.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 20:01",
+      "path": "DAILY/202512/LDOS_20251218_2001.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 01:59",
+      "path": "DAILY/202512/LDOS_20251217_0159.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 18:52",
+      "path": "DAILY/202512/LDOS_20251215_1852.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 01:35",
+      "path": "DAILY/202512/LDOS_20251212_0135.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 21:23",
+      "path": "DAILY/202512/LDOS_20251210_2123.html"
+    }
+  ]
+}

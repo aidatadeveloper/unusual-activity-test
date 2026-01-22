@@ -1,0 +1,117 @@
+{
+  "ticker": "PAAS",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:49",
+      "path": "DAILY/202601/PAAS_20260121_0949.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 20:48",
+      "path": "DAILY/202601/PAAS_20260120_2048.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 20:46",
+      "path": "DAILY/202601/PAAS_20260116_2046.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 21:07",
+      "path": "DAILY/202601/PAAS_20260115_2107.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 21:56",
+      "path": "DAILY/202601/PAAS_20260113_2156.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 20:54",
+      "path": "DAILY/202601/PAAS_20260109_2054.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 21:05",
+      "path": "DAILY/202601/PAAS_20260108_2105.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 20:58",
+      "path": "DAILY/202601/PAAS_20260107_2058.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 21:05",
+      "path": "DAILY/202601/PAAS_20260105_2105.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 20:36",
+      "path": "DAILY/202601/PAAS_20260102_2036.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 21:35",
+      "path": "DAILY/202512/PAAS_20251230_2135.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 20:47",
+      "path": "DAILY/202512/PAAS_20251229_2047.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 20:37",
+      "path": "DAILY/202512/PAAS_20251226_2037.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 20:37",
+      "path": "DAILY/202512/PAAS_20251224_2037.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 20:34",
+      "path": "DAILY/202512/PAAS_20251223_2034.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 20:31",
+      "path": "DAILY/202512/PAAS_20251222_2031.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 20:31",
+      "path": "DAILY/202512/PAAS_20251221_2031.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 20:30",
+      "path": "DAILY/202512/PAAS_20251218_2030.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 02:19",
+      "path": "DAILY/202512/PAAS_20251217_0219.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 19:06",
+      "path": "DAILY/202512/PAAS_20251215_1906.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 02:01",
+      "path": "DAILY/202512/PAAS_20251212_0201.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 23:06",
+      "path": "DAILY/202512/PAAS_20251210_2306.html"
+    }
+  ]
+}

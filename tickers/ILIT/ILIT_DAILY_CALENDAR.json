@@ -1,0 +1,122 @@
+{
+  "ticker": "ILIT",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:48",
+      "path": "DAILY/202601/ILIT_20260121_0948.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 19:58",
+      "path": "DAILY/202601/ILIT_20260120_1958.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 19:56",
+      "path": "DAILY/202601/ILIT_20260116_1956.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 20:09",
+      "path": "DAILY/202601/ILIT_20260115_2009.html"
+    },
+    {
+      "date": "2026-01-14",
+      "displayLabel": "01/14 23:58",
+      "path": "DAILY/202601/ILIT_20260114_2358.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 20:03",
+      "path": "DAILY/202601/ILIT_20260113_2003.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 20:01",
+      "path": "DAILY/202601/ILIT_20260109_2001.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 20:05",
+      "path": "DAILY/202601/ILIT_20260107_2005.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 20:08",
+      "path": "DAILY/202601/ILIT_20260105_2008.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 19:51",
+      "path": "DAILY/202601/ILIT_20260102_1951.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 20:48",
+      "path": "DAILY/202512/ILIT_20251230_2048.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 19:56",
+      "path": "DAILY/202512/ILIT_20251229_1956.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 19:49",
+      "path": "DAILY/202512/ILIT_20251226_1949.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 19:49",
+      "path": "DAILY/202512/ILIT_20251224_1949.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 19:45",
+      "path": "DAILY/202512/ILIT_20251223_1945.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 19:45",
+      "path": "DAILY/202512/ILIT_20251222_1945.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 19:44",
+      "path": "DAILY/202512/ILIT_20251221_1944.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 19:47",
+      "path": "DAILY/202512/ILIT_20251218_1947.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 01:49",
+      "path": "DAILY/202512/ILIT_20251217_0149.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 18:46",
+      "path": "DAILY/202512/ILIT_20251215_1846.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 01:21",
+      "path": "DAILY/202512/ILIT_20251212_0121.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 21:11",
+      "path": "DAILY/202512/ILIT_20251210_2111.html"
+    },
+    {
+      "date": "2025-12-08",
+      "displayLabel": "12/08 23:42",
+      "path": "DAILY/202512/ILIT_20251208_2342.html"
+    }
+  ]
+}

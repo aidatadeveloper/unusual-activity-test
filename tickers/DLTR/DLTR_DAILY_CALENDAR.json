@@ -1,0 +1,132 @@
+{
+  "ticker": "DLTR",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:47",
+      "path": "DAILY/202601/DLTR_20260121_0947.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 19:08",
+      "path": "DAILY/202601/DLTR_20260120_1908.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 19:07",
+      "path": "DAILY/202601/DLTR_20260116_1907.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 19:14",
+      "path": "DAILY/202601/DLTR_20260115_1914.html"
+    },
+    {
+      "date": "2026-01-14",
+      "displayLabel": "01/14 23:20",
+      "path": "DAILY/202601/DLTR_20260114_2320.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 19:12",
+      "path": "DAILY/202601/DLTR_20260113_1912.html"
+    },
+    {
+      "date": "2026-01-12",
+      "displayLabel": "01/12 19:16",
+      "path": "DAILY/202601/DLTR_20260112_1916.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 19:10",
+      "path": "DAILY/202601/DLTR_20260109_1910.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 19:12",
+      "path": "DAILY/202601/DLTR_20260108_1912.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 19:14",
+      "path": "DAILY/202601/DLTR_20260107_1914.html"
+    },
+    {
+      "date": "2026-01-06",
+      "displayLabel": "01/06 19:10",
+      "path": "DAILY/202601/DLTR_20260106_1910.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 19:11",
+      "path": "DAILY/202601/DLTR_20260105_1911.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 19:06",
+      "path": "DAILY/202601/DLTR_20260102_1906.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 20:00",
+      "path": "DAILY/202512/DLTR_20251230_2000.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 19:07",
+      "path": "DAILY/202512/DLTR_20251229_1907.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 19:03",
+      "path": "DAILY/202512/DLTR_20251226_1903.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 19:04",
+      "path": "DAILY/202512/DLTR_20251224_1904.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 19:01",
+      "path": "DAILY/202512/DLTR_20251223_1901.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 19:01",
+      "path": "DAILY/202512/DLTR_20251222_1901.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 18:59",
+      "path": "DAILY/202512/DLTR_20251221_1859.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 19:01",
+      "path": "DAILY/202512/DLTR_20251218_1901.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 19:01",
+      "path": "DAILY/202512/DLTR_20251217_1901.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 18:27",
+      "path": "DAILY/202512/DLTR_20251215_1827.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 00:47",
+      "path": "DAILY/202512/DLTR_20251212_0047.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 20:38",
+      "path": "DAILY/202512/DLTR_20251210_2038.html"
+    }
+  ]
+}

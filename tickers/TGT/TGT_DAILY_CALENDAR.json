@@ -1,0 +1,117 @@
+{
+  "ticker": "TGT",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:50",
+      "path": "DAILY/202601/TGT_20260121_0950.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 21:38",
+      "path": "DAILY/202601/TGT_20260120_2138.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 21:34",
+      "path": "DAILY/202601/TGT_20260116_2134.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 22:04",
+      "path": "DAILY/202601/TGT_20260115_2204.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 22:34",
+      "path": "DAILY/202601/TGT_20260113_2234.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 21:46",
+      "path": "DAILY/202601/TGT_20260109_2146.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 22:02",
+      "path": "DAILY/202601/TGT_20260108_2202.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 21:51",
+      "path": "DAILY/202601/TGT_20260107_2151.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 21:59",
+      "path": "DAILY/202601/TGT_20260105_2159.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 21:20",
+      "path": "DAILY/202601/TGT_20260102_2120.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 22:28",
+      "path": "DAILY/202512/TGT_20251230_2228.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 21:37",
+      "path": "DAILY/202512/TGT_20251229_2137.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 21:27",
+      "path": "DAILY/202512/TGT_20251226_2127.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 21:26",
+      "path": "DAILY/202512/TGT_20251224_2126.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 21:21",
+      "path": "DAILY/202512/TGT_20251223_2121.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 21:16",
+      "path": "DAILY/202512/TGT_20251222_2116.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 21:17",
+      "path": "DAILY/202512/TGT_20251221_2117.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 21:11",
+      "path": "DAILY/202512/TGT_20251218_2111.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 02:48",
+      "path": "DAILY/202512/TGT_20251217_0248.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 19:25",
+      "path": "DAILY/202512/TGT_20251215_1925.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 02:30",
+      "path": "DAILY/202512/TGT_20251212_0230.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 23:35",
+      "path": "DAILY/202512/TGT_20251210_2335.html"
+    }
+  ]
+}

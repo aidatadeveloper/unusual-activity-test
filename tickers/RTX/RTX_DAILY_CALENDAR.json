@@ -1,0 +1,117 @@
+{
+  "ticker": "RTX",
+  "type": "DAILY",
+  "description": "All daily snapshots",
+  "entries": [
+    {
+      "date": "2026-01-21",
+      "displayLabel": "01/21 09:50",
+      "path": "DAILY/202601/RTX_20260121_0950.html"
+    },
+    {
+      "date": "2026-01-20",
+      "displayLabel": "01/20 21:11",
+      "path": "DAILY/202601/RTX_20260120_2111.html"
+    },
+    {
+      "date": "2026-01-16",
+      "displayLabel": "01/16 21:08",
+      "path": "DAILY/202601/RTX_20260116_2108.html"
+    },
+    {
+      "date": "2026-01-15",
+      "displayLabel": "01/15 21:34",
+      "path": "DAILY/202601/RTX_20260115_2134.html"
+    },
+    {
+      "date": "2026-01-13",
+      "displayLabel": "01/13 22:14",
+      "path": "DAILY/202601/RTX_20260113_2214.html"
+    },
+    {
+      "date": "2026-01-09",
+      "displayLabel": "01/09 21:18",
+      "path": "DAILY/202601/RTX_20260109_2118.html"
+    },
+    {
+      "date": "2026-01-08",
+      "displayLabel": "01/08 21:31",
+      "path": "DAILY/202601/RTX_20260108_2131.html"
+    },
+    {
+      "date": "2026-01-07",
+      "displayLabel": "01/07 21:22",
+      "path": "DAILY/202601/RTX_20260107_2122.html"
+    },
+    {
+      "date": "2026-01-05",
+      "displayLabel": "01/05 21:30",
+      "path": "DAILY/202601/RTX_20260105_2130.html"
+    },
+    {
+      "date": "2026-01-02",
+      "displayLabel": "01/02 20:57",
+      "path": "DAILY/202601/RTX_20260102_2057.html"
+    },
+    {
+      "date": "2025-12-30",
+      "displayLabel": "12/30 22:01",
+      "path": "DAILY/202512/RTX_20251230_2201.html"
+    },
+    {
+      "date": "2025-12-29",
+      "displayLabel": "12/29 21:10",
+      "path": "DAILY/202512/RTX_20251229_2110.html"
+    },
+    {
+      "date": "2025-12-26",
+      "displayLabel": "12/26 20:59",
+      "path": "DAILY/202512/RTX_20251226_2059.html"
+    },
+    {
+      "date": "2025-12-24",
+      "displayLabel": "12/24 21:00",
+      "path": "DAILY/202512/RTX_20251224_2100.html"
+    },
+    {
+      "date": "2025-12-23",
+      "displayLabel": "12/23 20:56",
+      "path": "DAILY/202512/RTX_20251223_2056.html"
+    },
+    {
+      "date": "2025-12-22",
+      "displayLabel": "12/22 20:52",
+      "path": "DAILY/202512/RTX_20251222_2052.html"
+    },
+    {
+      "date": "2025-12-21",
+      "displayLabel": "12/21 20:52",
+      "path": "DAILY/202512/RTX_20251221_2052.html"
+    },
+    {
+      "date": "2025-12-18",
+      "displayLabel": "12/18 20:49",
+      "path": "DAILY/202512/RTX_20251218_2049.html"
+    },
+    {
+      "date": "2025-12-17",
+      "displayLabel": "12/17 02:33",
+      "path": "DAILY/202512/RTX_20251217_0233.html"
+    },
+    {
+      "date": "2025-12-15",
+      "displayLabel": "12/15 19:14",
+      "path": "DAILY/202512/RTX_20251215_1914.html"
+    },
+    {
+      "date": "2025-12-12",
+      "displayLabel": "12/12 02:15",
+      "path": "DAILY/202512/RTX_20251212_0215.html"
+    },
+    {
+      "date": "2025-12-10",
+      "displayLabel": "12/10 23:19",
+      "path": "DAILY/202512/RTX_20251210_2319.html"
+    }
+  ]
+}
