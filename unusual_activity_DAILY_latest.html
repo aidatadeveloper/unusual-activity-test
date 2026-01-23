@@ -1153,21 +1153,13 @@
         /* Uses CSS variables for DESKTOP/MOBILE format switching */
         .activity-grid {
             display: grid;
-            grid-template-columns: repeat(var(--grid-columns), 1fr);
-            gap: var(--card-gap);
+            grid-template-columns: repeat(auto-fill, 320px);
+            gap: 20px;
             width: 100%;
-            max-width: calc(var(--grid-columns) * var(--card-width) + (var(--grid-columns) - 1) * var(--card-gap));
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 var(--content-padding);
-        }
-
-        /* Responsive fallback for normal browser viewing */
-        @media (max-width: 1400px) {
-            .activity-grid {
-                grid-template-columns: repeat(auto-fill, 320px);
-                justify-content: center;
-                max-width: none;
-            }
+            padding: 0 20px;
+            justify-content: center;
         }
 
         /* Activity Card - matches dashboard-card */
@@ -1472,10 +1464,11 @@
 
         /* Desktop mode overrides - for 4K video capture (3840x2160) */
         body.desktop-mode .activity-grid {
-            grid-template-columns: repeat(4, 1fr) !important;
-            max-width: 3600px !important;
-            gap: 40px !important;
+            grid-template-columns: repeat(auto-fill, 320px) !important;
+            max-width: 1400px !important;
+            gap: 20px !important;
             margin: 0 auto !important;
+            justify-content: center !important;
         }
 
         body.desktop-mode .activity-card {
@@ -2623,7 +2616,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 22, 2026 v50</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 22, 2026 v51</span>
 
                     <span class="nav-separator">|</span>
                 </div>
