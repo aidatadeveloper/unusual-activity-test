@@ -2622,7 +2622,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 22, 2026 v52</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 22, 2026 v53</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -4589,7 +4589,7 @@
             const volRatioClass = item.option_volume_ratio >= 2 ? 'high' : 'normal';
             const dollarRatioClass = item.dollar_volume_ratio >= 2 ? 'high' : 'normal';
 
-            const infoTip = "OPTION VOLUME:&#10;Contracts traded. Shows retail activity (small money). More than 2x 7-day avg = unusual activity.&#10;&#10;DOLLAR VOLUME:&#10;Premium traded. Shows institutional activity (big money). More than 2x 7-day avg = unusual activity.&#10;&#10;PUT/CALL RATIO:&#10;Puts vs calls ratio. Shows sentiment. Below 0.5 (very bullish) / Above 2.0 (very bearish) = unusual activity.";
+            const infoTip = "OPTION VOLUME:&#10;Contracts traded. Shows retail activity (small money). More than 2x 7-day avg = unusual activity. 60%+ calls = bullish, 60%+ puts = bearish.&#10;&#10;DOLLAR VOLUME:&#10;Premium traded. Shows institutional activity (big money). More than 2x 7-day avg = unusual activity. 60%+ calls = bullish, 60%+ puts = bearish.&#10;&#10;PUT/CALL RATIO:&#10;Puts vs calls ratio. Below 0.7 = bullish, above 1.0 = bearish. Below 0.5 or above 2.0 = unusual activity.";
 
             return `
                 <div class="activity-card ${cardClass}" data-sentiment="${sentimentText}" data-activity="${badgeText}">
