@@ -881,6 +881,12 @@
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
         }
 
+        .summary-stat.active {
+            border-color: #0f0;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+            background: rgba(0, 40, 0, 0.9);
+        }
+
         /* Mobile: 2 rows of 3 buttons */
         @media (max-width: 700px) {
             .summary-stats {
@@ -2616,7 +2622,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 22, 2026 v51</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 22, 2026 v52</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -2743,7 +2749,59 @@
             bearish: '#f00'
         };
 
-        // Show chart popup when clicking a summary stat button
+        // Filter cards by sentiment or activity type
+        function filterCards(tabId, filterType, clickedBtn) {
+            const grid = document.getElementById(tabId + '-grid');
+            if (!grid) return;
+
+            const cards = grid.querySelectorAll('.activity-card');
+            const summaryStats = grid.parentElement.querySelectorAll('.summary-stat');
+
+            // Remove active class from all buttons in this panel
+            summaryStats.forEach(stat => stat.classList.remove('active'));
+
+            // If clicking "tickers", show all cards and don't highlight button
+            if (filterType === 'tickers') {
+                cards.forEach(card => {
+                    card.style.display = '';
+                });
+                return;
+            }
+
+            // Add active class to clicked button
+            if (clickedBtn) clickedBtn.classList.add('active');
+
+            // Filter cards based on type
+            cards.forEach(card => {
+                const sentiment = card.getAttribute('data-sentiment');
+                const activity = card.getAttribute('data-activity');
+                let shouldShow = false;
+
+                switch(filterType) {
+                    case 'unusual':
+                        shouldShow = activity === 'UNUSUAL';
+                        break;
+                    case 'normal':
+                        shouldShow = activity === 'NORMAL';
+                        break;
+                    case 'bullish':
+                        shouldShow = sentiment === 'BULLISH';
+                        break;
+                    case 'bearish':
+                        shouldShow = sentiment === 'BEARISH';
+                        break;
+                    case 'neumix':
+                        shouldShow = sentiment === 'NEUTRAL' || sentiment === 'MIXED';
+                        break;
+                    default:
+                        shouldShow = true;
+                }
+
+                card.style.display = shouldShow ? '' : 'none';
+            });
+        }
+
+        // Show chart popup when clicking a summary stat button (legacy, kept for future use)
         function showChart(tabId, metric) {
             // Get or create modal
             let modal = document.getElementById('chartModal');
@@ -4277,29 +4335,29 @@
                     <div class="tab-panel${activeClass}" id="panel-${tabId}">
                         <div class="summary-stats" id="${tabId}-summary">
                             <div class="summary-row">
-                                <div class="summary-stat" onclick="showChart('${tabId}', 'tickers')">
+                                <div class="summary-stat" onclick="filterCards('${tabId}', 'tickers', this)">
                                     <div class="summary-stat-value" id="${tabId}-total">-</div>
                                     <div class="summary-stat-label">Tickers</div>
                                 </div>
-                                <div class="summary-stat" onclick="showChart('${tabId}', 'unusual')">
+                                <div class="summary-stat" onclick="filterCards('${tabId}', 'unusual', this)">
                                     <div class="summary-stat-value unusual" id="${tabId}-unusual">-</div>
                                     <div class="summary-stat-label">Unusual</div>
                                 </div>
-                                <div class="summary-stat" onclick="showChart('${tabId}', 'normal')">
+                                <div class="summary-stat" onclick="filterCards('${tabId}', 'normal', this)">
                                     <div class="summary-stat-value normal" id="${tabId}-normal">-</div>
                                     <div class="summary-stat-label">Normal</div>
                                 </div>
                             </div>
                             <div class="summary-row">
-                                <div class="summary-stat" onclick="showChart('${tabId}', 'bullish')">
+                                <div class="summary-stat" onclick="filterCards('${tabId}', 'bullish', this)">
                                     <div class="summary-stat-value bullish" id="${tabId}-bullish">-</div>
                                     <div class="summary-stat-label">Bullish</div>
                                 </div>
-                                <div class="summary-stat" onclick="showChart('${tabId}', 'neutral')">
+                                <div class="summary-stat" onclick="filterCards('${tabId}', 'neumix', this)">
                                     <div class="summary-stat-value neutral" id="${tabId}-neutral">-</div>
-                                    <div class="summary-stat-label">Neutral</div>
+                                    <div class="summary-stat-label">Neu/Mix</div>
                                 </div>
-                                <div class="summary-stat" onclick="showChart('${tabId}', 'bearish')">
+                                <div class="summary-stat" onclick="filterCards('${tabId}', 'bearish', this)">
                                     <div class="summary-stat-value bearish" id="${tabId}-bearish">-</div>
                                     <div class="summary-stat-label">Bearish</div>
                                 </div>
@@ -4315,29 +4373,29 @@
                 <div class="tab-panel" id="panel-all">
                     <div class="summary-stats" id="all-summary">
                         <div class="summary-row">
-                            <div class="summary-stat" onclick="showChart('all', 'tickers')">
+                            <div class="summary-stat" onclick="filterCards('all', 'tickers', this)">
                                 <div class="summary-stat-value" id="all-total">-</div>
                                 <div class="summary-stat-label">Tickers</div>
                             </div>
-                            <div class="summary-stat" onclick="showChart('all', 'unusual')">
+                            <div class="summary-stat" onclick="filterCards('all', 'unusual', this)">
                                 <div class="summary-stat-value unusual" id="all-unusual">-</div>
                                 <div class="summary-stat-label">Unusual</div>
                             </div>
-                            <div class="summary-stat" onclick="showChart('all', 'normal')">
+                            <div class="summary-stat" onclick="filterCards('all', 'normal', this)">
                                 <div class="summary-stat-value normal" id="all-normal">-</div>
                                 <div class="summary-stat-label">Normal</div>
                             </div>
                         </div>
                         <div class="summary-row">
-                            <div class="summary-stat" onclick="showChart('all', 'bullish')">
+                            <div class="summary-stat" onclick="filterCards('all', 'bullish', this)">
                                 <div class="summary-stat-value bullish" id="all-bullish">-</div>
                                 <div class="summary-stat-label">Bullish</div>
                             </div>
-                            <div class="summary-stat" onclick="showChart('all', 'neutral')">
+                            <div class="summary-stat" onclick="filterCards('all', 'neumix', this)">
                                 <div class="summary-stat-value neutral" id="all-neutral">-</div>
-                                <div class="summary-stat-label">Neutral</div>
+                                <div class="summary-stat-label">Neu/Mix</div>
                             </div>
-                            <div class="summary-stat" onclick="showChart('all', 'bearish')">
+                            <div class="summary-stat" onclick="filterCards('all', 'bearish', this)">
                                 <div class="summary-stat-value bearish" id="all-bearish">-</div>
                                 <div class="summary-stat-label">Bearish</div>
                             </div>
@@ -4390,6 +4448,31 @@
             }
         }
 
+        // Calculate sentiment using same weighted scoring as renderCard
+        function getSentiment(item) {
+            if (!item || item.option_volume <= 0) return 'NEUTRAL';
+
+            let bullishScore = 0;
+            let bearishScore = 0;
+
+            // Dollar volume signal (60%+ threshold) - worth 2 points
+            if (item.dv_call_pct >= 60) bullishScore += 2;
+            else if (item.dv_put_pct >= 60) bearishScore += 2;
+
+            // Option volume signal (60%+ threshold) - worth 1 point
+            if (item.vol_call_pct >= 60) bullishScore += 1;
+            else if (item.vol_put_pct >= 60) bearishScore += 1;
+
+            // P/C ratio signal - worth 1 point
+            if (item.put_call_ratio < 0.7) bullishScore += 1;
+            else if (item.put_call_ratio > 1.0) bearishScore += 1;
+
+            if (bullishScore > bearishScore) return 'BULLISH';
+            if (bearishScore > bullishScore) return 'BEARISH';
+            if (bullishScore > 0 && bearishScore > 0) return 'MIXED';
+            return 'NEUTRAL';
+        }
+
         function renderTab(tabId, data, groupName = null) {
             const grid = document.getElementById(`${tabId}-grid`);
             if (!grid) return;
@@ -4398,9 +4481,17 @@
             const total = data ? data.length : 0;
             const unusual = data ? data.filter(d => d.is_unusual).length : 0;
             const normal = total - unusual;  // Normal = not unusual
-            const bullish = data ? data.filter(d => d.put_call_ratio < 0.7).length : 0;
-            const neutral = data ? data.filter(d => d.put_call_ratio >= 0.7 && d.put_call_ratio <= 1.0).length : 0;
-            const bearish = data ? data.filter(d => d.put_call_ratio > 1.0).length : 0;
+
+            // Count sentiments using weighted scoring (same as renderCard)
+            let bullish = 0, neutral = 0, bearish = 0;
+            if (data) {
+                data.forEach(d => {
+                    const sentiment = getSentiment(d);
+                    if (sentiment === 'BULLISH') bullish++;
+                    else if (sentiment === 'BEARISH') bearish++;
+                    else neutral++;  // NEUTRAL and MIXED both count as neutral
+                });
+            }
 
             const totalEl = document.getElementById(`${tabId}-total`);
             const unusualEl = document.getElementById(`${tabId}-unusual`);
@@ -4501,7 +4592,7 @@
             const infoTip = "OPTION VOLUME:&#10;Contracts traded. Shows retail activity (small money). More than 2x 7-day avg = unusual activity.&#10;&#10;DOLLAR VOLUME:&#10;Premium traded. Shows institutional activity (big money). More than 2x 7-day avg = unusual activity.&#10;&#10;PUT/CALL RATIO:&#10;Puts vs calls ratio. Shows sentiment. Below 0.5 (very bullish) / Above 2.0 (very bearish) = unusual activity.";
 
             return `
-                <div class="activity-card ${cardClass}">
+                <div class="activity-card ${cardClass}" data-sentiment="${sentimentText}" data-activity="${badgeText}">
                     <div class="card-actions">
                         <span class="card-info" data-tip="${infoTip}">ℹ</span>
                         <button class="card-remove" onclick="event.stopPropagation(); removeTicker('${item.ticker}', '${item.group || ''}')" title="Remove ${item.ticker}">&times;</button>
