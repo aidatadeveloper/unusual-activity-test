@@ -2622,7 +2622,7 @@
                     <span class="nav-separator">|</span>
 
                     <!-- Trade Date Display - clicking opens calendar modal -->
-                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 22, 2026 v54</span>
+                    <span id="tradeDateText" style="font-size: 16px; color: #fff; cursor: pointer;">Thursday, January 22, 2026 v55</span>
 
                     <span class="nav-separator">|</span>
                 </div>
@@ -4620,14 +4620,14 @@
                             <div class="metric-row">
                                 <span class="metric-label">Option Volume</span>
                                 <span class="metric-value">
-                                    ${item.option_volume_ratio >= 2 ? (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '<span class="arrow-up">▲</span>') : ''}${formatNumber(item.option_volume)}
+                                    ${item.option_volume_ratio >= 2 ? (item.vol_put_pct >= 60 ? '<span class="arrow-down">▼</span>' : (item.vol_call_pct >= 60 ? '<span class="arrow-up">▲</span>' : '')) : ''}${formatNumber(item.option_volume)}
                                     <span class="metric-ratio ${volRatioClass}">(${item.option_volume_ratio}x)</span>
                                 </span>
                             </div>
                             <div class="metric-row">
                                 <span class="metric-label">Dollar Volume</span>
                                 <span class="metric-value">
-                                    ${item.dollar_volume_ratio >= 2 ? (item.put_call_ratio > 1.0 ? '<span class="arrow-down">▼</span>' : '<span class="arrow-up">▲</span>') : ''}$${formatNumber(item.dollar_volume)}
+                                    ${item.dollar_volume_ratio >= 2 ? (item.dv_put_pct >= 60 ? '<span class="arrow-down">▼</span>' : (item.dv_call_pct >= 60 ? '<span class="arrow-up">▲</span>' : '')) : ''}$${formatNumber(item.dollar_volume)}
                                     <span class="metric-ratio ${dollarRatioClass}">(${item.dollar_volume_ratio}x)</span>
                                 </span>
                             </div>
