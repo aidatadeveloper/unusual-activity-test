@@ -4187,8 +4187,17 @@
                 'index_volatility': 'Index (VIX)'
             };
             if (specialNames[groupName]) return specialNames[groupName];
-            // Convert group_name to display format (e.g., "gold_silver" -> "Gold / Silver")
-            return groupName.replace(/_/g, ' / ').replace(/\b\w/g, c => c.toUpperCase());
+            // Convert group_name to display format (e.g., "index_usa" -> "Index (USA)")
+            // Special handling for certain group names
+            const specialNames = {
+                'index_usa': 'Index (USA)',
+                'index_global': 'Index (Global)',
+                'index_sector': 'Index (Sector)',
+                'real_estate': 'Real Estate',
+                'gold_silver': 'Gold & Silver'
+            };
+            if (specialNames[groupName]) return specialNames[groupName];
+            return groupName.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
         }
 
         // Sector icons mapping for 3D carousel
@@ -4213,8 +4222,8 @@
             'industrial': '🏭',
             'real_estate': '🏠',
             'space': '🚀',
-            'weed': '<img src="weed_icon.png" class="weed-leaf-img" alt="Weed">',
-            'solar': '<img src="solar_icon.png" class="solar-panel-img" alt="Solar">',
+            'weed': '🌿',
+            'solar': '☀️',
             'all': '📊'
         };
 
