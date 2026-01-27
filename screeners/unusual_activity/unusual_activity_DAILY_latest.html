@@ -4184,19 +4184,12 @@
                 'index_usa': 'Index (USA)',
                 'index_global': 'Index (Global)',
                 'index_sector': 'Index (Sector)',
-                'index_volatility': 'Index (VIX)'
-            };
-            if (specialNames[groupName]) return specialNames[groupName];
-            // Convert group_name to display format (e.g., "index_usa" -> "Index (USA)")
-            // Special handling for certain group names
-            const specialNames = {
-                'index_usa': 'Index (USA)',
-                'index_global': 'Index (Global)',
-                'index_sector': 'Index (Sector)',
+                'index_volatility': 'Index (VIX)',
                 'real_estate': 'Real Estate',
                 'gold_silver': 'Gold & Silver'
             };
             if (specialNames[groupName]) return specialNames[groupName];
+            // Convert group_name to display format (e.g., "oil" -> "Oil")
             return groupName.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
         }
 
