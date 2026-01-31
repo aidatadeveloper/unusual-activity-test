@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPLAY: SLV $80.0 Put - January 30, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #001a00 0%, #003300 100%);
+            padding: 20px 40px;
+            border-bottom: 2px solid #0f0;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .replay-badge {
+            background: linear-gradient(135deg, #0f0 0%, #0a0 100%);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 3px;
+        }
+
+        .strategy-badge {
+            background: #dc3545;
+            color: #fff;
+            padding: 6px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .ticker-info {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+        }
+
+        .ticker-symbol {
+            font-family: 'Orbitron', monospace;
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        .strategy-name {
+            font-size: 24px;
+            color: #0f0;
+        }
+
+        .date-display {
+            color: rgba(0, 255, 0, 0.7);
+            font-size: 16px;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px 40px;
+            background: rgba(0, 30, 0, 0.5);
+        }
+
+        .summary-card {
+            background: rgba(0, 40, 0, 0.8);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .summary-card.highlight {
+            border-color: #0f0;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .summary-label {
+            color: rgba(0, 255, 0, 0.7);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .summary-value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .summary-value.positive { color: #0f0; }
+        .summary-value.negative { color: #dc3545; }
+        .summary-value.neutral { color: #fff; }
+
+        .summary-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
+        }
+
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px 40px;
+        }
+
+        .chart-card {
+            background: rgba(0, 30, 0, 0.5);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .chart-title {
+            font-family: 'Orbitron', monospace;
+            color: #0f0;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-container {
+            height: 250px;
+        }
+
+        .timeline-section {
+            padding: 20px 40px;
+        }
+
+        .timeline-title {
+            font-family: 'Orbitron', monospace;
+            color: #0f0;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #0f0;
+            border-radius: 2px;
+        }
+
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .timeline-table th {
+            background: #000;
+            color: #0f0;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            border-bottom: 1px solid #0f0;
+        }
+
+        .timeline-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+            font-size: 14px;
+        }
+
+        .timeline-table tr:hover {
+            background: transparent;
+        }
+
+        .timeline-table tr.peak-row {
+            background: transparent;
+        }
+
+        .timeline-table tr.peak-row td {
+            font-weight: 600;
+        }
+
+        .time-col { color: #0f0; font-family: monospace; }
+        .stock-col { color: #fff; }
+        .stock-diff-col { font-size: 12px; }
+        .stock-diff-col.positive { color: #0f0; text-shadow: 0 0 3px rgba(0, 255, 0, 0.4); }
+        .stock-diff-col.negative { color: #ff4444; text-shadow: 0 0 3px rgba(255, 0, 0, 0.4); }
+        .option-col { color: #0f0; font-weight: 600; text-shadow: 0 0 3px rgba(0, 255, 0, 0.4); }
+        .bid-ask { color: rgba(255, 255, 255, 0.6); font-size: 12px; }
+        .last-col { color: #0f0; }
+        .rel-spread-col { color: rgba(255, 255, 255, 0.6); font-size: 12px; }
+        .volume-col { color: rgba(255, 255, 255, 0.7); }
+        .vol-diff-col { font-size: 12px; }
+        .vol-diff-col.positive { color: #0f0; text-shadow: 0 0 3px rgba(0, 255, 0, 0.4); }
+        .vol-diff-col.negative { color: #ff4444; text-shadow: 0 0 3px rgba(255, 0, 0, 0.4); }
+        .value-col { font-weight: 600; }
+        .pnl-col.positive { color: #0f0; text-shadow: 0 0 3px rgba(0, 255, 0, 0.4); }
+        .pnl-col.negative { color: #ff4444; text-shadow: 0 0 3px rgba(255, 0, 0, 0.4); }
+        .pct-col.positive { color: #0f0; font-weight: 700; text-shadow: 0 0 3px rgba(0, 255, 0, 0.4); }
+        .pct-col.negative { color: #ff4444; font-weight: 700; text-shadow: 0 0 3px rgba(255, 0, 0, 0.4); }
+
+        .itm-transition-row {
+            background: transparent !important;
+        }
+
+        .itm-transition {
+            padding: 0 !important;
+            height: 1px;
+            background: #0f0;
+            border: none;
+        }
+
+        .key-moments {
+            padding: 20px 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .moment-card {
+            background: rgba(0, 40, 0, 0.8);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px 20px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .moment-time {
+            font-family: 'Orbitron', monospace;
+            color: #0f0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .moment-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .investment-note {
+            background: rgba(0, 60, 0, 0.5);
+            border-left: 4px solid #0f0;
+            padding: 15px 20px;
+            margin: 20px 40px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .investment-note strong {
+            color: #0f0;
+        }
+
+        @media (max-width: 768px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+
+            .ticker-symbol {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <span class="replay-badge">REPLAY</span>
+            <span class="strategy-badge">BEARISH</span>
+        </div>
+        <div class="ticker-info">
+            <span class="ticker-symbol">SLV</span>
+            <span class="strategy-name">$80.0 Put</span>
+        </div>
+        <div class="date-display">January 30, 2026 | Expiration: 2026-01-30</div>
+    </div>
+
+    <div class="summary-cards">
+        <div class="summary-card">
+            <div class="summary-label">Investment</div>
+            <div class="summary-value neutral">$990.00</div>
+            <div class="summary-subtitle">55 contracts @ $0.18</div>
+        </div>
+        <div class="summary-card highlight">
+            <div class="summary-label">Peak Value</div>
+            <div class="summary-value positive">$26.9K</div>
+            <div class="summary-subtitle">+2622.2% return</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-label">Final Value</div>
+            <div class="summary-value positive">$24.8K</div>
+            <div class="summary-subtitle">+2400.0% return</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-label">Final P&L</div>
+            <div class="summary-value positive">$23.8K</div>
+            <div class="summary-subtitle">from $990.00 invested</div>
+        </div>
+    </div>
+
+    <div class="investment-note">
+        <strong>Hypothetical Trade:</strong> Starting with <strong>$1.0K</strong> at market open,
+        you could buy <strong>55 contracts</strong> of the SLV $80.0 Put
+        at <strong>$0.18</strong> per contract ($18 total cost per contract).
+        At peak, this position was worth <strong>$26.9K</strong> -
+        a <strong>+2622.2%</strong> return!
+    </div>
+
+    <div class="key-moments">
+        <div class="moment-card">
+            <div class="moment-time">10:03</div>
+            <div class="moment-label">Market Open | Stock: $89.06</div>
+        </div>
+        <div class="moment-card">
+            <div class="moment-time">13:03</div>
+            <div class="moment-label">Option Goes ITM</div>
+        </div>
+        <div class="moment-card">
+            <div class="moment-time">14:13</div>
+            <div class="moment-label">Peak Value | $26.9K</div>
+        </div>
+        <div class="moment-card">
+            <div class="moment-time">18:14</div>
+            <div class="moment-label">Market Close | Stock: $75.44</div>
+        </div>
+    </div>
+
+    <div class="charts-section">
+        <div class="chart-card">
+            <div class="chart-title">Option Price</div>
+            <div class="chart-container">
+                <canvas id="priceChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-card">
+            <div class="chart-title">Portfolio Value</div>
+            <div class="chart-container">
+                <canvas id="valueChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-section">
+        <div class="timeline-title">Intraday Timeline</div>
+        <table class="timeline-table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Stock</th>
+                    <th>Stock Diff</th>
+                    <th>Option</th>
+                    <th>Bid/Ask</th>
+                    <th>Last</th>
+                    <th>Rel Spread</th>
+                    <th>Volume</th>
+                    <th>Volume Diff</th>
+                    <th>Value</th>
+                    <th>P&L</th>
+                    <th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr class="positive">
+                <td class="time-col">10:03</td>
+                <td class="stock-col">$89.06</td>
+                <td class="stock-diff-col ">--</td>
+                <td class="option-col">$0.18</td>
+                <td class="bid-ask">$0.17 / $0.18</td>
+                <td class="last-col">$0.18</td>
+                <td class="rel-spread-col">5.6%</td>
+                <td class="volume-col">4,675</td>
+                <td class="vol-diff-col ">--</td>
+                <td class="value-col">$990</td>
+                <td class="pnl-col positive">$0</td>
+                <td class="pct-col positive">+0.0%</td>
+            </tr>
+        
+            <tr class="negative">
+                <td class="time-col">10:09</td>
+                <td class="stock-col">$89.45</td>
+                <td class="stock-diff-col positive">+$0.39 (+0.44%)</td>
+                <td class="option-col">$0.13</td>
+                <td class="bid-ask">$0.11 / $0.14</td>
+                <td class="last-col">$0.13</td>
+                <td class="rel-spread-col">23.1%</td>
+                <td class="volume-col">5,263</td>
+                <td class="vol-diff-col positive">+588 (+12.6%)</td>
+                <td class="value-col">$715</td>
+                <td class="pnl-col negative">$-275</td>
+                <td class="pct-col negative">-27.8%</td>
+            </tr>
+        
+            <tr class="negative">
+                <td class="time-col">11:02</td>
+                <td class="stock-col">$88.80</td>
+                <td class="stock-diff-col negative">$-0.65 (-0.73%)</td>
+                <td class="option-col">$0.08</td>
+                <td class="bid-ask">$0.06 / $0.09</td>
+                <td class="last-col">$0.08</td>
+                <td class="rel-spread-col">37.5%</td>
+                <td class="volume-col">7,197</td>
+                <td class="vol-diff-col positive">+1,934 (+36.7%)</td>
+                <td class="value-col">$440</td>
+                <td class="pnl-col negative">$-550</td>
+                <td class="pct-col negative">-55.6%</td>
+            </tr>
+        
+            <tr class="negative">
+                <td class="time-col">11:07</td>
+                <td class="stock-col">$88.71</td>
+                <td class="stock-diff-col negative">$-0.09 (-0.10%)</td>
+                <td class="option-col">$0.11</td>
+                <td class="bid-ask">$0.11 / $0.12</td>
+                <td class="last-col">$0.11</td>
+                <td class="rel-spread-col">8.3%</td>
+                <td class="volume-col">8,001</td>
+                <td class="vol-diff-col positive">+804 (+11.2%)</td>
+                <td class="value-col">$605</td>
+                <td class="pnl-col negative">$-385</td>
+                <td class="pct-col negative">-38.9%</td>
+            </tr>
+        
+            <tr class="positive peak-row">
+                <td class="time-col">12:04</td>
+                <td class="stock-col">$84.98</td>
+                <td class="stock-diff-col negative">$-3.73 (-4.20%)</td>
+                <td class="option-col">$0.28</td>
+                <td class="bid-ask">$0.28 / $0.29</td>
+                <td class="last-col">$0.28</td>
+                <td class="rel-spread-col">3.4%</td>
+                <td class="volume-col">21,423</td>
+                <td class="vol-diff-col positive">+13,422 (+167.8%)</td>
+                <td class="value-col">$1.5K</td>
+                <td class="pnl-col positive">$550</td>
+                <td class="pct-col positive">+55.6%</td>
+            </tr>
+        
+            <tr class="positive peak-row">
+                <td class="time-col">12:08</td>
+                <td class="stock-col">$83.92</td>
+                <td class="stock-diff-col negative">$-1.06 (-1.25%)</td>
+                <td class="option-col">$0.48</td>
+                <td class="bid-ask">$0.48 / $0.49</td>
+                <td class="last-col">$0.48</td>
+                <td class="rel-spread-col">2.0%</td>
+                <td class="volume-col">23,505</td>
+                <td class="vol-diff-col positive">+2,082 (+9.7%)</td>
+                <td class="value-col">$2.6K</td>
+                <td class="pnl-col positive">$1.6K</td>
+                <td class="pct-col positive">+166.7%</td>
+            </tr>
+        
+            <tr class="itm-transition-row">
+                <td colspan="12" class="itm-transition"></td>
+            </tr>
+            
+            <tr class="positive peak-row">
+                <td class="time-col">13:03</td>
+                <td class="stock-col">$77.43</td>
+                <td class="stock-diff-col negative">$-6.49 (-7.73%)</td>
+                <td class="option-col">$4.00</td>
+                <td class="bid-ask">$4.00 / $4.20</td>
+                <td class="last-col">$4.00</td>
+                <td class="rel-spread-col">4.9%</td>
+                <td class="volume-col">48,809</td>
+                <td class="vol-diff-col positive">+25,304 (+107.7%)</td>
+                <td class="value-col">$22.0K</td>
+                <td class="pnl-col positive">$21.0K</td>
+                <td class="pct-col positive">+2122.2%</td>
+            </tr>
+        
+            <tr class="positive">
+                <td class="time-col">13:07</td>
+                <td class="stock-col">$77.58</td>
+                <td class="stock-diff-col positive">+$0.15 (+0.19%)</td>
+                <td class="option-col">$3.75</td>
+                <td class="bid-ask">$4.05 / $4.20</td>
+                <td class="last-col">$3.75</td>
+                <td class="rel-spread-col">3.6%</td>
+                <td class="volume-col">49,064</td>
+                <td class="vol-diff-col positive">+255 (+0.5%)</td>
+                <td class="value-col">$20.6K</td>
+                <td class="pnl-col positive">$19.6K</td>
+                <td class="pct-col positive">+1983.3%</td>
+            </tr>
+        
+            <tr class="positive peak-row">
+                <td class="time-col">14:07</td>
+                <td class="stock-col">$76.23</td>
+                <td class="stock-diff-col negative">$-1.35 (-1.74%)</td>
+                <td class="option-col">$4.55</td>
+                <td class="bid-ask">$4.65 / $4.90</td>
+                <td class="last-col">$4.55</td>
+                <td class="rel-spread-col">5.2%</td>
+                <td class="volume-col">53,646</td>
+                <td class="vol-diff-col positive">+4,582 (+9.3%)</td>
+                <td class="value-col">$25.0K</td>
+                <td class="pnl-col positive">$24.0K</td>
+                <td class="pct-col positive">+2427.8%</td>
+            </tr>
+        
+            <tr class="positive peak-row">
+                <td class="time-col">14:13</td>
+                <td class="stock-col">$75.82</td>
+                <td class="stock-diff-col negative">$-0.41 (-0.54%)</td>
+                <td class="option-col">$4.90</td>
+                <td class="bid-ask">$4.80 / $5.15</td>
+                <td class="last-col">$4.90</td>
+                <td class="rel-spread-col">7.0%</td>
+                <td class="volume-col">53,730</td>
+                <td class="vol-diff-col positive">+84 (+0.2%)</td>
+                <td class="value-col">$26.9K</td>
+                <td class="pnl-col positive">$26.0K</td>
+                <td class="pct-col positive">+2622.2%</td>
+            </tr>
+        
+            <tr class="positive">
+                <td class="time-col">15:08</td>
+                <td class="stock-col">$76.63</td>
+                <td class="stock-diff-col positive">+$0.81 (+1.07%)</td>
+                <td class="option-col">$3.68</td>
+                <td class="bid-ask">$3.55 / $3.85</td>
+                <td class="last-col">$3.68</td>
+                <td class="rel-spread-col">8.1%</td>
+                <td class="volume-col">55,414</td>
+                <td class="vol-diff-col positive">+1,684 (+3.1%)</td>
+                <td class="value-col">$20.2K</td>
+                <td class="pnl-col positive">$19.2K</td>
+                <td class="pct-col positive">+1944.4%</td>
+            </tr>
+        
+            <tr class="positive">
+                <td class="time-col">15:13</td>
+                <td class="stock-col">$76.39</td>
+                <td class="stock-diff-col negative">$-0.24 (-0.31%)</td>
+                <td class="option-col">$3.90</td>
+                <td class="bid-ask">$3.80 / $4.20</td>
+                <td class="last-col">$3.90</td>
+                <td class="rel-spread-col">10.0%</td>
+                <td class="volume-col">55,506</td>
+                <td class="vol-diff-col positive">+92 (+0.2%)</td>
+                <td class="value-col">$21.4K</td>
+                <td class="pnl-col positive">$20.5K</td>
+                <td class="pct-col positive">+2066.7%</td>
+            </tr>
+        
+            <tr class="positive">
+                <td class="time-col">16:07</td>
+                <td class="stock-col">$75.39</td>
+                <td class="stock-diff-col negative">$-1.00 (-1.31%)</td>
+                <td class="option-col">$4.50</td>
+                <td class="bid-ask">$4.00 / $4.65</td>
+                <td class="last-col">$4.50</td>
+                <td class="rel-spread-col">15.0%</td>
+                <td class="volume-col">58,973</td>
+                <td class="vol-diff-col positive">+3,467 (+6.2%)</td>
+                <td class="value-col">$24.8K</td>
+                <td class="pnl-col positive">$23.8K</td>
+                <td class="pct-col positive">+2400.0%</td>
+            </tr>
+        
+            <tr class="positive">
+                <td class="time-col">16:13</td>
+                <td class="stock-col">$75.44</td>
+                <td class="stock-diff-col positive">+$0.05 (+0.07%)</td>
+                <td class="option-col">$4.60</td>
+                <td class="bid-ask">$4.25 / $4.85</td>
+                <td class="last-col">$4.60</td>
+                <td class="rel-spread-col">13.2%</td>
+                <td class="volume-col">58,982</td>
+                <td class="vol-diff-col positive">+9 (+0.0%)</td>
+                <td class="value-col">$25.3K</td>
+                <td class="pnl-col positive">$24.3K</td>
+                <td class="pct-col positive">+2455.6%</td>
+            </tr>
+        
+            <tr class="positive">
+                <td class="time-col">18:14</td>
+                <td class="stock-col">$75.44</td>
+                <td class="stock-diff-col positive">+$0.00 (+0.00%)</td>
+                <td class="option-col">$4.50</td>
+                <td class="bid-ask">$4.10 / $4.75</td>
+                <td class="last-col">$4.50</td>
+                <td class="rel-spread-col">14.7%</td>
+                <td class="volume-col">58,988</td>
+                <td class="vol-diff-col positive">+6 (+0.0%)</td>
+                <td class="value-col">$24.8K</td>
+                <td class="pnl-col positive">$23.8K</td>
+                <td class="pct-col positive">+2400.0%</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const chartTimes = ["10:03", "10:09", "11:02", "11:07", "12:04", "12:08", "13:03", "13:07", "14:07", "14:13", "15:08", "15:13", "16:07", "16:13", "18:14"];
+        const chartPrices = [0.18, 0.13, 0.08, 0.11, 0.28, 0.48, 4.0, 3.75, 4.55, 4.9, 3.68, 3.9, 4.5, 4.6, 4.5];
+        const chartValues = [990.0, 715.0, 440.00000000000006, 605.0, 1540.0000000000002, 2640.0, 22000.0, 20625.0, 25025.0, 26950.0, 20240.0, 21450.0, 24750.0, 25299.999999999996, 24750.0];
+        const chartStock = [89.06, 89.45, 88.8, 88.71, 84.98, 83.92, 77.43, 77.58, 76.23, 75.82, 76.63, 76.39, 75.39, 75.44, 75.44];
+        const chartVolumeDiffs = [4675, 588, 1934, 804, 13422, 2082, 25304, 255, 4582, 84, 1684, 92, 3467, 9, 6];
+
+        // Price Chart with Volume Overlay
+        new Chart(document.getElementById('priceChart'), {
+            type: 'line',
+            data: {
+                labels: chartTimes,
+                datasets: [{
+                    type: 'line',
+                    label: 'Option Price',
+                    data: chartPrices,
+                    borderColor: '#0f0',
+                    backgroundColor: 'transparent',
+                    fill: false,
+                    tension: 0.3,
+                    yAxisID: 'y',
+                    order: 1
+                }, {
+                    type: 'bar',
+                    label: 'Volume Diff',
+                    data: chartVolumeDiffs,
+                    backgroundColor: 'rgba(0, 255, 0, 0.3)',
+                    borderColor: 'rgba(0, 255, 0, 0.5)',
+                    borderWidth: 1,
+                    yAxisID: 'y1',
+                    order: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: { color: 'rgba(255,255,255,0.7)' }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: 'rgba(255,255,255,0.6)' },
+                        grid: { color: 'rgba(0,255,0,0.1)' }
+                    },
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                            color: 'rgba(255,255,255,0.6)',
+                            callback: (v) => '$' + v.toFixed(2)
+                        },
+                        grid: { color: 'rgba(0,255,0,0.1)' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                            color: 'rgba(255,255,255,0.4)',
+                            callback: (v) => v >= 1000 ? (v/1000).toFixed(0) + 'K' : v
+                        },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // Value Chart
+        new Chart(document.getElementById('valueChart'), {
+            type: 'line',
+            data: {
+                labels: chartTimes,
+                datasets: [{
+                    label: 'Portfolio Value',
+                    data: chartValues,
+                    borderColor: '#0f0',
+                    backgroundColor: 'transparent',
+                    fill: false,
+                    tension: 0.3,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: 'rgba(255,255,255,0.6)' },
+                        grid: { color: 'rgba(0,255,0,0.1)' }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'rgba(255,255,255,0.6)',
+                            callback: (v) => '$' + (v >= 1000 ? (v/1000).toFixed(1) + 'K' : v.toFixed(0))
+                        },
+                        grid: { color: 'rgba(0,255,0,0.1)' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

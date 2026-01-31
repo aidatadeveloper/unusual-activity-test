@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPLAY Timeline Playground - 20 Layouts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', monospace;
+            color: #0f0;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .layout-section {
+            margin-bottom: 50px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .layout-title {
+            font-family: 'Orbitron', monospace;
+            color: #0f0;
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        /* Sample data rows for all layouts */
+        .sample-data {
+            font-size: 13px;
+        }
+
+        /* ========== LAYOUT 1: Original (baseline) ========== */
+        .layout1 table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 30, 0, 0.5);
+        }
+        .layout1 th {
+            background: rgba(0, 60, 0, 0.8);
+            color: #0f0;
+            padding: 10px 8px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #0f0;
+        }
+        .layout1 td {
+            padding: 8px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        }
+        .layout1 .positive { color: #0f0; }
+        .layout1 .negative { color: #dc3545; }
+
+        /* ========== LAYOUT 2: Three Section Cards ========== */
+        .layout2 .row-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .layout2 .section-card {
+            background: rgba(0, 40, 0, 0.6);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 6px;
+            padding: 12px;
+        }
+        .layout2 .section-card.price-section { border-left: 3px solid #0f0; }
+        .layout2 .section-card.volume-section { border-left: 3px solid #ffcc00; }
+        .layout2 .section-card.pnl-section { border-left: 3px solid #00ccff; }
+        .layout2 .section-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .layout2 .section-value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ========== LAYOUT 3: Horizontal Bands ========== */
+        .layout3 .timeline-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            background: rgba(0, 30, 0, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .layout3 .band {
+            display: flex;
+            padding: 8px 15px;
+            align-items: center;
+            gap: 20px;
+        }
+        .layout3 .band-price { background: rgba(0, 100, 0, 0.3); }
+        .layout3 .band-volume { background: rgba(100, 100, 0, 0.2); }
+        .layout3 .band-pnl { background: rgba(0, 100, 100, 0.2); }
+        .layout3 .band-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .layout3 .band-label { font-size: 9px; color: rgba(255,255,255,0.5); }
+        .layout3 .band-value { font-size: 13px; }
+
+        /* ========== LAYOUT 4: Compact Grid ========== */
+        .layout4 .grid-row {
+            display: grid;
+            grid-template-columns: 60px 1fr 1fr 1fr;
+            gap: 5px;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: rgba(0, 30, 0, 0.4);
+            border-radius: 4px;
+        }
+        .layout4 .time-cell {
+            font-family: monospace;
+            color: #0f0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .layout4 .section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 5px;
+            font-size: 12px;
+        }
+        .layout4 .cell { text-align: center; }
+        .layout4 .cell-label { font-size: 9px; color: rgba(255,255,255,0.4); }
+
+        /* ========== LAYOUT 5: Dark Theme with Cyan Accents ========== */
+        .layout5 table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #111;
+        }
+        .layout5 th {
+            background: #1a1a2e;
+            color: #00ffff;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #00ffff;
+        }
+        .layout5 td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        .layout5 .positive { color: #00ffff; }
+        .layout5 .negative { color: #ff6b6b; }
+        .layout5 tr:hover { background: rgba(0, 255, 255, 0.05); }
+
+        /* ========== LAYOUT 6: Purple/Pink Gradient ========== */
+        .layout6 table {
+            width: 100%;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .layout6 th {
+            background: rgba(138, 43, 226, 0.3);
+            color: #ff69b4;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #ff69b4;
+        }
+        .layout6 td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+        }
+        .layout6 .positive { color: #ff69b4; }
+        .layout6 .negative { color: #ff4444; }
+
+        /* ========== LAYOUT 7: Vertical Stacked Cards ========== */
+        .layout7 .stacked-row {
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .layout7 .stack-header {
+            background: rgba(0, 60, 0, 0.8);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .layout7 .stack-time {
+            font-family: 'Orbitron', monospace;
+            color: #0f0;
+            font-size: 18px;
+        }
+        .layout7 .stack-return {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .layout7 .stack-body {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(0, 255, 0, 0.1);
+        }
+        .layout7 .stack-section {
+            background: rgba(0, 20, 0, 0.9);
+            padding: 15px;
+        }
+        .layout7 .stack-section h4 {
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .layout7 .stack-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        /* ========== LAYOUT 8: Minimal Lines ========== */
+        .layout8 .minimal-row {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            align-items: center;
+        }
+        .layout8 .min-time {
+            width: 60px;
+            font-family: monospace;
+            color: #666;
+        }
+        .layout8 .min-section {
+            flex: 1;
+            display: flex;
+            gap: 15px;
+            padding: 0 15px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+        .layout8 .min-item {
+            font-size: 13px;
+        }
+        .layout8 .min-label {
+            font-size: 9px;
+            color: #666;
+            display: block;
+        }
+
+        /* ========== LAYOUT 9: Boxed Sections ========== */
+        .layout9 .boxed-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .layout9 .box {
+            flex: 1;
+            background: rgba(0, 30, 0, 0.5);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .layout9 .box-time {
+            width: 70px;
+            background: rgba(0, 60, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: monospace;
+            color: #0f0;
+            font-weight: bold;
+        }
+        .layout9 .box-content {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+        }
+        .layout9 .box-item span { display: block; }
+        .layout9 .box-label { font-size: 9px; color: rgba(255,255,255,0.4); }
+
+        /* ========== LAYOUT 10: Orange/Amber Theme ========== */
+        .layout10 table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1a1510;
+        }
+        .layout10 th {
+            background: rgba(255, 165, 0, 0.2);
+            color: #ffa500;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #ffa500;
+        }
+        .layout10 td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+        }
+        .layout10 .positive { color: #ffa500; }
+        .layout10 .negative { color: #dc3545; }
+
+        /* ========== LAYOUT 11: Split Header Table ========== */
+        .layout11 table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .layout11 .header-group {
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .layout11 .hg-price { background: rgba(0, 100, 0, 0.4); color: #0f0; }
+        .layout11 .hg-volume { background: rgba(100, 100, 0, 0.4); color: #ffcc00; }
+        .layout11 .hg-pnl { background: rgba(0, 100, 100, 0.4); color: #00ccff; }
+        .layout11 th {
+            background: rgba(0, 30, 0, 0.8);
+            color: rgba(255,255,255,0.7);
+            padding: 8px 6px;
+            text-align: left;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        .layout11 td {
+            padding: 8px 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 12px;
+        }
+        .layout11 .sep { border-left: 2px solid rgba(255,255,255,0.1); }
+
+        /* ========== LAYOUT 12: Alternating Row Colors ========== */
+        .layout12 table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .layout12 th {
+            background: #0f0;
+            color: #000;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .layout12 td { padding: 10px; }
+        .layout12 tr:nth-child(odd) { background: rgba(0, 40, 0, 0.4); }
+        .layout12 tr:nth-child(even) { background: rgba(0, 60, 0, 0.4); }
+        .layout12 .positive { color: #0f0; }
+        .layout12 .negative { color: #ff6b6b; }
+
+        /* ========== LAYOUT 13: Pill Tags ========== */
+        .layout13 .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(0, 30, 0, 0.3);
+            border-radius: 8px;
+            align-items: center;
+        }
+        .layout13 .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        .layout13 .pill-time { background: #0f0; color: #000; font-weight: bold; }
+        .layout13 .pill-price { background: rgba(0, 100, 0, 0.5); border: 1px solid #0f0; }
+        .layout13 .pill-volume { background: rgba(100, 100, 0, 0.5); border: 1px solid #ffcc00; }
+        .layout13 .pill-pnl { background: rgba(0, 100, 100, 0.5); border: 1px solid #00ccff; }
+        .layout13 .pill-label { font-size: 9px; opacity: 0.7; }
+
+        /* ========== LAYOUT 14: Metro/Tile Style ========== */
+        .layout14 .metro-row {
+            display: grid;
+            grid-template-columns: 80px repeat(10, 1fr);
+            gap: 2px;
+            margin-bottom: 2px;
+        }
+        .layout14 .metro-cell {
+            background: rgba(0, 40, 0, 0.6);
+            padding: 10px 8px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .layout14 .metro-time {
+            background: #0f0;
+            color: #000;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .layout14 .metro-header {
+            background: rgba(0, 60, 0, 0.9);
+            color: #0f0;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        /* ========== LAYOUT 15: White/Light Theme ========== */
+        .layout15 {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .layout15 table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+        .layout15 th {
+            background: #2d5a27;
+            color: #fff;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .layout15 td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+        }
+        .layout15 .positive { color: #2d5a27; }
+        .layout15 .negative { color: #dc3545; }
+
+        /* ========== LAYOUT 16: Neon Glow ========== */
+        .layout16 table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #000;
+        }
+        .layout16 th {
+            background: #000;
+            color: #0f0;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #0f0;
+            border-bottom: 1px solid #0f0;
+            box-shadow: 0 2px 10px rgba(0, 255, 0, 0.3);
+        }
+        .layout16 td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        }
+        .layout16 .positive { color: #0f0; text-shadow: 0 0 5px #0f0; }
+        .layout16 .negative { color: #ff0000; text-shadow: 0 0 5px #ff0000; }
+        .layout16 tr:hover { background: rgba(0, 255, 0, 0.05); box-shadow: inset 0 0 20px rgba(0, 255, 0, 0.1); }
+
+        /* ========== LAYOUT 17: Horizontal Scroll Cards ========== */
+        .layout17 .scroll-container {
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        .layout17 .scroll-row {
+            display: flex;
+            gap: 15px;
+            min-width: max-content;
+        }
+        .layout17 .scroll-card {
+            min-width: 280px;
+            background: rgba(0, 40, 0, 0.6);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .layout17 .sc-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        .layout17 .sc-time { font-family: 'Orbitron', monospace; color: #0f0; font-size: 18px; }
+        .layout17 .sc-return { font-size: 16px; font-weight: bold; }
+        .layout17 .sc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 12px;
+        }
+        .layout17 .sc-label { font-size: 9px; color: rgba(255,255,255,0.5); }
+
+        /* ========== LAYOUT 18: Accordion Style ========== */
+        .layout18 .accordion-row {
+            margin-bottom: 5px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .layout18 .acc-summary {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: rgba(0, 40, 0, 0.6);
+            cursor: pointer;
+        }
+        .layout18 .acc-left { display: flex; gap: 20px; }
+        .layout18 .acc-time { font-family: monospace; color: #0f0; }
+        .layout18 .acc-details {
+            padding: 15px;
+            background: rgba(0, 20, 0, 0.8);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .layout18 .acc-section h4 {
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .layout18 .acc-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        /* ========== LAYOUT 19: Dashboard Widgets ========== */
+        .layout19 .widget-row {
+            display: grid;
+            grid-template-columns: 100px 2fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .layout19 .widget {
+            background: rgba(0, 30, 0, 0.5);
+            border-radius: 8px;
+            padding: 12px;
+        }
+        .layout19 .widget-time {
+            background: linear-gradient(135deg, #0f0 0%, #0a0 100%);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', monospace;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .layout19 .widget-title {
+            font-size: 9px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .layout19 .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        /* ========== LAYOUT 20: Matrix Style ========== */
+        .layout20 {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .layout20 .matrix-row {
+            display: flex;
+            margin-bottom: 2px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .layout20 .matrix-row:hover {
+            background: rgba(0, 255, 0, 0.1);
+        }
+        .layout20 .m-time { color: #0f0; width: 60px; }
+        .layout20 .m-sep { color: #030; margin: 0 5px; }
+        .layout20 .m-section { margin-right: 10px; }
+        .layout20 .m-label { color: #050; }
+        .layout20 .m-value { color: #0f0; }
+        .layout20 .m-positive { color: #0f0; }
+        .layout20 .m-negative { color: #f00; }
+    </style>
+</head>
+<body>
+    <h1>REPLAY Timeline Layouts - 20 Variations</h1>
+
+    <!-- LAYOUT 1: Original -->
+    <div class="layout-section layout1">
+        <div class="layout-title">Layout 1: Original Table (Baseline)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th><th>Stock</th><th>Stock Diff</th><th>Option</th><th>Bid/Ask</th><th>Last</th><th>Rel Spread</th>
+                    <th>Volume</th><th>Volume Diff</th>
+                    <th>Value</th><th>P&L</th><th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>12:08</td><td>$83.92</td><td class="negative">$-1.06 (-1.25%)</td><td>$0.48</td><td>$0.48 / $0.49</td><td>$0.48</td><td>2.0%</td><td>23,505</td><td class="positive">+2,082 (+9.7%)</td><td>$2,640</td><td class="positive">$1,650</td><td class="positive">+166.7%</td></tr>
+                <tr style="background: #0f0; height: 1px;"><td colspan="12" style="padding:0;"></td></tr>
+                <tr><td>13:03</td><td>$77.43</td><td class="negative">$-6.49 (-7.73%)</td><td>$4.00</td><td>$4.00 / $4.20</td><td>$4.00</td><td>4.9%</td><td>48,809</td><td class="positive">+25,304 (+107.7%)</td><td>$22,000</td><td class="positive">$21,010</td><td class="positive">+2122.2%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LAYOUT 2: Three Section Cards -->
+    <div class="layout-section layout2">
+        <div class="layout-title">Layout 2: Three Section Cards</div>
+        <div class="row-container">
+            <div class="section-card price-section">
+                <div class="section-label">Price Data - 12:08</div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; font-size:12px;">
+                    <div><span style="color:#666">Stock:</span> $83.92</div>
+                    <div><span style="color:#666">Diff:</span> <span style="color:#dc3545">-$1.06 (-1.25%)</span></div>
+                    <div><span style="color:#666">Option:</span> <span style="color:#0f0">$0.48</span></div>
+                    <div><span style="color:#666">Bid/Ask:</span> $0.48 / $0.49</div>
+                    <div><span style="color:#666">Last:</span> $0.48</div>
+                    <div><span style="color:#666">Rel Spread:</span> 2.0%</div>
+                </div>
+            </div>
+            <div class="section-card volume-section">
+                <div class="section-label">Volume Data</div>
+                <div style="font-size:12px;">
+                    <div><span style="color:#666">Volume:</span> 23,505</div>
+                    <div><span style="color:#666">Diff:</span> <span style="color:#0f0">+2,082 (+9.7%)</span></div>
+                </div>
+            </div>
+            <div class="section-card pnl-section">
+                <div class="section-label">P&L Data</div>
+                <div style="font-size:12px;">
+                    <div><span style="color:#666">Value:</span> $2,640</div>
+                    <div><span style="color:#666">P&L:</span> <span style="color:#0f0">$1,650</span></div>
+                    <div><span style="color:#666">Return:</span> <span style="color:#0f0; font-weight:bold;">+166.7%</span></div>
+                </div>
+            </div>
+        </div>
+        <div style="height:1px; background:#0f0; margin:10px 0;"></div>
+        <div class="row-container">
+            <div class="section-card price-section">
+                <div class="section-label">Price Data - 13:03</div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; font-size:12px;">
+                    <div><span style="color:#666">Stock:</span> $77.43</div>
+                    <div><span style="color:#666">Diff:</span> <span style="color:#dc3545">-$6.49 (-7.73%)</span></div>
+                    <div><span style="color:#666">Option:</span> <span style="color:#0f0">$4.00</span></div>
+                    <div><span style="color:#666">Bid/Ask:</span> $4.00 / $4.20</div>
+                    <div><span style="color:#666">Last:</span> $4.00</div>
+                    <div><span style="color:#666">Rel Spread:</span> 4.9%</div>
+                </div>
+            </div>
+            <div class="section-card volume-section">
+                <div class="section-label">Volume Data</div>
+                <div style="font-size:12px;">
+                    <div><span style="color:#666">Volume:</span> 48,809</div>
+                    <div><span style="color:#666">Diff:</span> <span style="color:#0f0">+25,304 (+107.7%)</span></div>
+                </div>
+            </div>
+            <div class="section-card pnl-section">
+                <div class="section-label">P&L Data</div>
+                <div style="font-size:12px;">
+                    <div><span style="color:#666">Value:</span> $22,000</div>
+                    <div><span style="color:#666">P&L:</span> <span style="color:#0f0">$21,010</span></div>
+                    <div><span style="color:#666">Return:</span> <span style="color:#0f0; font-weight:bold;">+2122.2%</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 3: Horizontal Bands -->
+    <div class="layout-section layout3">
+        <div class="layout-title">Layout 3: Horizontal Bands</div>
+        <div class="timeline-row">
+            <div class="band band-price">
+                <div class="band-item"><span class="band-label">TIME</span><span class="band-value" style="color:#0f0;font-weight:bold;">12:08</span></div>
+                <div class="band-item"><span class="band-label">STOCK</span><span class="band-value">$83.92</span></div>
+                <div class="band-item"><span class="band-label">DIFF</span><span class="band-value" style="color:#dc3545">-$1.06</span></div>
+                <div class="band-item"><span class="band-label">OPTION</span><span class="band-value" style="color:#0f0">$0.48</span></div>
+                <div class="band-item"><span class="band-label">BID/ASK</span><span class="band-value">$0.48/$0.49</span></div>
+                <div class="band-item"><span class="band-label">LAST</span><span class="band-value">$0.48</span></div>
+                <div class="band-item"><span class="band-label">SPREAD</span><span class="band-value">2.0%</span></div>
+            </div>
+            <div class="band band-volume">
+                <div class="band-item"><span class="band-label">VOLUME</span><span class="band-value">23,505</span></div>
+                <div class="band-item"><span class="band-label">DIFF</span><span class="band-value" style="color:#0f0">+2,082 (+9.7%)</span></div>
+            </div>
+            <div class="band band-pnl">
+                <div class="band-item"><span class="band-label">VALUE</span><span class="band-value">$2,640</span></div>
+                <div class="band-item"><span class="band-label">P&L</span><span class="band-value" style="color:#0f0">$1,650</span></div>
+                <div class="band-item"><span class="band-label">RETURN</span><span class="band-value" style="color:#0f0;font-weight:bold;">+166.7%</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 4: Compact Grid -->
+    <div class="layout-section layout4">
+        <div class="layout-title">Layout 4: Compact Grid</div>
+        <div class="grid-row">
+            <div class="time-cell">12:08</div>
+            <div class="section" style="border-left:2px solid #0f0; padding-left:10px;">
+                <div class="cell"><span class="cell-label">Stock</span>$83.92</div>
+                <div class="cell"><span class="cell-label">Diff</span><span style="color:#dc3545">-$1.06</span></div>
+                <div class="cell"><span class="cell-label">Option</span><span style="color:#0f0">$0.48</span></div>
+                <div class="cell"><span class="cell-label">Bid/Ask</span>$0.48/$0.49</div>
+                <div class="cell"><span class="cell-label">Last</span>$0.48</div>
+                <div class="cell"><span class="cell-label">Spread</span>2.0%</div>
+            </div>
+            <div class="section" style="border-left:2px solid #ffcc00; padding-left:10px;">
+                <div class="cell"><span class="cell-label">Volume</span>23,505</div>
+                <div class="cell"><span class="cell-label">Diff</span><span style="color:#0f0">+2,082</span></div>
+            </div>
+            <div class="section" style="border-left:2px solid #00ccff; padding-left:10px;">
+                <div class="cell"><span class="cell-label">Value</span>$2,640</div>
+                <div class="cell"><span class="cell-label">P&L</span><span style="color:#0f0">$1,650</span></div>
+                <div class="cell"><span class="cell-label">Return</span><span style="color:#0f0;font-weight:bold;">+166.7%</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 5: Cyan Theme -->
+    <div class="layout-section layout5">
+        <div class="layout-title">Layout 5: Dark Theme with Cyan Accents</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th><th>Stock</th><th>Stock Diff</th><th>Option</th><th>Bid/Ask</th><th>Last</th><th>Rel Spread</th>
+                    <th>Volume</th><th>Volume Diff</th>
+                    <th>Value</th><th>P&L</th><th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>12:08</td><td>$83.92</td><td class="negative">$-1.06</td><td class="positive">$0.48</td><td>$0.48 / $0.49</td><td>$0.48</td><td>2.0%</td><td>23,505</td><td class="positive">+2,082</td><td>$2,640</td><td class="positive">$1,650</td><td class="positive">+166.7%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LAYOUT 6: Purple/Pink -->
+    <div class="layout-section layout6">
+        <div class="layout-title">Layout 6: Purple/Pink Gradient Theme</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th><th>Stock</th><th>Stock Diff</th><th>Option</th><th>Bid/Ask</th><th>Last</th><th>Rel Spread</th>
+                    <th>Volume</th><th>Volume Diff</th>
+                    <th>Value</th><th>P&L</th><th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>12:08</td><td>$83.92</td><td class="negative">$-1.06</td><td class="positive">$0.48</td><td>$0.48 / $0.49</td><td>$0.48</td><td>2.0%</td><td>23,505</td><td class="positive">+2,082</td><td>$2,640</td><td class="positive">$1,650</td><td class="positive">+166.7%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LAYOUT 7: Vertical Stacked Cards -->
+    <div class="layout-section layout7">
+        <div class="layout-title">Layout 7: Vertical Stacked Cards</div>
+        <div class="stacked-row">
+            <div class="stack-header">
+                <span class="stack-time">12:08</span>
+                <span class="stack-return" style="color:#0f0">+166.7%</span>
+            </div>
+            <div class="stack-body">
+                <div class="stack-section">
+                    <h4>Price Data</h4>
+                    <div class="stack-item"><span>Stock</span><span>$83.92</span></div>
+                    <div class="stack-item"><span>Diff</span><span style="color:#dc3545">-$1.06 (-1.25%)</span></div>
+                    <div class="stack-item"><span>Option</span><span style="color:#0f0">$0.48</span></div>
+                    <div class="stack-item"><span>Bid/Ask</span><span>$0.48 / $0.49</span></div>
+                    <div class="stack-item"><span>Last</span><span>$0.48</span></div>
+                    <div class="stack-item"><span>Spread</span><span>2.0%</span></div>
+                </div>
+                <div class="stack-section">
+                    <h4>Volume Data</h4>
+                    <div class="stack-item"><span>Volume</span><span>23,505</span></div>
+                    <div class="stack-item"><span>Diff</span><span style="color:#0f0">+2,082 (+9.7%)</span></div>
+                </div>
+                <div class="stack-section">
+                    <h4>P&L Data</h4>
+                    <div class="stack-item"><span>Value</span><span>$2,640</span></div>
+                    <div class="stack-item"><span>P&L</span><span style="color:#0f0">$1,650</span></div>
+                    <div class="stack-item"><span>Return</span><span style="color:#0f0;font-weight:bold;">+166.7%</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 8: Minimal Lines -->
+    <div class="layout-section layout8">
+        <div class="layout-title">Layout 8: Minimal Lines</div>
+        <div class="minimal-row">
+            <div class="min-time">12:08</div>
+            <div class="min-section">
+                <div class="min-item"><span class="min-label">Stock</span>$83.92</div>
+                <div class="min-item"><span class="min-label">Diff</span><span style="color:#dc3545">-$1.06</span></div>
+                <div class="min-item"><span class="min-label">Option</span><span style="color:#0f0">$0.48</span></div>
+                <div class="min-item"><span class="min-label">Bid/Ask</span>$0.48/$0.49</div>
+                <div class="min-item"><span class="min-label">Last</span>$0.48</div>
+                <div class="min-item"><span class="min-label">Spread</span>2.0%</div>
+            </div>
+            <div class="min-section">
+                <div class="min-item"><span class="min-label">Volume</span>23,505</div>
+                <div class="min-item"><span class="min-label">Diff</span><span style="color:#0f0">+2,082</span></div>
+            </div>
+            <div class="min-section">
+                <div class="min-item"><span class="min-label">Value</span>$2,640</div>
+                <div class="min-item"><span class="min-label">P&L</span><span style="color:#0f0">$1,650</span></div>
+                <div class="min-item"><span class="min-label">Return</span><span style="color:#0f0;font-weight:bold;">+166.7%</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 9: Boxed Sections -->
+    <div class="layout-section layout9">
+        <div class="layout-title">Layout 9: Boxed Sections</div>
+        <div class="boxed-row">
+            <div class="box box-time">12:08</div>
+            <div class="box" style="border-top:2px solid #0f0;">
+                <div class="box-content">
+                    <div class="box-item"><span class="box-label">Stock</span><span>$83.92</span></div>
+                    <div class="box-item"><span class="box-label">Diff</span><span style="color:#dc3545">-$1.06</span></div>
+                    <div class="box-item"><span class="box-label">Option</span><span style="color:#0f0">$0.48</span></div>
+                    <div class="box-item"><span class="box-label">Bid/Ask</span><span>$0.48/$0.49</span></div>
+                    <div class="box-item"><span class="box-label">Last</span><span>$0.48</span></div>
+                    <div class="box-item"><span class="box-label">Spread</span><span>2.0%</span></div>
+                </div>
+            </div>
+            <div class="box" style="border-top:2px solid #ffcc00;">
+                <div class="box-content">
+                    <div class="box-item"><span class="box-label">Volume</span><span>23,505</span></div>
+                    <div class="box-item"><span class="box-label">Diff</span><span style="color:#0f0">+2,082</span></div>
+                </div>
+            </div>
+            <div class="box" style="border-top:2px solid #00ccff;">
+                <div class="box-content">
+                    <div class="box-item"><span class="box-label">Value</span><span>$2,640</span></div>
+                    <div class="box-item"><span class="box-label">P&L</span><span style="color:#0f0">$1,650</span></div>
+                    <div class="box-item"><span class="box-label">Return</span><span style="color:#0f0;font-weight:bold;">+166.7%</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 10: Orange/Amber -->
+    <div class="layout-section layout10">
+        <div class="layout-title">Layout 10: Orange/Amber Theme</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th><th>Stock</th><th>Stock Diff</th><th>Option</th><th>Bid/Ask</th><th>Last</th><th>Rel Spread</th>
+                    <th>Volume</th><th>Volume Diff</th>
+                    <th>Value</th><th>P&L</th><th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>12:08</td><td>$83.92</td><td class="negative">$-1.06</td><td class="positive">$0.48</td><td>$0.48 / $0.49</td><td>$0.48</td><td>2.0%</td><td>23,505</td><td class="positive">+2,082</td><td>$2,640</td><td class="positive">$1,650</td><td class="positive">+166.7%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LAYOUT 11: Split Header Table -->
+    <div class="layout-section layout11">
+        <div class="layout-title">Layout 11: Split Header Groups</div>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2" style="vertical-align:middle;">Time</th>
+                    <td colspan="6" class="header-group hg-price">PRICE DATA</td>
+                    <td colspan="2" class="header-group hg-volume">VOLUME</td>
+                    <td colspan="3" class="header-group hg-pnl">P&L</td>
+                </tr>
+                <tr>
+                    <th>Stock</th><th>Diff</th><th>Option</th><th>Bid/Ask</th><th>Last</th><th>Spread</th>
+                    <th class="sep">Volume</th><th>Diff</th>
+                    <th class="sep">Value</th><th>P&L</th><th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="color:#0f0;font-weight:bold;">12:08</td><td>$83.92</td><td style="color:#dc3545">-$1.06</td><td style="color:#0f0">$0.48</td><td>$0.48/$0.49</td><td>$0.48</td><td>2.0%</td><td class="sep">23,505</td><td style="color:#0f0">+2,082</td><td class="sep">$2,640</td><td style="color:#0f0">$1,650</td><td style="color:#0f0;font-weight:bold;">+166.7%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LAYOUT 12: Alternating Rows -->
+    <div class="layout-section layout12">
+        <div class="layout-title">Layout 12: Alternating Row Colors (Green Header)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th><th>Stock</th><th>Stock Diff</th><th>Option</th><th>Bid/Ask</th><th>Last</th><th>Rel Spread</th>
+                    <th>Volume</th><th>Volume Diff</th>
+                    <th>Value</th><th>P&L</th><th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>12:04</td><td>$84.98</td><td class="negative">$-3.73</td><td class="positive">$0.28</td><td>$0.28 / $0.29</td><td>$0.28</td><td>3.4%</td><td>21,423</td><td class="positive">+13,422</td><td>$1,540</td><td class="positive">$550</td><td class="positive">+55.6%</td></tr>
+                <tr><td>12:08</td><td>$83.92</td><td class="negative">$-1.06</td><td class="positive">$0.48</td><td>$0.48 / $0.49</td><td>$0.48</td><td>2.0%</td><td>23,505</td><td class="positive">+2,082</td><td>$2,640</td><td class="positive">$1,650</td><td class="positive">+166.7%</td></tr>
+                <tr><td>13:03</td><td>$77.43</td><td class="negative">$-6.49</td><td class="positive">$4.00</td><td>$4.00 / $4.20</td><td>$4.00</td><td>4.9%</td><td>48,809</td><td class="positive">+25,304</td><td>$22,000</td><td class="positive">$21,010</td><td class="positive">+2122.2%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LAYOUT 13: Pill Tags -->
+    <div class="layout-section layout13">
+        <div class="layout-title">Layout 13: Pill/Tag Style</div>
+        <div class="pill-row">
+            <span class="pill pill-time">12:08</span>
+            <span class="pill pill-price"><span class="pill-label">Stock</span> $83.92</span>
+            <span class="pill pill-price"><span class="pill-label">Diff</span> <span style="color:#dc3545">-$1.06</span></span>
+            <span class="pill pill-price"><span class="pill-label">Option</span> <span style="color:#0f0">$0.48</span></span>
+            <span class="pill pill-price"><span class="pill-label">Bid/Ask</span> $0.48/$0.49</span>
+            <span class="pill pill-price"><span class="pill-label">Last</span> $0.48</span>
+            <span class="pill pill-price"><span class="pill-label">Spread</span> 2.0%</span>
+            <span class="pill pill-volume"><span class="pill-label">Vol</span> 23,505</span>
+            <span class="pill pill-volume"><span class="pill-label">Diff</span> <span style="color:#0f0">+2,082</span></span>
+            <span class="pill pill-pnl"><span class="pill-label">Value</span> $2,640</span>
+            <span class="pill pill-pnl"><span class="pill-label">P&L</span> <span style="color:#0f0">$1,650</span></span>
+            <span class="pill pill-pnl" style="font-weight:bold;"><span class="pill-label">Return</span> <span style="color:#0f0">+166.7%</span></span>
+        </div>
+    </div>
+
+    <!-- LAYOUT 14: Metro/Tile -->
+    <div class="layout-section layout14">
+        <div class="layout-title">Layout 14: Metro/Tile Style</div>
+        <div class="metro-row">
+            <div class="metro-cell metro-header">Time</div>
+            <div class="metro-cell metro-header">Stock</div>
+            <div class="metro-cell metro-header">Diff</div>
+            <div class="metro-cell metro-header">Option</div>
+            <div class="metro-cell metro-header">Bid/Ask</div>
+            <div class="metro-cell metro-header">Last</div>
+            <div class="metro-cell metro-header">Spread</div>
+            <div class="metro-cell metro-header">Volume</div>
+            <div class="metro-cell metro-header">Vol Diff</div>
+            <div class="metro-cell metro-header">Value</div>
+            <div class="metro-cell metro-header">Return</div>
+        </div>
+        <div class="metro-row">
+            <div class="metro-cell metro-time">12:08</div>
+            <div class="metro-cell">$83.92</div>
+            <div class="metro-cell" style="color:#dc3545">-$1.06</div>
+            <div class="metro-cell" style="color:#0f0">$0.48</div>
+            <div class="metro-cell">$0.48/$0.49</div>
+            <div class="metro-cell">$0.48</div>
+            <div class="metro-cell">2.0%</div>
+            <div class="metro-cell">23,505</div>
+            <div class="metro-cell" style="color:#0f0">+2,082</div>
+            <div class="metro-cell">$2,640</div>
+            <div class="metro-cell" style="color:#0f0;font-weight:bold;">+166.7%</div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 15: Light Theme -->
+    <div class="layout-section layout15">
+        <div class="layout-title" style="color:#2d5a27;">Layout 15: Light/White Theme</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th><th>Stock</th><th>Stock Diff</th><th>Option</th><th>Bid/Ask</th><th>Last</th><th>Rel Spread</th>
+                    <th>Volume</th><th>Volume Diff</th>
+                    <th>Value</th><th>P&L</th><th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>12:08</td><td>$83.92</td><td class="negative">$-1.06</td><td class="positive">$0.48</td><td>$0.48 / $0.49</td><td>$0.48</td><td>2.0%</td><td>23,505</td><td class="positive">+2,082</td><td>$2,640</td><td class="positive">$1,650</td><td class="positive">+166.7%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LAYOUT 16: Neon Glow -->
+    <div class="layout-section layout16">
+        <div class="layout-title">Layout 16: Neon Glow Effect</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th><th>Stock</th><th>Stock Diff</th><th>Option</th><th>Bid/Ask</th><th>Last</th><th>Rel Spread</th>
+                    <th>Volume</th><th>Volume Diff</th>
+                    <th>Value</th><th>P&L</th><th>Return</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="color:#0f0">12:08</td><td>$83.92</td><td class="negative">$-1.06</td><td class="positive">$0.48</td><td>$0.48 / $0.49</td><td>$0.48</td><td>2.0%</td><td>23,505</td><td class="positive">+2,082</td><td>$2,640</td><td class="positive">$1,650</td><td class="positive">+166.7%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LAYOUT 17: Horizontal Scroll Cards -->
+    <div class="layout-section layout17">
+        <div class="layout-title">Layout 17: Horizontal Scroll Cards</div>
+        <div class="scroll-container">
+            <div class="scroll-row">
+                <div class="scroll-card">
+                    <div class="sc-header">
+                        <span class="sc-time">12:08</span>
+                        <span class="sc-return" style="color:#0f0">+166.7%</span>
+                    </div>
+                    <div class="sc-grid">
+                        <div><span class="sc-label">Stock</span><div>$83.92</div></div>
+                        <div><span class="sc-label">Diff</span><div style="color:#dc3545">-$1.06</div></div>
+                        <div><span class="sc-label">Option</span><div style="color:#0f0">$0.48</div></div>
+                        <div><span class="sc-label">Bid/Ask</span><div>$0.48/$0.49</div></div>
+                        <div><span class="sc-label">Volume</span><div>23,505</div></div>
+                        <div><span class="sc-label">Vol Diff</span><div style="color:#0f0">+2,082</div></div>
+                        <div><span class="sc-label">Value</span><div>$2,640</div></div>
+                        <div><span class="sc-label">P&L</span><div style="color:#0f0">$1,650</div></div>
+                    </div>
+                </div>
+                <div class="scroll-card">
+                    <div class="sc-header">
+                        <span class="sc-time">13:03</span>
+                        <span class="sc-return" style="color:#0f0">+2122.2%</span>
+                    </div>
+                    <div class="sc-grid">
+                        <div><span class="sc-label">Stock</span><div>$77.43</div></div>
+                        <div><span class="sc-label">Diff</span><div style="color:#dc3545">-$6.49</div></div>
+                        <div><span class="sc-label">Option</span><div style="color:#0f0">$4.00</div></div>
+                        <div><span class="sc-label">Bid/Ask</span><div>$4.00/$4.20</div></div>
+                        <div><span class="sc-label">Volume</span><div>48,809</div></div>
+                        <div><span class="sc-label">Vol Diff</span><div style="color:#0f0">+25,304</div></div>
+                        <div><span class="sc-label">Value</span><div>$22,000</div></div>
+                        <div><span class="sc-label">P&L</span><div style="color:#0f0">$21,010</div></div>
+                    </div>
+                </div>
+                <div class="scroll-card">
+                    <div class="sc-header">
+                        <span class="sc-time">14:13</span>
+                        <span class="sc-return" style="color:#0f0">+2622.2%</span>
+                    </div>
+                    <div class="sc-grid">
+                        <div><span class="sc-label">Stock</span><div>$75.82</div></div>
+                        <div><span class="sc-label">Diff</span><div style="color:#dc3545">-$0.41</div></div>
+                        <div><span class="sc-label">Option</span><div style="color:#0f0">$4.90</div></div>
+                        <div><span class="sc-label">Bid/Ask</span><div>$4.80/$5.15</div></div>
+                        <div><span class="sc-label">Volume</span><div>53,730</div></div>
+                        <div><span class="sc-label">Vol Diff</span><div style="color:#0f0">+84</div></div>
+                        <div><span class="sc-label">Value</span><div>$26,950</div></div>
+                        <div><span class="sc-label">P&L</span><div style="color:#0f0">$25,960</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 18: Accordion -->
+    <div class="layout-section layout18">
+        <div class="layout-title">Layout 18: Accordion Style (Expandable)</div>
+        <div class="accordion-row">
+            <div class="acc-summary">
+                <div class="acc-left">
+                    <span class="acc-time">12:08</span>
+                    <span>Stock: $83.92</span>
+                    <span style="color:#0f0">Option: $0.48</span>
+                </div>
+                <span style="color:#0f0;font-weight:bold;">+166.7%</span>
+            </div>
+            <div class="acc-details">
+                <div class="acc-section">
+                    <h4>Price Data</h4>
+                    <div class="acc-item"><span>Stock</span><span>$83.92</span></div>
+                    <div class="acc-item"><span>Diff</span><span style="color:#dc3545">-$1.06 (-1.25%)</span></div>
+                    <div class="acc-item"><span>Option</span><span style="color:#0f0">$0.48</span></div>
+                    <div class="acc-item"><span>Bid/Ask</span><span>$0.48 / $0.49</span></div>
+                    <div class="acc-item"><span>Last</span><span>$0.48</span></div>
+                    <div class="acc-item"><span>Spread</span><span>2.0%</span></div>
+                </div>
+                <div class="acc-section">
+                    <h4>Volume Data</h4>
+                    <div class="acc-item"><span>Volume</span><span>23,505</span></div>
+                    <div class="acc-item"><span>Diff</span><span style="color:#0f0">+2,082 (+9.7%)</span></div>
+                </div>
+                <div class="acc-section">
+                    <h4>P&L Data</h4>
+                    <div class="acc-item"><span>Value</span><span>$2,640</span></div>
+                    <div class="acc-item"><span>P&L</span><span style="color:#0f0">$1,650</span></div>
+                    <div class="acc-item"><span>Return</span><span style="color:#0f0;font-weight:bold;">+166.7%</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 19: Dashboard Widgets -->
+    <div class="layout-section layout19">
+        <div class="layout-title">Layout 19: Dashboard Widget Style</div>
+        <div class="widget-row">
+            <div class="widget widget-time">12:08</div>
+            <div class="widget">
+                <div class="widget-title">Price Data</div>
+                <div class="widget-grid">
+                    <div><span style="color:#666;font-size:9px;">Stock</span><div>$83.92</div></div>
+                    <div><span style="color:#666;font-size:9px;">Diff</span><div style="color:#dc3545">-$1.06</div></div>
+                    <div><span style="color:#666;font-size:9px;">Option</span><div style="color:#0f0">$0.48</div></div>
+                    <div><span style="color:#666;font-size:9px;">Bid/Ask</span><div>$0.48/$0.49</div></div>
+                    <div><span style="color:#666;font-size:9px;">Last</span><div>$0.48</div></div>
+                    <div><span style="color:#666;font-size:9px;">Spread</span><div>2.0%</div></div>
+                </div>
+            </div>
+            <div class="widget">
+                <div class="widget-title">Volume</div>
+                <div class="widget-grid">
+                    <div><span style="color:#666;font-size:9px;">Total</span><div>23,505</div></div>
+                    <div><span style="color:#666;font-size:9px;">Diff</span><div style="color:#0f0">+2,082</div></div>
+                </div>
+            </div>
+            <div class="widget">
+                <div class="widget-title">P&L</div>
+                <div class="widget-grid">
+                    <div><span style="color:#666;font-size:9px;">Value</span><div>$2,640</div></div>
+                    <div><span style="color:#666;font-size:9px;">P&L</span><div style="color:#0f0">$1,650</div></div>
+                    <div><span style="color:#666;font-size:9px;">Return</span><div style="color:#0f0;font-weight:bold;">+166.7%</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYOUT 20: Matrix -->
+    <div class="layout-section layout20">
+        <div class="layout-title" style="color:#0f0;">Layout 20: Matrix/Terminal Style</div>
+        <div class="matrix-row">
+            <span class="m-time">12:08</span>
+            <span class="m-sep">|</span>
+            <span class="m-section"><span class="m-label">STK:</span><span class="m-value">$83.92</span></span>
+            <span class="m-section"><span class="m-label">DIF:</span><span class="m-negative">-$1.06</span></span>
+            <span class="m-section"><span class="m-label">OPT:</span><span class="m-positive">$0.48</span></span>
+            <span class="m-section"><span class="m-label">B/A:</span><span class="m-value">$0.48/$0.49</span></span>
+            <span class="m-section"><span class="m-label">LST:</span><span class="m-value">$0.48</span></span>
+            <span class="m-section"><span class="m-label">SPR:</span><span class="m-value">2.0%</span></span>
+            <span class="m-sep">|</span>
+            <span class="m-section"><span class="m-label">VOL:</span><span class="m-value">23505</span></span>
+            <span class="m-section"><span class="m-label">DIF:</span><span class="m-positive">+2082</span></span>
+            <span class="m-sep">|</span>
+            <span class="m-section"><span class="m-label">VAL:</span><span class="m-value">$2640</span></span>
+            <span class="m-section"><span class="m-label">P&L:</span><span class="m-positive">$1650</span></span>
+            <span class="m-section"><span class="m-label">RET:</span><span class="m-positive" style="font-weight:bold;">+166.7%</span></span>
+        </div>
+        <div class="matrix-row" style="background:rgba(0,255,0,0.05);">
+            <span class="m-time">13:03</span>
+            <span class="m-sep">|</span>
+            <span class="m-section"><span class="m-label">STK:</span><span class="m-value">$77.43</span></span>
+            <span class="m-section"><span class="m-label">DIF:</span><span class="m-negative">-$6.49</span></span>
+            <span class="m-section"><span class="m-label">OPT:</span><span class="m-positive">$4.00</span></span>
+            <span class="m-section"><span class="m-label">B/A:</span><span class="m-value">$4.00/$4.20</span></span>
+            <span class="m-section"><span class="m-label">LST:</span><span class="m-value">$4.00</span></span>
+            <span class="m-section"><span class="m-label">SPR:</span><span class="m-value">4.9%</span></span>
+            <span class="m-sep">|</span>
+            <span class="m-section"><span class="m-label">VOL:</span><span class="m-value">48809</span></span>
+            <span class="m-section"><span class="m-label">DIF:</span><span class="m-positive">+25304</span></span>
+            <span class="m-sep">|</span>
+            <span class="m-section"><span class="m-label">VAL:</span><span class="m-value">$22000</span></span>
+            <span class="m-section"><span class="m-label">P&L:</span><span class="m-positive">$21010</span></span>
+            <span class="m-section"><span class="m-label">RET:</span><span class="m-positive" style="font-weight:bold;">+2122.2%</span></span>
+        </div>
+    </div>
+
+</body>
+</html>
