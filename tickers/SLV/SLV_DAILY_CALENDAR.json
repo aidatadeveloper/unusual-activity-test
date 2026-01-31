@@ -4,6 +4,36 @@
   "description": "All daily snapshots",
   "entries": [
     {
+      "date": "2026-01-30",
+      "displayLabel": "1/30 18:14",
+      "path": "DAILY/202601/SLV_20260130_1814.html"
+    },
+    {
+      "date": "2026-01-29",
+      "displayLabel": "1/29 16:16",
+      "path": "DAILY/202601/SLV_20260129_1616.html"
+    },
+    {
+      "date": "2026-01-28",
+      "displayLabel": "1/28 21:56",
+      "path": "DAILY/202601/SLV_20260128_2156.html"
+    },
+    {
+      "date": "2026-01-27",
+      "displayLabel": "1/27 22:16",
+      "path": "DAILY/202601/SLV_20260127_2216.html"
+    },
+    {
+      "date": "2026-01-26",
+      "displayLabel": "1/26 22:29",
+      "path": "DAILY/202601/SLV_20260126_2229.html"
+    },
+    {
+      "date": "2026-01-23",
+      "displayLabel": "1/23 21:31",
+      "path": "DAILY/202601/SLV_20260123_2131.html"
+    },
+    {
       "date": "2026-01-21",
       "displayLabel": "01/21 09:50",
       "path": "DAILY/202601/SLV_20260121_0950.html"

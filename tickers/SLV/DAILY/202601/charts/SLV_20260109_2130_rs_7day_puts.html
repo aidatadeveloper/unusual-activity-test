@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLV - 7-Day ATM Spreads - Puts Only - $72.38</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; background: #000; color: #fff; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 20px; }
+        .detail-modal { display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 2000; justify-content: center; align-items: flex-start; overflow-y: auto; padding: 20px; }
+        .detail-container { background: rgba(0, 15, 0, 0.95); border: 1px solid rgba(0, 255, 0, 0.5); border-radius: 8px; padding: 20px; width: 95%; max-width: 1400px; margin: 20px auto; }
+        .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(0, 255, 0, 0.3); }
+        .detail-header h3 { font-size: 18px; font-weight: normal; flex: 1; text-align: center; color: #0f0; }
+        .detail-subtitle { font-size: 12px; color: rgba(0, 255, 0, 0.6); text-align: center; margin-top: 5px; }
+        .detail-close { background: transparent; border: 1px solid rgba(0, 255, 0, 0.5); color: #0f0; width: 32px; height: 32px; border-radius: 4px; cursor: pointer; font-size: 18px; transition: all 0.3s; text-decoration: none; display: flex; justify-content: center; align-items: center; }
+        .detail-close:hover { background: rgba(255, 0, 0, 0.3); border-color: #f00; color: #f00; }
+        .section-title { font-size: 16px; color: #0f0; margin: 30px 0 15px 0; padding-bottom: 8px; border-bottom: 2px solid rgba(0, 255, 0, 0.4); }
+        .section-title:first-of-type { margin-top: 10px; }
+        .subsection-title { font-size: 14px; margin: 20px 0 10px 0; padding-left: 10px; border-left: 3px solid; }
+        .subsection-title.call-color { border-color: #00ff00; }
+        .subsection-title.put-color { border-color: #ff6666; }
+        .expiry-section { margin-bottom: 30px; }
+        .expiry-summary { display: flex; gap: 30px; margin: 15px 0; padding: 15px; background: rgba(0, 255, 0, 0.05); border-radius: 8px; justify-content: center; flex-wrap: wrap; }
+        .summary-item { display: flex; align-items: center; gap: 8px; }
+        .summary-label { font-size: 13px; }
+        .summary-value { font-size: 16px; font-weight: bold; }
+        .summary-count { font-size: 11px; color: rgba(0, 255, 0, 0.5); }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 15px; }
+        th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid rgba(0, 255, 0, 0.15); }
+        th { background: rgba(0, 255, 0, 0.1); color: #0f0; font-weight: 500; }
+        td:first-child, th:first-child { text-align: center; width: 40px; }
+        td:nth-child(2), th:nth-child(2) { text-align: left; }
+        tr:hover { background: rgba(0, 255, 0, 0.05); }
+        .call-color { color: #00ff00; }
+        .put-color { color: #ff6666; }
+        .rs-excellent { color: #00ff00; font-weight: bold; }
+        .rs-acceptable { color: #ffff00; }
+        .rs-caution { color: #ff9900; }
+        .rs-avoid { color: #ff0000; font-weight: bold; }
+        .legend { display: flex; gap: 20px; margin: 15px 0; font-size: 12px; justify-content: center; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .timestamp { text-align: center; color: rgba(0, 255, 0, 0.5); font-size: 0.75rem; margin-top: 20px; }
+        .filter-info { text-align: center; color: rgba(0, 255, 0, 0.7); font-size: 11px; margin-bottom: 15px; padding: 8px; background: rgba(0, 255, 0, 0.05); border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="detail-modal">
+        <div class="detail-container">
+            <div class="detail-header">
+                <span></span>
+                <div>
+                    <h3>SLV - 7-Day ATM Spreads - Puts Only - $72.38</h3>
+                    <div class="detail-subtitle">In-The-Money Options Bid-Ask Spread Analysis</div>
+                </div>
+                <a href="../SLV_20260109_2130.html" class="detail-close" id="closeBtn" title="Back to Dashboard (ESC)">&times;</a>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><span class="legend-dot" style="background:#00ff00;"></span><span>Excellent (≤1%)</span></div>
+                <div class="legend-item"><span class="legend-dot" style="background:#ffff00;"></span><span>Acceptable (1-3%)</span></div>
+                <div class="legend-item"><span class="legend-dot" style="background:#ff9900;"></span><span>Caution (3-7%)</span></div>
+                <div class="legend-item"><span class="legend-dot" style="background:#ff0000;"></span><span>Avoid (>7%)</span></div>
+            </div>
+            <div class="filter-info">
+                Showing 40 ITM options (20 tightest + 20 widest)
+            </div>
+            
+            <div class="expiry-section">
+                <h4 class="section-title">Top 20 Tightest Spreads (Best Liquidity)</h4>
+                <div class="expiry-summary">
+                    <div class="summary-item">
+                        <span class="summary-label call-color">Showing:</span>
+                        <span class="summary-value">20 options</span>
+                    </div>
+                </div>
+                
+            <table>
+                <thead>
+                    <tr><th>#</th><th>Symbol</th><th>Type</th><th>Strike</th><th>Bid</th><th>Ask</th><th>Mark</th><th>Spread %</th><th>Volume</th><th>OI</th><th>Intrinsic</th><th>Extrinsic</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$23.50</td>
+                    <td>$48.85</td>
+                    <td>$48.95</td>
+                    <td>$48.90</td>
+                    <td class="rs-excellent">0.20%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$48.88</td>
+                    <td>$-19.60</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$50.00</td>
+                    <td>$25.45</td>
+                    <td>$25.50</td>
+                    <td>$25.48</td>
+                    <td class="rs-excellent">0.20%</td>
+                    <td>731</td>
+                    <td>34,376</td>
+                    <td>$22.38</td>
+                    <td>$3.12</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$24.00</td>
+                    <td>$48.35</td>
+                    <td>$48.45</td>
+                    <td>$48.40</td>
+                    <td class="rs-excellent">0.21%</td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td>$48.38</td>
+                    <td>$0.11</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$24.50</td>
+                    <td>$47.85</td>
+                    <td>$47.95</td>
+                    <td>$47.90</td>
+                    <td class="rs-excellent">0.21%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$47.88</td>
+                    <td>$-36.82</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$25.00</td>
+                    <td>$47.35</td>
+                    <td>$47.45</td>
+                    <td>$47.40</td>
+                    <td class="rs-excellent">0.21%</td>
+                    <td>3</td>
+                    <td>1,148</td>
+                    <td>$47.38</td>
+                    <td>$0.09</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$25.50</td>
+                    <td>$46.85</td>
+                    <td>$46.95</td>
+                    <td>$46.90</td>
+                    <td class="rs-excellent">0.21%</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>$46.88</td>
+                    <td>$-0.63</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$26.00</td>
+                    <td>$46.35</td>
+                    <td>$46.45</td>
+                    <td>$46.40</td>
+                    <td class="rs-excellent">0.22%</td>
+                    <td>51</td>
+                    <td>439</td>
+                    <td>$46.38</td>
+                    <td>$0.17</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$26.50</td>
+                    <td>$45.85</td>
+                    <td>$45.95</td>
+                    <td>$45.90</td>
+                    <td class="rs-excellent">0.22%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$45.88</td>
+                    <td>$-17.43</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$27.00</td>
+                    <td>$45.35</td>
+                    <td>$45.45</td>
+                    <td>$45.40</td>
+                    <td class="rs-excellent">0.22%</td>
+                    <td>135</td>
+                    <td>1,669</td>
+                    <td>$45.38</td>
+                    <td>$0.10</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$27.50</td>
+                    <td>$44.85</td>
+                    <td>$44.95</td>
+                    <td>$44.90</td>
+                    <td class="rs-excellent">0.22%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$44.88</td>
+                    <td>$-6.98</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$28.00</td>
+                    <td>$44.35</td>
+                    <td>$44.45</td>
+                    <td>$44.40</td>
+                    <td class="rs-excellent">0.23%</td>
+                    <td>131</td>
+                    <td>4,524</td>
+                    <td>$44.38</td>
+                    <td>$-0.18</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$28.50</td>
+                    <td>$43.85</td>
+                    <td>$43.95</td>
+                    <td>$43.90</td>
+                    <td class="rs-excellent">0.23%</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>$43.88</td>
+                    <td>$0.27</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$29.00</td>
+                    <td>$43.35</td>
+                    <td>$43.45</td>
+                    <td>$43.40</td>
+                    <td class="rs-excellent">0.23%</td>
+                    <td>107</td>
+                    <td>4,517</td>
+                    <td>$43.38</td>
+                    <td>$0.07</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$29.50</td>
+                    <td>$42.85</td>
+                    <td>$42.95</td>
+                    <td>$42.90</td>
+                    <td class="rs-excellent">0.23%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$42.88</td>
+                    <td>$-2.38</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$115.00</td>
+                    <td>$42.55</td>
+                    <td>$42.65</td>
+                    <td>$42.60</td>
+                    <td class="rs-excellent">0.23%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$42.62</td>
+                    <td>$-0.92</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$30.00</td>
+                    <td>$42.35</td>
+                    <td>$42.45</td>
+                    <td>$42.40</td>
+                    <td class="rs-excellent">0.24%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$42.38</td>
+                    <td>$-2.53</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$30.00</td>
+                    <td>$42.35</td>
+                    <td>$42.45</td>
+                    <td>$42.40</td>
+                    <td class="rs-excellent">0.24%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$42.38</td>
+                    <td>$-42.38</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$10.00</td>
+                    <td>$62.30</td>
+                    <td>$62.45</td>
+                    <td>$62.38</td>
+                    <td class="rs-excellent">0.24%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$62.38</td>
+                    <td>$-1.97</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$11.00</td>
+                    <td>$61.30</td>
+                    <td>$61.45</td>
+                    <td>$61.38</td>
+                    <td class="rs-excellent">0.24%</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>$61.38</td>
+                    <td>$0.09</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$30.50</td>
+                    <td>$41.85</td>
+                    <td>$41.95</td>
+                    <td>$41.90</td>
+                    <td class="rs-excellent">0.24%</td>
+                    <td>40</td>
+                    <td>209</td>
+                    <td>$41.88</td>
+                    <td>$-0.06</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+            
+            <div class="expiry-section">
+                <h4 class="section-title">Top 20 Widest Spreads (Worst Liquidity)</h4>
+                <div class="expiry-summary">
+                    <div class="summary-item">
+                        <span class="summary-label put-color">Showing:</span>
+                        <span class="summary-value">20 options</span>
+                    </div>
+                </div>
+                
+            <table>
+                <thead>
+                    <tr><th>#</th><th>Symbol</th><th>Type</th><th>Strike</th><th>Bid</th><th>Ask</th><th>Mark</th><th>Spread %</th><th>Volume</th><th>OI</th><th>Intrinsic</th><th>Extrinsic</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$72.50</td>
+                    <td>$0.13</td>
+                    <td>$0.19</td>
+                    <td>$0.16</td>
+                    <td class="rs-avoid">37.50%</td>
+                    <td>24,176</td>
+                    <td>1,292</td>
+                    <td>$0.12</td>
+                    <td>$0.04</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$72.50</td>
+                    <td>$13.60</td>
+                    <td>$17.50</td>
+                    <td>$15.55</td>
+                    <td class="rs-avoid">25.08%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$0.12</td>
+                    <td>$-0.12</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$73.00</td>
+                    <td>$13.95</td>
+                    <td>$17.80</td>
+                    <td>$15.88</td>
+                    <td class="rs-avoid">24.24%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$0.62</td>
+                    <td>$14.78</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$72.00</td>
+                    <td>$14.70</td>
+                    <td>$18.75</td>
+                    <td>$16.73</td>
+                    <td class="rs-avoid">24.21%</td>
+                    <td>10</td>
+                    <td>43</td>
+                    <td>$0.38</td>
+                    <td>$16.42</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$73.50</td>
+                    <td>$14.25</td>
+                    <td>$18.15</td>
+                    <td>$16.20</td>
+                    <td class="rs-avoid">24.07%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$1.12</td>
+                    <td>$-1.12</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$73.00</td>
+                    <td>$15.50</td>
+                    <td>$19.65</td>
+                    <td>$17.58</td>
+                    <td class="rs-avoid">23.61%</td>
+                    <td>1,613</td>
+                    <td>7</td>
+                    <td>$0.62</td>
+                    <td>$16.73</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$74.50</td>
+                    <td>$14.80</td>
+                    <td>$18.75</td>
+                    <td>$16.77</td>
+                    <td class="rs-avoid">23.55%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$2.12</td>
+                    <td>$-2.12</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$74.00</td>
+                    <td>$14.60</td>
+                    <td>$18.45</td>
+                    <td>$16.52</td>
+                    <td class="rs-avoid">23.31%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$1.62</td>
+                    <td>$23.73</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$69.50</td>
+                    <td>$15.55</td>
+                    <td>$19.65</td>
+                    <td>$17.60</td>
+                    <td class="rs-avoid">23.30%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$2.88</td>
+                    <td>$13.47</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$69.00</td>
+                    <td>$15.70</td>
+                    <td>$19.80</td>
+                    <td>$17.75</td>
+                    <td class="rs-avoid">23.10%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$3.38</td>
+                    <td>$13.47</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$74.00</td>
+                    <td>$16.15</td>
+                    <td>$20.30</td>
+                    <td>$18.23</td>
+                    <td class="rs-avoid">22.76%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$1.62</td>
+                    <td>$17.43</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$71.00</td>
+                    <td>$15.20</td>
+                    <td>$19.10</td>
+                    <td>$17.15</td>
+                    <td class="rs-avoid">22.74%</td>
+                    <td>3</td>
+                    <td>437</td>
+                    <td>$1.38</td>
+                    <td>$15.78</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$68.00</td>
+                    <td>$16.10</td>
+                    <td>$20.15</td>
+                    <td>$18.13</td>
+                    <td class="rs-avoid">22.34%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$4.38</td>
+                    <td>$11.41</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$76.00</td>
+                    <td>$15.85</td>
+                    <td>$19.75</td>
+                    <td>$17.80</td>
+                    <td class="rs-avoid">21.91%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$3.62</td>
+                    <td>$21.19</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$66.50</td>
+                    <td>$16.65</td>
+                    <td>$20.70</td>
+                    <td>$18.67</td>
+                    <td class="rs-avoid">21.69%</td>
+                    <td>8</td>
+                    <td>154</td>
+                    <td>$5.88</td>
+                    <td>$13.54</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$68.50</td>
+                    <td>$16.10</td>
+                    <td>$19.95</td>
+                    <td>$18.02</td>
+                    <td class="rs-avoid">21.37%</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>$3.88</td>
+                    <td>$14.47</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$71.50</td>
+                    <td>$15.05</td>
+                    <td>$18.65</td>
+                    <td>$16.85</td>
+                    <td class="rs-avoid">21.36%</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>$0.88</td>
+                    <td>$15.12</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$76.00</td>
+                    <td>$17.45</td>
+                    <td>$21.60</td>
+                    <td>$19.52</td>
+                    <td class="rs-avoid">21.26%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$3.62</td>
+                    <td>$15.79</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>SLV</td>
+                    <td class="put-color">PUT</td>
+                    <td>$77.00</td>
+                    <td>$16.55</td>
+                    <td>$20.45</td>
+                    <td>$18.50</td>
+                    <td class="rs-avoid">21.08%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$4.62</td>
+                    <td>$23.43</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>SLV</td>
+                    <td class="call-color">CALL</td>
+                    <td>$64.50</td>
+                    <td>$17.45</td>
+                    <td>$21.55</td>
+                    <td>$19.50</td>
+                    <td class="rs-avoid">21.03%</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>$7.88</td>
+                    <td>$10.22</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="timestamp">Generated: 2026-01-09 21:30:04</div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { window.location.href = '../SLV_20260109_2130.html'; }
+        });
+    </script>
+</body>
+</html>

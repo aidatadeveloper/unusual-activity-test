@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLV - Option Volume - 7 Day Total (1/7)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Modal/Popup Styling - matches original exactly */
+        .chart-modal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chart-container {
+            background: rgba(0, 15, 0, 0.95);
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .chart-header h3 {
+            font-size: 18px;
+            font-weight: normal;
+            flex: 1;
+            text-align: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            color: #0f0;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 255, 0, 0.2);
+            border-color: #0f0;
+        }
+
+        .chart-close {
+            background: transparent;
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            color: #0f0;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chart-close:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: #f00;
+            color: #f00;
+        }
+
+        .chart-body {
+            min-height: 300px;
+            position: relative;
+        }
+
+        .timestamp {
+            text-align: center;
+            color: rgba(0, 255, 0, 0.5);
+            font-size: 0.75rem;
+            margin-top: 15px;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-modal">
+        <div class="chart-container">
+            <div class="chart-header">
+                <a href="SLV_20260105_2142_option_volume_prior_seven_day_total.html" class="nav-btn" id="prevBtn" title="Previous" style="">&larr;</a>
+                <h3>SLV - Option Volume - 7 Day Total (1/7)</h3>
+                <div class="header-controls">
+                    <a href="#" class="nav-btn" id="nextBtn" title="Next" style="visibility:hidden;">&rarr;</a>
+                    <a href="../SLV_20260107_2134.html" class="chart-close" id="closeBtn" title="Back to Dashboard (ESC)">&times;</a>
+                </div>
+            </div>
+            <div class="chart-body">
+                <canvas id="metricChart"></canvas>
+            </div>
+            <div class="timestamp">Generated: 2026-01-07 21:34:31</div>
+        </div>
+    </div>
+    <script>
+        const chartData = {"labels": ["12/24", "12/26", "12/29", "12/30", "01/02", "01/05", "01/07", "01/07"], "values": [58825951, 139161231, 153207910, 117759249, 75553309, 103313332, 105539107, 93679522], "highlight_last": true};
+        const ctx = document.getElementById('metricChart').getContext('2d');
+
+        const chartType = 'line';
+        const isPie = chartType === 'pie';
+        const isCallPutChart = false;
+        const isTimeline = chartData.is_timeline === true;
+        const isPutTimeline = chartData.is_put_timeline === true;  // Red bars for Put-only charts
+        const isCallPutTimeline = chartData.is_call_put_timeline === true;
+        const isGroupedCallPut = chartData.is_grouped_call_put === true;  // Side-by-side bars
+        const isStackedCallPut = chartData.is_stacked_call_put === true;  // Stacked bars - calls on bottom, puts on top
+        const isGrouped = chartData.is_grouped === true;
+        const isPercentage = chartData.is_percentage === true;
+        const isComparisonTimeline = chartData.is_comparison_timeline === true;  // Current vs Prior line comparison
+        const isPutChart = chartData.is_put_chart === true;  // Red bars for Put-only chart
+
+        // Color schemes - Green for Calls, Red for Puts
+        const callPutColors = ['rgba(0, 255, 0, 0.8)', 'rgba(255, 50, 50, 0.8)'];
+        const callPutBorders = ['rgba(0, 255, 0, 0.9)', 'rgba(255, 50, 50, 0.9)'];
+        // Varying shades of green for non-call/put bar charts
+        const barColors = ['rgba(0, 255, 0, 0.7)', 'rgba(0, 200, 0, 0.7)', 'rgba(0, 150, 0, 0.7)', 'rgba(0, 100, 0, 0.7)', 'rgba(0, 180, 0, 0.7)', 'rgba(0, 220, 0, 0.7)', 'rgba(0, 160, 0, 0.7)'];
+        const lineColor = 'rgba(0, 255, 0, 1)';
+
+        // Colors for grouped comparison charts (Prior vs Current)
+        const groupedColors = [
+            { bg: 'rgba(255, 165, 0, 0.7)', border: 'rgba(255, 165, 0, 0.9)' },  // Orange for Prior
+            { bg: 'rgba(0, 255, 0, 0.7)', border: 'rgba(0, 255, 0, 0.9)' }       // Green for Current
+        ];
+
+        // Build datasets based on chart type
+        let datasets;
+        if (isGroupedCallPut) {
+            // Call/Put side-by-side grouped bars (Option Volume)
+            datasets = [
+                {
+                    label: 'Calls',
+                    data: chartData.call_values,
+                    backgroundColor: 'rgba(0, 255, 0, 0.7)',
+                    borderColor: 'rgba(0, 255, 0, 0.9)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Puts',
+                    data: chartData.put_values,
+                    backgroundColor: 'rgba(255, 50, 50, 0.7)',
+                    borderColor: 'rgba(255, 50, 50, 0.9)',
+                    borderWidth: 1
+                }
+            ];
+        } else if (isStackedCallPut) {
+            // Stacked bar chart - calls on bottom (green), puts on top (red)
+            datasets = [
+                {
+                    label: 'Calls',
+                    data: chartData.call_values,
+                    backgroundColor: 'rgba(0, 255, 0, 0.7)',
+                    borderColor: 'rgba(0, 255, 0, 0.9)',
+                    borderWidth: 1,
+                    stack: 'callput'
+                },
+                {
+                    label: 'Puts',
+                    data: chartData.put_values,
+                    backgroundColor: 'rgba(255, 50, 50, 0.7)',
+                    borderColor: 'rgba(255, 50, 50, 0.9)',
+                    borderWidth: 1,
+                    stack: 'callput'
+                }
+            ];
+        } else if (isCallPutTimeline) {
+            // Call/Put stacked bar chart
+            datasets = [
+                {
+                    label: 'Calls',
+                    data: chartData.call_values,
+                    backgroundColor: 'rgba(0, 255, 0, 0.7)',
+                    borderColor: 'rgba(0, 255, 0, 0.9)',
+                    borderWidth: 1,
+                    stack: 'actual'
+                },
+                {
+                    label: 'Puts',
+                    data: chartData.put_values,
+                    backgroundColor: 'rgba(255, 50, 50, 0.7)',
+                    borderColor: 'rgba(255, 50, 50, 0.9)',
+                    borderWidth: 1,
+                    stack: 'actual'
+                }
+            ];
+        } else if (isComparisonTimeline && chartData.datasets) {
+            // Line chart comparing Prior vs Current
+            const comparisonLineColors = [
+                { bg: 'rgba(255, 165, 0, 0.2)', border: 'rgba(255, 165, 0, 1)' },  // Orange for Prior
+                { bg: 'rgba(0, 255, 0, 0.2)', border: 'rgba(0, 255, 0, 1)' }       // Green for Current
+            ];
+            datasets = chartData.datasets.map((ds, i) => ({
+                label: ds.label,
+                data: ds.values,
+                backgroundColor: comparisonLineColors[i % comparisonLineColors.length].bg,
+                borderColor: comparisonLineColors[i % comparisonLineColors.length].border,
+                borderWidth: 2,
+                tension: 0.4,
+                fill: false,
+                spanGaps: false,  // Don't connect across null values - show gaps
+                pointRadius: 2,
+                pointHoverRadius: 5
+            }));
+        } else if (isGrouped && chartData.datasets) {
+            // Grouped bar chart comparing Prior vs Current
+            // Use dataset color if provided, otherwise fall back to default groupedColors
+            datasets = chartData.datasets.map((ds, i) => {
+                const defaultColor = groupedColors[i % groupedColors.length];
+                const customColor = ds.color;
+                // Convert hex color to rgba if provided (e.g., #dc3545 -> rgba(220, 53, 69, 0.7))
+                let bgColor = defaultColor.bg;
+                let borderColor = defaultColor.border;
+                if (customColor) {
+                    // Parse hex color
+                    const hex = customColor.replace('#', '');
+                    const r = parseInt(hex.substr(0, 2), 16);
+                    const g = parseInt(hex.substr(2, 2), 16);
+                    const b = parseInt(hex.substr(4, 2), 16);
+                    bgColor = `rgba(${r}, ${g}, ${b}, 0.7)`;
+                    borderColor = `rgba(${r}, ${g}, ${b}, 0.9)`;
+                }
+                return {
+                    label: ds.label,
+                    data: ds.values,
+                    backgroundColor: bgColor,
+                    borderColor: borderColor,
+                    borderWidth: 1
+                };
+            });
+        } else if (isPutTimeline) {
+            // Put-only intraday timeline - RED bars
+            datasets = [
+                {
+                    label: 'Puts',
+                    data: chartData.actual_values,
+                    backgroundColor: 'rgba(255, 50, 50, 0.7)',
+                    borderColor: 'rgba(255, 50, 50, 0.9)',
+                    borderWidth: 1
+                }
+            ];
+        } else if (isTimeline) {
+            // Call intraday timeline - GREEN bars (default)
+            datasets = [
+                {
+                    label: 'Calls',
+                    data: chartData.actual_values,
+                    backgroundColor: 'rgba(0, 255, 0, 0.7)',
+                    borderColor: 'rgba(0, 255, 0, 0.9)',
+                    borderWidth: 1
+                }
+            ];
+        } else if (chartData.is_dual_line) {
+            // Dual-line chart (e.g., Current vs Next Expected Move, or Calls vs Puts)
+            const lineLabels = chartData.line_labels || ['Line 1', 'Line 2'];
+            // Use red for Puts, blue for other second lines
+            const isPutsLine = lineLabels[1] === 'Puts';
+            const line2Color = isPutsLine ? 'rgba(255, 50, 50, 1)' : 'rgba(0, 200, 255, 1)';
+            const line2BgColor = isPutsLine ? 'rgba(255, 50, 50, 0.2)' : 'rgba(0, 200, 255, 0.2)';
+            const line2PointColor = isPutsLine ? 'rgba(255, 50, 50, 1)' : 'rgba(0, 200, 255, 1)';
+            datasets = [
+                {
+                    label: lineLabels[0],
+                    data: chartData.values,
+                    backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                    borderColor: 'rgba(0, 255, 0, 1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: false,
+                    spanGaps: false,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: chartData.highlight_last ?
+                        chartData.values.map((v, i) => i === chartData.values.length - 1 ? 'rgba(0, 255, 0, 1)' : 'rgba(0, 255, 0, 0.7)') :
+                        'rgba(0, 255, 0, 0.7)'
+                },
+                {
+                    label: lineLabels[1],
+                    data: chartData.next_values,
+                    backgroundColor: line2BgColor,
+                    borderColor: line2Color,
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: false,
+                    spanGaps: false,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    pointStyle: 'circle',
+                    pointBackgroundColor: line2PointColor
+                }
+            ];
+        } else {
+            // Standard single-dataset chart
+            let bgColors, borderColors;
+            if (isPie || isCallPutChart) {
+                bgColors = callPutColors;
+                borderColors = callPutBorders;
+            } else if (chartType === 'line') {
+                bgColors = 'rgba(0, 255, 0, 0.2)';
+                borderColors = lineColor;
+            } else if (isPutChart) {
+                // Red bars for put-only charts
+                bgColors = 'rgba(255, 50, 50, 0.7)';
+                borderColors = 'rgba(255, 50, 50, 0.9)';
+            } else {
+                bgColors = barColors.slice(0, chartData.values.length);
+                borderColors = 'rgba(0, 255, 0, 0.9)';
+            }
+            datasets = [{
+                label: 'OPTION VOLUME',
+                data: chartData.values,
+                backgroundColor: bgColors,
+                borderColor: borderColors,
+                borderWidth: chartType === 'line' ? 2 : 1,
+                tension: 0.4,
+                fill: chartType === 'line' ? false : undefined
+            }];
+        }
+
+        new Chart(ctx, {
+            type: chartType,
+            data: {
+                labels: chartData.labels,
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: '#0f0',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let value = context.parsed.y !== undefined ? context.parsed.y : context.parsed;
+                                let label = context.label || context.dataset.label || '';
+                                if (isPercentage) {
+                                    return label + ': ' + value.toFixed(2) + '%';
+                                }
+                                if (typeof value === 'number') {
+                                    if (value >= 1000000000) {
+                                        return label + ': $' + (value / 1000000000).toFixed(2) + 'B';
+                                    } else if (value >= 1000000) {
+                                        return label + ': $' + (value / 1000000).toFixed(2) + 'M';
+                                    } else if (value >= 1000) {
+                                        return label + ': ' + (value / 1000).toFixed(1) + 'K';
+                                    }
+                                    return label + ': ' + value.toLocaleString();
+                                }
+                                return label + ': ' + value;
+                            }
+                        }
+                    }
+                },
+                scales: isPie ? undefined : {
+                    x: {
+                        stacked: isCallPutTimeline || isStackedCallPut,
+                        ticks: {
+                            color: '#0f0'
+                        },
+                        grid: {
+                            color: 'rgba(0, 255, 0, 0.1)'
+                        }
+                    },
+                    y: isPercentage ? {
+                        stacked: isCallPutTimeline || isStackedCallPut,
+                        ticks: {
+                            color: '#0f0',
+                            callback: function(value) {
+                                return value.toFixed(2) + '%';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 255, 0, 0.1)'
+                        }
+                    } : {
+                        stacked: isCallPutTimeline || isStackedCallPut,
+                        ticks: {
+                            color: '#0f0',
+                            callback: function(value) {
+                                if (value >= 1000000000) return (value / 1000000000).toFixed(1) + 'B';
+                                if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                                if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
+                                return value;
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 255, 0, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC key - go back to dashboard
+                window.location.href = '../SLV_20260107_2134.html';
+            } else if (e.key === 'ArrowLeft') {
+                // Left arrow - go to previous chart
+                const prevBtn = document.getElementById('prevBtn');
+                if (prevBtn && prevBtn.style.visibility !== 'hidden') {
+                    window.location.href = prevBtn.href;
+                }
+            } else if (e.key === 'ArrowRight') {
+                // Right arrow - go to next chart
+                const nextBtn = document.getElementById('nextBtn');
+                if (nextBtn && nextBtn.style.visibility !== 'hidden') {
+                    window.location.href = nextBtn.href;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
