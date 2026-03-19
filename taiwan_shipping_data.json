@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-19 12:49:28",
+  "generated_at": "2026-03-19 14:13:48",
   "ports": [
     "Kaohsiung",
     "Keelung",
@@ -10,36 +10,49 @@
     {
       "trade_date": "2026-03-19",
       "ports": {
-        "Kaohsiung": {
-          "vessels_in_port": 557,
-          "arrivals_24h": 96,
-          "departures_24h": 102,
-          "expected_arrivals": 44
-        },
         "Keelung": {
-          "vessels_in_port": 44,
-          "arrivals_24h": 13,
-          "departures_24h": 17,
-          "expected_arrivals": 16
+          "vessels_in_port": 43,
+          "arrivals_24h": 12,
+          "departures_24h": 18,
+          "expected_arrivals": 17
         },
-        "Taichung": {
-          "vessels_in_port": 23,
-          "arrivals_24h": 29,
-          "departures_24h": 27,
-          "expected_arrivals": 26
+        "Kaohsiung": {
+          "vessels_in_port": 561,
+          "arrivals_24h": 93,
+          "departures_24h": 94,
+          "expected_arrivals": 46
         },
         "Taipei": {
           "vessels_in_port": 13,
-          "arrivals_24h": 17,
-          "departures_24h": 16,
+          "arrivals_24h": 16,
+          "departures_24h": 15,
           "expected_arrivals": 16
+        },
+        "Taichung": {
+          "vessels_in_port": 21,
+          "arrivals_24h": 29,
+          "departures_24h": 29,
+          "expected_arrivals": 27
         }
       },
+      "strait": {
+        "total_vessels": 182,
+        "moving": 133,
+        "stationary": 49
+      },
       "totals": {
-        "vessels_in_port": 637,
-        "arrivals_24h": 155,
-        "departures_24h": 162,
-        "expected_arrivals": 102
+        "vessels_in_port": 638,
+        "arrivals_24h": 150,
+        "departures_24h": 156,
+        "expected_arrivals": 106
+      },
+      "ais_strait": {
+        "total_vessels": 117,
+        "moving": 15,
+        "stationary": 102,
+        "avg_speed_knots": 3.6,
+        "max_speed_knots": 13.7,
+        "source": "aisstream.io"
       }
     }
   ]
