@@ -4937,7 +4937,8 @@
             {date:'2026-03-18',title:'PLA sends 8 vessels, 24 aircraft across median line',url:'https://www.taipeitimes.com/News/taiwan/archives/2026/03/18/2003854048',source:'Taipei Times'},
             {date:'2026-03-18',title:'Chinese database for spying on Taiwanese leaked',url:'https://www.taipeitimes.com/News/front/archives/2026/03/18/2003854013',source:'Taipei Times'},
             {date:'2026-03-17',title:'Walesa warns of China threat, urges solidarity to end communist rule',url:'https://focustaiwan.tw/cross-strait/202603170008',source:'Focus Taiwan'},
-            {date:'2026-03-16',title:'Large-scale air activities near Taiwan restart',url:'https://www.taipeitimes.com/News/taiwan/archives/2026/03/16/2003853901',source:'Taipei Times'}
+            {date:'2026-03-16',title:'Large-scale air activities near Taiwan restart',url:'https://www.taipeitimes.com/News/taiwan/archives/2026/03/16/2003853901',source:'Taipei Times'},
+            {date:'2026-03-12',title:'Chinese warplane lull around Taiwan tied to politics, fuel: Scholars',url:'https://focustaiwan.tw/cross-strait/202603120015',source:'Focus Taiwan'}
         ];
 
         // China military exercises near Taiwan (2022-2026)
@@ -5371,9 +5372,9 @@
                     </div>
                     <div class="shipping-totals" style="margin-bottom:10px;">`;
 
-            // Show article count per day for rolling 7 days
+            // Show article count per day for rolling 8 days (4x2 grid)
             const today = new Date();
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 8; i++) {
                 const d = new Date(today);
                 d.setDate(d.getDate() - i);
                 const key = d.toISOString().slice(0, 10);
