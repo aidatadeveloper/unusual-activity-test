@@ -4843,7 +4843,7 @@
 
         // ========== TAIWAN SHIPPING TRACKER ==========
         // TAIWAN_SHIPPING_DATA is embedded inline by fetch_taiwan_shipping.py
-        const TAIWAN_SHIPPING_DATA = {"generated_at":"2026-03-19 17:45:18","ports":["Kaohsiung","Keelung","Taichung","Taipei"],"history":[{"trade_date":"2026-03-19","ports":{"Taiwan Strait (AIS)":{"vessels_in_port":117,"arrivals_24h":15,"departures_24h":102,"expected_arrivals":0},"Keelung":{"vessels_in_port":43,"arrivals_24h":12,"departures_24h":18,"expected_arrivals":17},"Kaohsiung":{"vessels_in_port":568,"arrivals_24h":99,"departures_24h":97,"expected_arrivals":47},"Taipei":{"vessels_in_port":14,"arrivals_24h":17,"departures_24h":14,"expected_arrivals":16},"Taichung":{"vessels_in_port":22,"arrivals_24h":30,"departures_24h":28,"expected_arrivals":26}},"strait":{"total_vessels":186,"moving":144,"stationary":42},"totals":{"vessels_in_port":764,"arrivals_24h":173,"departures_24h":259,"expected_arrivals":106},"ais_strait":{"total_vessels":137,"moving":20,"stationary":117,"avg_speed_knots":5.1,"max_speed_knots":102.3,"source":"aisstream.io"}}]};
+        const TAIWAN_SHIPPING_DATA = {"generated_at":"2026-03-20 14:50:22","ports":["Kaohsiung","Keelung","Taichung","Taipei"],"history":[{"trade_date":"2026-03-19","ports":{"Taiwan Strait (AIS)":{"vessels_in_port":137,"arrivals_24h":20,"departures_24h":117,"expected_arrivals":0},"Keelung":{"vessels_in_port":43,"arrivals_24h":12,"departures_24h":18,"expected_arrivals":17},"Kaohsiung":{"vessels_in_port":568,"arrivals_24h":99,"departures_24h":97,"expected_arrivals":47},"Taipei":{"vessels_in_port":14,"arrivals_24h":17,"departures_24h":14,"expected_arrivals":16},"Taichung":{"vessels_in_port":22,"arrivals_24h":30,"departures_24h":28,"expected_arrivals":26}},"strait":{"total_vessels":186,"moving":144,"stationary":42},"totals":{"vessels_in_port":784,"arrivals_24h":178,"departures_24h":274,"expected_arrivals":106}},{"trade_date":"2026-03-20","ports":{"Keelung":{"vessels_in_port":47,"arrivals_24h":15,"departures_24h":12,"expected_arrivals":15},"Kaohsiung":{"vessels_in_port":586,"arrivals_24h":103,"departures_24h":101,"expected_arrivals":45},"Taipei":{"vessels_in_port":13,"arrivals_24h":15,"departures_24h":14,"expected_arrivals":16},"Taichung":{"vessels_in_port":29,"arrivals_24h":35,"departures_24h":32,"expected_arrivals":25}},"strait":{"total_vessels":184,"moving":136,"stationary":48},"totals":{"vessels_in_port":675,"arrivals_24h":168,"departures_24h":159,"expected_arrivals":101}}]};
         let shippingChartInstance = null;
 
         // Daily PLA activity detected by Taiwan MND (last 7 days)
@@ -4930,13 +4930,12 @@
 
         // Taiwan invasion news articles (embedded by fetch_taiwan_shipping.py)
         const TAIWAN_NEWS_DATA = [
-            {date:'2026-03-19',title:'China not planning to invade Taiwan in 2027: U.S. intelligence report',url:'https://focustaiwan.tw/politics/202603190004',source:'Focus Taiwan'},
+            {date:'2026-03-20',title:'Trump, Takaichi reaffirm commitment to peace in Taiwan Strait',url:'https://focustaiwan.tw/politics/202603200016',source:'Focus Taiwan'},
+            {date:'2026-03-20',title:'Taiwan’s Narwhal submarine conducts 5th dive test',url:'https://focustaiwan.tw/video/004353119',source:'Focus Taiwan'},
             {date:'2026-03-19',title:'CGA expels Chinese vessel from restricted Dongsha waters',url:'https://focustaiwan.tw/cross-strait/202603190020',source:'Focus Taiwan'},
-            {date:'2026-03-19',title:'Official outlines drills in 2026 Urban Resilience Exercises',url:'https://focustaiwan.tw/society/202603190023',source:'Focus Taiwan'},
-            {date:'2026-03-19',title:'Taiwan’s Narwhal submarine conducts 5th dive test',url:'https://focustaiwan.tw/video/004353119',source:'Focus Taiwan'},
+            {date:'2026-03-19',title:'China not planning to invade Taiwan in 2027: U.S. intelligence report',url:'https://focustaiwan.tw/politics/202603190004',source:'Focus Taiwan'},
             {date:'2026-03-18',title:'PLA sends 8 vessels, 24 aircraft across median line',url:'https://www.taipeitimes.com/News/taiwan/archives/2026/03/18/2003854048',source:'Taipei Times'},
-            {date:'2026-03-18',title:'Chinese database for spying on Taiwanese leaked',url:'https://www.taipeitimes.com/News/front/archives/2026/03/18/2003854013',source:'Taipei Times'},
-            {date:'2026-03-12',title:'Chinese warplane lull around Taiwan tied to politics, fuel: Scholars',url:'https://focustaiwan.tw/cross-strait/202603120015',source:'Focus Taiwan'}
+            {date:'2026-03-18',title:'Chinese database for spying on Taiwanese leaked',url:'https://www.taipeitimes.com/News/front/archives/2026/03/18/2003854013',source:'Taipei Times'}
         ];
 
         // China military exercises near Taiwan (2022-2026)
@@ -5200,7 +5199,7 @@
 
             let html = `
                 <div class="shipping-tracker" style="margin-top:15px;">
-                    <h3>⚔ PLA MILITARY ACTIVITY NEAR TAIWAN</h3>`;
+                    <h3><span style="color:#e44;">⚔</span> PLA MILITARY ACTIVITY NEAR TAIWAN</h3>`;
 
             // Daily activity table + chart
             if (daily && daily.length > 0) {
@@ -5272,7 +5271,7 @@
                                 <th>Date</th><th>Aircraft</th><th>Ships</th><th>Coast Guard</th><th>Crossed Median</th>
                             </tr></thead>
                             <tbody>`;
-                last7.forEach(d => {
+                last7.slice().reverse().forEach(d => {
                     const dt = new Date(d.date + 'T00:00:00');
                     const label = (dt.getMonth()+1) + '/' + dt.getDate();
                     html += `<tr>
