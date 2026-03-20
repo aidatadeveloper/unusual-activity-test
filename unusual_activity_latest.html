@@ -842,21 +842,21 @@
             padding: 30px;
             font-size: 13px;
         }
-        /* Military Exercises */
+        /* Military Exercises & Daily PLA Activity */
         .exercises-timeline {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
         .exercise-card {
-            background: rgba(40, 0, 0, 0.5);
-            border: 1px solid rgba(255, 60, 60, 0.2);
+            background: rgba(0, 15, 0, 0.85);
+            border: 1px solid rgba(0, 255, 0, 0.2);
             border-radius: 6px;
             padding: 10px 12px;
         }
         .exercise-card.exercise-latest {
-            border-color: rgba(255, 60, 60, 0.5);
-            background: rgba(60, 0, 0, 0.6);
+            border-color: rgba(0, 255, 0, 0.4);
+            background: rgba(0, 20, 0, 0.9);
         }
         .exercise-header {
             display: flex;
@@ -866,11 +866,11 @@
         }
         .exercise-name {
             font-weight: bold;
-            color: rgba(255, 100, 100, 1);
+            color: #0f0;
             font-size: 12px;
         }
         .exercise-date {
-            color: rgba(255, 100, 100, 0.6);
+            color: rgba(0, 255, 0, 0.5);
             font-size: 10px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
@@ -889,30 +889,58 @@
         .exercise-stat-value {
             font-size: 18px;
             font-weight: bold;
-            color: rgba(255, 120, 120, 0.9);
+            color: #0f0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .exercise-stat-label {
             font-size: 9px;
-            color: rgba(255, 100, 100, 0.5);
+            color: rgba(0, 255, 0, 0.5);
             text-transform: uppercase;
         }
         .exercise-days-ago {
-            color: rgba(255, 200, 100, 0.9) !important;
+            color: rgba(0, 255, 0, 0.7) !important;
             font-size: 13px !important;
         }
         .exercise-trigger {
             font-size: 10px;
-            color: rgba(255, 150, 150, 0.7);
+            color: rgba(0, 255, 0, 0.6);
             margin-bottom: 4px;
         }
         .exercise-trigger strong {
-            color: rgba(255, 150, 150, 0.9);
+            color: rgba(0, 255, 0, 0.8);
         }
         .exercise-notes {
             font-size: 10px;
-            color: rgba(255, 100, 100, 0.5);
+            color: rgba(0, 255, 0, 0.4);
             line-height: 1.4;
+        }
+        .pla-daily-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+        .pla-daily-table th {
+            font-size: 9px;
+            color: rgba(0, 255, 0, 0.6);
+            text-transform: uppercase;
+            text-align: center;
+            padding: 4px 6px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        .pla-daily-table td {
+            font-size: 11px;
+            color: rgba(0, 255, 0, 0.8);
+            text-align: center;
+            padding: 4px 6px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.08);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .pla-daily-table td.pla-date-col {
+            color: rgba(0, 255, 0, 0.5);
+            font-size: 10px;
+        }
+        .pla-daily-table tr:hover td {
+            background: rgba(0, 255, 0, 0.05);
         }
 
         @media (max-width: 600px) {
@@ -4818,6 +4846,88 @@
         const TAIWAN_SHIPPING_DATA = {"generated_at":"2026-03-19 17:45:18","ports":["Kaohsiung","Keelung","Taichung","Taipei"],"history":[{"trade_date":"2026-03-19","ports":{"Taiwan Strait (AIS)":{"vessels_in_port":117,"arrivals_24h":15,"departures_24h":102,"expected_arrivals":0},"Keelung":{"vessels_in_port":43,"arrivals_24h":12,"departures_24h":18,"expected_arrivals":17},"Kaohsiung":{"vessels_in_port":568,"arrivals_24h":99,"departures_24h":97,"expected_arrivals":47},"Taipei":{"vessels_in_port":14,"arrivals_24h":17,"departures_24h":14,"expected_arrivals":16},"Taichung":{"vessels_in_port":22,"arrivals_24h":30,"departures_24h":28,"expected_arrivals":26}},"strait":{"total_vessels":186,"moving":144,"stationary":42},"totals":{"vessels_in_port":764,"arrivals_24h":173,"departures_24h":259,"expected_arrivals":106},"ais_strait":{"total_vessels":137,"moving":20,"stationary":117,"avg_speed_knots":5.1,"max_speed_knots":102.3,"source":"aisstream.io"}}]};
         let shippingChartInstance = null;
 
+        // Daily PLA activity detected by Taiwan MND (last 7 days)
+        // Embedded by fetch_taiwan_shipping.py from mnd.gov.tw
+        const PLA_DAILY_ACTIVITY = [
+            {date:'2026-01-03',aircraft:4,ships:6,official:1,crossed:1},
+            {date:'2026-01-04',aircraft:0,ships:5,official:1,crossed:0},
+            {date:'2026-01-05',aircraft:3,ships:0,official:1,crossed:3},
+            {date:'2026-01-06',aircraft:8,ships:0,official:0,crossed:0},
+            {date:'2026-01-07',aircraft:11,ships:6,official:1,crossed:11},
+            {date:'2026-01-08',aircraft:9,ships:5,official:1,crossed:9},
+            {date:'2026-01-09',aircraft:23,ships:6,official:1,crossed:19},
+            {date:'2026-01-10',aircraft:3,ships:6,official:0,crossed:0},
+            {date:'2026-01-11',aircraft:4,ships:6,official:1,crossed:1},
+            {date:'2026-01-12',aircraft:0,ships:5,official:1,crossed:0},
+            {date:'2026-01-13',aircraft:10,ships:5,official:0,crossed:10},
+            {date:'2026-01-14',aircraft:20,ships:9,official:0,crossed:20},
+            {date:'2026-01-15',aircraft:9,ships:11,official:0,crossed:9},
+            {date:'2026-01-16',aircraft:34,ships:11,official:1,crossed:34},
+            {date:'2026-01-17',aircraft:26,ships:8,official:1,crossed:26},
+            {date:'2026-01-18',aircraft:9,ships:9,official:0,crossed:3},
+            {date:'2026-01-19',aircraft:2,ships:8,official:0,crossed:2},
+            {date:'2026-01-20',aircraft:2,ships:6,official:0,crossed:2},
+            {date:'2026-01-21',aircraft:4,ships:6,official:0,crossed:0},
+            {date:'2026-01-22',aircraft:2,ships:0,official:0,crossed:0},
+            {date:'2026-01-23',aircraft:11,ships:5,official:0,crossed:11},
+            {date:'2026-01-24',aircraft:26,ships:6,official:0,crossed:18},
+            {date:'2026-01-25',aircraft:4,ships:7,official:3,crossed:4},
+            {date:'2026-01-26',aircraft:5,ships:8,official:3,crossed:0},
+            {date:'2026-01-27',aircraft:2,ships:5,official:1,crossed:0},
+            {date:'2026-01-28',aircraft:4,ships:5,official:0,crossed:0},
+            {date:'2026-01-29',aircraft:5,ships:5,official:0,crossed:0},
+            {date:'2026-01-30',aircraft:26,ships:6,official:1,crossed:26},
+            {date:'2026-01-31',aircraft:3,ships:8,official:0,crossed:0},
+            {date:'2026-02-01',aircraft:0,ships:6,official:0,crossed:0},
+            {date:'2026-02-02',aircraft:0,ships:6,official:0,crossed:0},
+            {date:'2026-02-03',aircraft:2,ships:6,official:0,crossed:0},
+            {date:'2026-02-04',aircraft:13,ships:6,official:0,crossed:0},
+            {date:'2026-02-05',aircraft:12,ships:7,official:0,crossed:0},
+            {date:'2026-02-06',aircraft:8,ships:6,official:0,crossed:0},
+            {date:'2026-02-07',aircraft:6,ships:7,official:0,crossed:0},
+            {date:'2026-02-08',aircraft:0,ships:7,official:0,crossed:0},
+            {date:'2026-02-09',aircraft:0,ships:7,official:0,crossed:0},
+            {date:'2026-02-10',aircraft:4,ships:8,official:0,crossed:0},
+            {date:'2026-02-11',aircraft:9,ships:8,official:0,crossed:0},
+            {date:'2026-02-12',aircraft:17,ships:0,official:0,crossed:0},
+            {date:'2026-02-13',aircraft:42,ships:11,official:0,crossed:0},
+            {date:'2026-02-14',aircraft:0,ships:8,official:0,crossed:0},
+            {date:'2026-02-15',aircraft:11,ships:8,official:0,crossed:0},
+            {date:'2026-02-16',aircraft:3,ships:6,official:0,crossed:0},
+            {date:'2026-02-17',aircraft:0,ships:5,official:0,crossed:0},
+            {date:'2026-02-18',aircraft:0,ships:5,official:0,crossed:0},
+            {date:'2026-02-19',aircraft:0,ships:6,official:0,crossed:0},
+            {date:'2026-02-20',aircraft:14,ships:6,official:0,crossed:0},
+            {date:'2026-02-21',aircraft:8,ships:7,official:0,crossed:0},
+            {date:'2026-02-22',aircraft:2,ships:6,official:0,crossed:0},
+            {date:'2026-02-23',aircraft:0,ships:5,official:0,crossed:0},
+            {date:'2026-02-24',aircraft:0,ships:5,official:0,crossed:0},
+            {date:'2026-02-25',aircraft:0,ships:5,official:0,crossed:0},
+            {date:'2026-02-26',aircraft:30,ships:6,official:0,crossed:0},
+            {date:'2026-02-27',aircraft:8,ships:6,official:0,crossed:0},
+            {date:'2026-02-28',aircraft:0,ships:7,official:0,crossed:0},
+            {date:'2026-03-01',aircraft:0,ships:7,official:0,crossed:0},
+            {date:'2026-03-02',aircraft:0,ships:5,official:0,crossed:0},
+            {date:'2026-03-03',aircraft:0,ships:5,official:0,crossed:0},
+            {date:'2026-03-04',aircraft:0,ships:5,official:0,crossed:0},
+            {date:'2026-03-05',aircraft:0,ships:6,official:0,crossed:0},
+            {date:'2026-03-06',aircraft:0,ships:7,official:0,crossed:0},
+            {date:'2026-03-07',aircraft:2,ships:6,official:0,crossed:0},
+            {date:'2026-03-08',aircraft:0,ships:7,official:0,crossed:0},
+            {date:'2026-03-09',aircraft:0,ships:8,official:0,crossed:0},
+            {date:'2026-03-10',aircraft:0,ships:6,official:0,crossed:0},
+            {date:'2026-03-11',aircraft:0,ships:6,official:0,crossed:0},
+            {date:'2026-03-12',aircraft:5,ships:0,official:0,crossed:0},
+            {date:'2026-03-13',aircraft:0,ships:0,official:0,crossed:0},
+            {date:'2026-03-14',aircraft:3,ships:5,official:0,crossed:3},
+            {date:'2026-03-15',aircraft:26,ships:7,official:0,crossed:16},
+            {date:'2026-03-16',aircraft:2,ships:7,official:0,crossed:0},
+            {date:'2026-03-17',aircraft:2,ships:8,official:1,crossed:2},
+            {date:'2026-03-18',aircraft:36,ships:8,official:1,crossed:24},
+            {date:'2026-03-19',aircraft:12,ships:9,official:2,crossed:5},
+            {date:'2026-03-20',aircraft:6,ships:8,official:0,crossed:4}
+        ];
+
         // China military exercises near Taiwan (2022-2026)
         const CHINA_MILITARY_EXERCISES = [
             {
@@ -4990,15 +5100,189 @@
             // Render chart (last 7 days)
             const last7 = data.history.slice(-7);
             renderShippingChart(last7);
+
+            // Render PLA activity chart after DOM update
+            setTimeout(() => renderPlaChart(PLA_DAILY_ACTIVITY), 100);
+        }
+
+        function renderPlaChart(data) {
+            const canvas = document.getElementById('plaChart');
+            if (!canvas || !data || data.length === 0) return;
+
+            const labels = data.map(d => {
+                const dt = new Date(d.date + 'T00:00:00');
+                return (dt.getMonth()+1) + '/' + dt.getDate();
+            });
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Aircraft',
+                            data: data.map(d => d.aircraft),
+                            borderColor: 'rgba(0, 255, 0, 0.9)',
+                            backgroundColor: 'rgba(0, 255, 0, 0.05)',
+                            borderWidth: 1.5,
+                            pointRadius: 2,
+                            pointBackgroundColor: 'rgba(0, 255, 0, 0.9)',
+                            tension: 0.2,
+                            fill: true
+                        },
+                        {
+                            label: 'Ships',
+                            data: data.map(d => d.ships),
+                            borderColor: 'rgba(0, 150, 255, 0.8)',
+                            borderWidth: 1.5,
+                            pointRadius: 2,
+                            pointBackgroundColor: 'rgba(0, 150, 255, 0.8)',
+                            tension: 0.2,
+                            fill: false
+                        },
+                        {
+                            label: 'Crossed Median',
+                            data: data.map(d => d.crossed),
+                            borderColor: 'rgba(255, 200, 0, 0.8)',
+                            borderWidth: 1.5,
+                            borderDash: [4, 2],
+                            pointRadius: 2,
+                            pointBackgroundColor: 'rgba(255, 200, 0, 0.8)',
+                            tension: 0.2,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: {
+                            labels: { color: 'rgba(0,255,0,0.7)', font: { size: 10 }, usePointStyle: true }
+                        },
+                        title: {
+                            display: true,
+                            text: 'PLA Daily Activity Near Taiwan (2026)',
+                            color: 'rgba(0,255,0,0.7)',
+                            font: { size: 12 }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: 'rgba(0,255,0,0.4)', font: { size: 8 }, maxRotation: 45 },
+                            grid: { color: 'rgba(0,255,0,0.06)' }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: 'rgba(0,255,0,0.5)', font: { size: 9 } },
+                            grid: { color: 'rgba(0,255,0,0.08)' }
+                        }
+                    }
+                }
+            });
         }
 
         function renderMilitaryExercises() {
             const exercises = CHINA_MILITARY_EXERCISES;
-            if (!exercises || exercises.length === 0) return '';
+            const daily = PLA_DAILY_ACTIVITY;
 
             let html = `
-                <div class="shipping-tracker" style="margin-top:15px;border-color:rgba(255,60,60,0.3);">
-                    <h3 style="color:rgba(255,80,80,1);">⚔ CHINA MILITARY EXERCISES NEAR TAIWAN</h3>
+                <div class="shipping-tracker" style="margin-top:15px;">
+                    <h3>⚔ PLA MILITARY ACTIVITY NEAR TAIWAN</h3>`;
+
+            // Daily activity table + chart
+            if (daily && daily.length > 0) {
+                const last7 = daily.slice(-7);
+                const totalAC = daily.reduce((s,d) => s + d.aircraft, 0);
+                const totalShips = daily.reduce((s,d) => s + d.ships, 0);
+                const totalCrossed = daily.reduce((s,d) => s + d.crossed, 0);
+                const avgAC = (totalAC / daily.length).toFixed(0);
+
+                // Detect flight pauses (2+ consecutive days with 0 aircraft)
+                let pauses = [];
+                let pStart = null;
+                for (let i = 0; i < daily.length; i++) {
+                    if (daily[i].aircraft === 0) {
+                        if (pStart === null) pStart = i;
+                    } else {
+                        if (pStart !== null && (i - pStart) >= 2) {
+                            pauses.push({start: daily[pStart].date, end: daily[i-1].date, days: i - pStart});
+                        }
+                        pStart = null;
+                    }
+                }
+                if (pStart !== null && (daily.length - pStart) >= 2) {
+                    pauses.push({start: daily[pStart].date, end: daily[daily.length-1].date, days: daily.length - pStart});
+                }
+
+                html += `
+                    <div style="margin-bottom:12px;">
+                        <div style="font-size:11px;color:rgba(0,255,0,0.7);margin-bottom:6px;font-weight:bold;">Daily PLA Detections - 2026 (Taiwan MND)</div>
+                        <div class="shipping-totals" style="margin-bottom:8px;">
+                            <div class="shipping-total-item">
+                                <div class="total-value">${totalAC}</div>
+                                <div class="total-label">${daily.length}-Day Aircraft</div>
+                            </div>
+                            <div class="shipping-total-item">
+                                <div class="total-value">${totalShips}</div>
+                                <div class="total-label">${daily.length}-Day Ships</div>
+                            </div>
+                            <div class="shipping-total-item">
+                                <div class="total-value">${totalCrossed}</div>
+                                <div class="total-label">Crossed Median</div>
+                            </div>
+                            <div class="shipping-total-item">
+                                <div class="total-value">${avgAC}</div>
+                                <div class="total-label">Avg Aircraft/Day</div>
+                            </div>
+                        </div>`;
+
+                // Flight pauses
+                if (pauses.length > 0) {
+                    html += '<div style="margin-bottom:8px;">';
+                    pauses.forEach(p => {
+                        const s = new Date(p.start+'T00:00:00');
+                        const e = new Date(p.end+'T00:00:00');
+                        const sLabel = (s.getMonth()+1)+'/'+s.getDate();
+                        const eLabel = (e.getMonth()+1)+'/'+e.getDate();
+                        html += `<div style="font-size:10px;color:rgba(0,255,0,0.6);padding:2px 0;">
+                            ⏸ Flight Pause: ${sLabel} - ${eLabel} (${p.days} days, 0 aircraft detected)</div>`;
+                    });
+                    html += '</div>';
+                }
+
+                // 2026 line chart
+                html += '<div class="shipping-chart-container"><canvas id="plaChart"></canvas></div>';
+
+                // Last 7 days table
+                html += `<table class="pla-daily-table" style="margin-top:10px;">
+                            <thead><tr>
+                                <th>Date</th><th>Aircraft</th><th>Ships</th><th>Coast Guard</th><th>Crossed Median</th>
+                            </tr></thead>
+                            <tbody>`;
+                last7.forEach(d => {
+                    const dt = new Date(d.date + 'T00:00:00');
+                    const label = (dt.getMonth()+1) + '/' + dt.getDate();
+                    html += `<tr>
+                        <td class="pla-date-col">${label}</td>
+                        <td>${d.aircraft}</td>
+                        <td>${d.ships}</td>
+                        <td>${d.official || '-'}</td>
+                        <td>${d.crossed || '-'}</td>
+                    </tr>`;
+                });
+                html += `</tbody></table>
+                        <div style="text-align:center;font-size:9px;color:rgba(0,255,0,0.3);margin-top:6px;">
+                            Source: Taiwan Ministry of National Defense (mnd.gov.tw) | ${daily.length} days tracked</div>
+                    </div>`;
+            }
+
+            // Named exercises section
+            if (!exercises || exercises.length === 0) { html += '</div>'; return html; }
+
+            html += `
+                    <div style="font-size:11px;color:rgba(0,255,0,0.7);margin-bottom:6px;font-weight:bold;">Named Exercises</div>
                     <div class="exercises-timeline">`;
 
             exercises.slice().reverse().forEach((ex, i) => {
