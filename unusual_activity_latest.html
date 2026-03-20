@@ -4928,6 +4928,19 @@
             {date:'2026-03-20',aircraft:6,ships:8,official:0,crossed:4}
         ];
 
+        // Taiwan invasion news articles (embedded by fetch_taiwan_shipping.py)
+        const TAIWAN_NEWS_DATA = [
+            {date:'2026-03-19',title:'China not planning to invade Taiwan in 2027: U.S. intelligence report',url:'https://focustaiwan.tw/politics/202603190004',source:'Focus Taiwan'},
+            {date:'2026-03-19',title:'Official outlines drills in 2026 Urban Resilience Exercises',url:'https://focustaiwan.tw/society/202603190023',source:'Focus Taiwan'},
+            {date:'2026-03-19',title:'Taiwan’s Narwhal submarine conducts 5th dive test',url:'https://focustaiwan.tw/video/004353119',source:'Focus Taiwan'},
+            {date:'2026-03-19',title:'20-Meter Giant Moomin Makes a Splash at Taichung International Convention and Exhibition Center A Collaboration Among Ta',url:'https://focustaiwan.tw/ad/20260223000001',source:'Focus Taiwan'},
+            {date:'2026-03-18',title:'PLA sends 8 vessels, 24 aircraft across median line',url:'https://www.taipeitimes.com/News/taiwan/archives/2026/03/18/2003854048',source:'Taipei Times'},
+            {date:'2026-03-18',title:'Chinese database for spying on Taiwanese leaked',url:'https://www.taipeitimes.com/News/front/archives/2026/03/18/2003854013',source:'Taipei Times'},
+            {date:'2026-03-17',title:'Walesa warns of China threat, urges solidarity to end communist rule',url:'https://focustaiwan.tw/cross-strait/202603170008',source:'Focus Taiwan'},
+            {date:'2026-03-17',title:'Kaohsiung mayor talks up \'sovereign AI\' plan on sidelines of Nvidia GTC',url:'https://focustaiwan.tw/sci-tech/202603170006',source:'Focus Taiwan'},
+            {date:'2026-03-12',title:'Chinese warplane lull around Taiwan tied to politics, fuel: Scholars',url:'https://focustaiwan.tw/cross-strait/202603120015',source:'Focus Taiwan'}
+        ];
+
         // China military exercises near Taiwan (2022-2026)
         const CHINA_MILITARY_EXERCISES = [
             {
@@ -5332,6 +5345,65 @@
             });
 
             html += '</div></div>';
+
+            // News section
+            html += renderTaiwanNews();
+
+            return html;
+        }
+
+        function renderTaiwanNews() {
+            const news = TAIWAN_NEWS_DATA;
+            if (!news || news.length === 0) return '';
+
+            // Group by date
+            const byDate = {};
+            news.forEach(a => {
+                if (!byDate[a.date]) byDate[a.date] = [];
+                byDate[a.date].push(a);
+            });
+            const dates = Object.keys(byDate).sort().reverse();
+
+            let html = `
+                <div class="shipping-tracker" style="margin-top:15px;">
+                    <h3>📰 TAIWAN-CHINA THREAT MONITOR</h3>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-bottom:8px;font-weight:bold;">
+                        ${news.length} articles from Focus Taiwan & Taipei Times
+                    </div>
+                    <div class="shipping-totals" style="margin-bottom:10px;">`;
+
+            // Show article count per day for last 5 days
+            dates.slice(0, 5).forEach(d => {
+                const dt = new Date(d + 'T00:00:00');
+                const label = (dt.getMonth()+1) + '/' + dt.getDate();
+                html += `
+                        <div class="shipping-total-item">
+                            <div class="total-value">${byDate[d].length}</div>
+                            <div class="total-label">${label}</div>
+                        </div>`;
+            });
+            html += '</div>';
+
+            // Article list grouped by date
+            dates.forEach(d => {
+                const dt = new Date(d + 'T00:00:00');
+                const dateLabel = dt.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+                html += `<div style="margin-bottom:10px;">
+                    <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:3px;">${dateLabel} (${byDate[d].length} articles)</div>`;
+
+                byDate[d].forEach(a => {
+                    const srcColor = a.source === 'Focus Taiwan' ? 'rgba(0,200,255,0.6)' : 'rgba(200,200,0,0.6)';
+                    html += `<div style="padding:3px 0;font-size:11px;">
+                        <a href="${a.url}" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">${a.title}</a>
+                        <span style="font-size:9px;color:${srcColor};margin-left:6px;">${a.source}</span>
+                    </div>`;
+                });
+                html += '</div>';
+            });
+
+            html += `<div style="text-align:center;font-size:9px;color:rgba(255,255,255,0.3);margin-top:6px;">
+                Sources: Focus Taiwan (CNA), Taipei Times | Updated daily</div>`;
+            html += '</div>';
             return html;
         }
 
