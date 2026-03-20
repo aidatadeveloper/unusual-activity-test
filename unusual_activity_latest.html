@@ -4843,7 +4843,7 @@
 
         // ========== TAIWAN SHIPPING TRACKER ==========
         // TAIWAN_SHIPPING_DATA is embedded inline by fetch_taiwan_shipping.py
-        const TAIWAN_SHIPPING_DATA = {"generated_at":"2026-03-20 14:50:22","ports":["Kaohsiung","Keelung","Taichung","Taipei"],"history":[{"trade_date":"2026-03-19","ports":{"Taiwan Strait (AIS)":{"vessels_in_port":137,"arrivals_24h":20,"departures_24h":117,"expected_arrivals":0},"Keelung":{"vessels_in_port":43,"arrivals_24h":12,"departures_24h":18,"expected_arrivals":17},"Kaohsiung":{"vessels_in_port":568,"arrivals_24h":99,"departures_24h":97,"expected_arrivals":47},"Taipei":{"vessels_in_port":14,"arrivals_24h":17,"departures_24h":14,"expected_arrivals":16},"Taichung":{"vessels_in_port":22,"arrivals_24h":30,"departures_24h":28,"expected_arrivals":26}},"strait":{"total_vessels":186,"moving":144,"stationary":42},"totals":{"vessels_in_port":784,"arrivals_24h":178,"departures_24h":274,"expected_arrivals":106}},{"trade_date":"2026-03-20","ports":{"Keelung":{"vessels_in_port":47,"arrivals_24h":15,"departures_24h":12,"expected_arrivals":15},"Kaohsiung":{"vessels_in_port":586,"arrivals_24h":103,"departures_24h":101,"expected_arrivals":45},"Taipei":{"vessels_in_port":13,"arrivals_24h":15,"departures_24h":14,"expected_arrivals":16},"Taichung":{"vessels_in_port":29,"arrivals_24h":35,"departures_24h":32,"expected_arrivals":25}},"strait":{"total_vessels":184,"moving":136,"stationary":48},"totals":{"vessels_in_port":675,"arrivals_24h":168,"departures_24h":159,"expected_arrivals":101}}]};
+        const TAIWAN_SHIPPING_DATA = {"generated_at":"2026-03-20 14:50:22","ports":["Kaohsiung","Keelung","Taichung","Taipei"],"history":[{"trade_date":"2026-03-19","ports":{"Taiwan Strait (AIS)":{"vessels_in_port":137,"arrivals_24h":20,"departures_24h":117,"expected_arrivals":0},"Keelung":{"vessels_in_port":43,"arrivals_24h":12,"departures_24h":18,"expected_arrivals":17},"Kaohsiung":{"vessels_in_port":568,"arrivals_24h":99,"departures_24h":97,"expected_arrivals":47},"Taipei":{"vessels_in_port":14,"arrivals_24h":17,"departures_24h":14,"expected_arrivals":16},"Taichung":{"vessels_in_port":22,"arrivals_24h":30,"departures_24h":28,"expected_arrivals":26}},"strait":{"total_vessels":186,"moving":144,"stationary":42},"totals":{"vessels_in_port":784,"arrivals_24h":178,"departures_24h":274,"expected_arrivals":106}},{"trade_date":"2026-03-20","ports":{"Keelung":{"vessels_in_port":47,"arrivals_24h":15,"departures_24h":12,"expected_arrivals":15},"Kaohsiung":{"vessels_in_port":586,"arrivals_24h":103,"departures_24h":101,"expected_arrivals":45},"Taipei":{"vessels_in_port":13,"arrivals_24h":15,"departures_24h":14,"expected_arrivals":16},"Taichung":{"vessels_in_port":29,"arrivals_24h":35,"departures_24h":32,"expected_arrivals":25}},"strait":{"total_vessels":184,"moving":136,"stationary":48},"totals":{"vessels_in_port":675,"arrivals_24h":168,"departures_24h":159,"expected_arrivals":101},"ais_strait":{"total_vessels":138,"moving":23,"stationary":115,"avg_speed_knots":3.6,"max_speed_knots":20.7,"source":"aisstream.io"}}]};
         let shippingChartInstance = null;
 
         // Daily PLA activity detected by Taiwan MND (last 7 days)
@@ -5369,16 +5369,20 @@
                     </div>
                     <div class="shipping-totals" style="margin-bottom:10px;">`;
 
-            // Show article count per day for last 5 days
-            dates.slice(0, 5).forEach(d => {
-                const dt = new Date(d + 'T00:00:00');
-                const label = (dt.getMonth()+1) + '/' + dt.getDate();
+            // Show article count per day for rolling 7 days
+            const today = new Date();
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(today);
+                d.setDate(d.getDate() - i);
+                const key = d.toISOString().slice(0, 10);
+                const label = (d.getMonth()+1) + '/' + d.getDate();
+                const count = byDate[key] ? byDate[key].length : 0;
                 html += `
                         <div class="shipping-total-item">
-                            <div class="total-value">${byDate[d].length}</div>
+                            <div class="total-value" style="${count === 0 ? 'color:rgba(255,255,255,0.2)' : ''}">${count}</div>
                             <div class="total-label">${label}</div>
                         </div>`;
-            });
+            }
             html += '</div>';
 
             // Article list grouped by date
