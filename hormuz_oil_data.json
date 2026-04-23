@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23 02:28:16",
+  "generated_at": "2026-04-23 03:44:48",
   "event_types": [
     "ship_in",
     "ship_out",
@@ -14,7 +14,7 @@
     "emergency": 86,
     "consumption_law": 56,
     "incident": 318,
-    "ship_seizure": 148
+    "ship_seizure": 153
   },
   "events": [
     {
@@ -294,6 +294,33 @@
       "source": "Crypto Briefing",
       "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQS0llYWJRakI1TmIwNDY3M1ZvNWFRZVBfN0hLMmZ1ZVRjYXotVFhpUlIyLUJDYjRpWFZxd3RWTjY5dVpzNGNGMlhyeWk4ZEJpTzZWZjJuWjdMZlZiRmZjSGF5Mnc3X3VITHZSUDgwZTZXLU5xNjA2VFZsOHM2U2ptUXhhZHluQnFES0NQM1l6NmFUdXNqM1FOZWVGS1RPVEhUcHRGblJUVQ?oc=5",
       "seized_by": "Iran"
+    },
+    {
+      "id": "video_seizure_Xhk8s0O-zHc",
+      "type": "ship_seizure",
+      "date": "2026-04-23",
+      "country": "Strait of Hormuz",
+      "location": "Strait of Hormuz / Gulf of Oman",
+      "lat": 26.5,
+      "lon": 56.3,
+      "title": "Iran seizes ships, slams 'hypocritical\u2019 and \u2018empty' peace talks",
+      "detail": "YouTube video by CBC News: The National (180s). Auto-extracted from transcript.",
+      "source": "YouTube (CBC News: The National)",
+      "url": "https://www.youtube.com/watch?v=Xhk8s0O-zHc",
+      "seized_by": "USA"
+    },
+    {
+      "id": "video_seizure_gz7_zKAnid0",
+      "type": "ship_seizure",
+      "date": "2026-04-23",
+      "country": "Strait of Hormuz",
+      "location": "Strait of Hormuz / Gulf of Oman",
+      "lat": 26.5,
+      "lon": 56.3,
+      "title": "HORMUZ ON BRINK: Iran Seizes Vessels, Signals War Readiness As Trump Extends Ceasefire | US-Iran War",
+      "detail": "YouTube video by Times Now World (205s). Auto-extracted from transcript.",
+      "source": "YouTube (Times Now World)",
+      "url": "https://www.youtube.com/watch?v=gz7_zKAnid0"
     },
     {
       "id": "news_consumption_law_2026-04-22_c5d5facd0909",
@@ -1288,6 +1315,45 @@
       "source": "investingLive",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOYS1KWV9tOEtYdF83RjJZZWE2TzFjZWN3VEdEM2o0OUlLNjE5SXJOaFhKaUJ5N0xiVldscnphUUVxc0p5OWNhSVJQQXZyVmtiN21uTUpWWlh0ZUFKemdxNW1Ralo1MEt5UkRIVVZUOUFGM2xUN05sd2h0S0puTWFjSmtXV2ZkbjJmQkkyVFVrOGFQdHFjSm9Ic1A5VkFWSDRzNTlOeTg1MXZVQUwzTngwQ2NXVUlhX3NsSmJrV285QdIBxAFBVV95cUxNRTZtbk10NmxaczF4amFMRlRxbmxMeGtMcEpLblVlelo3ejdzZ1ZzcGQyU3dWZTNadkpIalhnV3FjR1ZuYk5LZGN1RFBZTC1UWFBudHNHaWVrQlViTjFEU3VlSk1hc3lhUmZ1cUlLM05qdE14YW5qMmxQRW1xeU5VQ1ZOR2ZMUVNiQ0ExTHBWVnE0ellDWFh3YVlCMFB0UXdKT19YeEg3WHdOVWNNYVZXVWhHMEYxcG9rSkNEYVM5VnB1VDBE?oc=5",
       "seized_by": "USA"
+    },
+    {
+      "id": "video_seizure_gPWasupcwmw",
+      "type": "ship_seizure",
+      "date": "2026-04-22",
+      "country": "Strait of Hormuz",
+      "location": "Strait of Hormuz / Gulf of Oman",
+      "lat": 26.5,
+      "lon": 56.3,
+      "title": "HORMUZ SHOCK: Iran Captures Israel-Linked Ship, Warns US \u2018Ready For War\u2019 | US-Iran War",
+      "detail": "YouTube video by Times Now World (223s). Auto-extracted from transcript.",
+      "source": "YouTube (Times Now World)",
+      "url": "https://www.youtube.com/watch?v=gPWasupcwmw"
+    },
+    {
+      "id": "video_seizure_3CsLiM-w4kM",
+      "type": "ship_seizure",
+      "date": "2026-04-22",
+      "country": "Strait of Hormuz",
+      "location": "Strait of Hormuz / Gulf of Oman",
+      "lat": 26.5,
+      "lon": 56.3,
+      "title": "Iran war: Attacks continue in Strait of Hormuz amid ceasefire extension | FOX 10 Phoenix",
+      "detail": "YouTube video by FOX 10 Phoenix (100s). Auto-extracted from transcript.",
+      "source": "YouTube (FOX 10 Phoenix)",
+      "url": "https://www.youtube.com/watch?v=3CsLiM-w4kM"
+    },
+    {
+      "id": "video_seizure_Gh1kPQ4RNUk",
+      "type": "ship_seizure",
+      "date": "2026-04-22",
+      "country": "Strait of Hormuz",
+      "location": "Strait of Hormuz / Gulf of Oman",
+      "lat": 26.5,
+      "lon": 56.3,
+      "title": "NEW DETAILS: Iran FIRES on ship with \u2018no warning\u2019",
+      "detail": "YouTube video by Fox News (658s). Auto-extracted from transcript.",
+      "source": "YouTube (Fox News)",
+      "url": "https://www.youtube.com/watch?v=Gh1kPQ4RNUk"
     },
     {
       "id": "news_ship_seizure_2026-04-22_c72337e9a396",
