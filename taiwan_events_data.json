@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-04-23 12:16:37",
+  "event_types": [
+    "military_drill",
+    "airspace_violation",
+    "naval_incident",
+    "diplomatic_incident",
+    "cyber_attack",
+    "incident"
+  ],
+  "counts": {
+    "military_drill": 0,
+    "airspace_violation": 0,
+    "naval_incident": 0,
+    "diplomatic_incident": 0,
+    "cyber_attack": 0,
+    "incident": 1
+  },
+  "events": [
+    {
+      "id": "video_incident_ikk684OROL4",
+      "type": "incident",
+      "date": "2026-04-23",
+      "country": "Taiwan Strait",
+      "location": "Taiwan Strait (per video)",
+      "lat": 24.0,
+      "lon": 119.5,
+      "title": "Fire crews thaw Drake's giant ice installation in Toronto. #BBCNews",
+      "detail": "YouTube video by BBC News (30s). Auto-classified from title+transcript.",
+      "source": "YouTube (BBC News)",
+      "url": "https://www.youtube.com/watch?v=ikk684OROL4"
+    }
+  ]
+}
