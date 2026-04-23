@@ -1,18 +1,20 @@
 {
-  "generated_at": "2026-04-23 02:16:34",
+  "generated_at": "2026-04-23 02:21:09",
   "event_types": [
     "ship_in",
     "ship_out",
     "emergency",
     "consumption_law",
-    "incident"
+    "incident",
+    "ship_seizure"
   ],
   "counts": {
     "ship_in": 15,
     "ship_out": 15,
     "emergency": 85,
     "consumption_law": 55,
-    "incident": 305
+    "incident": 305,
+    "ship_seizure": 2
   },
   "events": [
     {
@@ -1075,6 +1077,20 @@
       "count": 4
     },
     {
+      "id": "ship_seizure_2026-04-21_Bay_of_Bengal",
+      "type": "ship_seizure",
+      "date": "2026-04-21",
+      "country": "Bay of Bengal",
+      "location": "Bay of Bengal (between India and SE Asia)",
+      "lat": 15.0,
+      "lon": 88.0,
+      "title": "US forces detain Iran-linked tanker M/T Tifani",
+      "detail": "Stateless sanctioned tanker Tifani carrying Iranian oil boarded by US forces in the Bay of Bengal without incident; Iran labels seizure \"piracy at sea and state terrorism\".",
+      "source": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/4/21/us-forces-detain-iran-linked-tanker-tifani-with-ceasefire-talks-on-edge",
+      "seized_by": "USA"
+    },
+    {
       "id": "news_consumption_law_2026-04-20_3da8ececb0d9",
       "type": "consumption_law",
       "date": "2026-04-20",
@@ -1493,6 +1509,20 @@
       "source": "seed-estimate",
       "url": null,
       "count": 0
+    },
+    {
+      "id": "ship_seizure_2026-04-19_Gulf_of_Oman",
+      "type": "ship_seizure",
+      "date": "2026-04-19",
+      "country": "Gulf of Oman",
+      "location": "Gulf of Oman",
+      "lat": 24.5,
+      "lon": 58.5,
+      "title": "US Navy seizes Iranian-flagged cargo ship M/V Touska",
+      "detail": "US guided-missile destroyer fired on then boarded the Iranian-flagged M/V Touska in the Gulf of Oman. Ship loaded with dual-use chemicals from China used to manufacture ballistic missiles. Marines rappelled from helicopters after vessel was disabled.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/04/19/trump-navy-iran-ship-gulf-of-oman.html",
+      "seized_by": "USA"
     },
     {
       "id": "news_incident_2026-04-18_fc261226d937",
